@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.RoleMapper">
+    <!--将查询结果映射到javabean-->
+    <resultMap id="allResultMap" type="org.thealphalab.education.model.Role">
+        <id column="roleId" javaType="String" property="roleId"/>
+        <result column="roleName" javaType="String" property="roleName"/>
+        <result column="roleNameZh" javaType="String" property="roleNameZh"/>
+    </resultMap>
+    <!--可重用的语句块，可被其他语句引用-->
+    <!--<sql id="Base_Column_List">
+    id, name, phone, telephone, address, enabled, username, password, userface, remark
+  </sql>-->
+    <!--根据RoleMapper中的方法，将其映射到SQL语句中，并配置结果对象-->
+    <select id="getRoleByRoleId" resultMap="allResultMap">
+        select * from role where id = #{id};
+    </select>
+</mapper>

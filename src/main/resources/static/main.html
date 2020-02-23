@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="js/layui.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/layui.css" />
+		<style type="text/css">
+			.layui-header i{
+				color: #4E4E4E;
+			}
+		</style>
+	</head>
+	<body layadmin-themealias="default" class="layui-layout-body">
+		<div id="LAY_app" class="layadmin-tabspace-none">
+			<div class="layui-layout layui-layout-admin">
+				<!-- 头部 -->
+				<div class="layui-header" style="background-color: #FFFFFF;border-bottom: 1px solid #F2F2F2;">
+					<ul class="layui-nav layui-layout-left" >
+						<li class="layui-nav-item layadmin-flexible" lay-unselect="">
+							<a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+								<i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+							<a href="http://www.layui.com/admin/" target="_blank" title="前台">
+								<i class="layui-icon layui-icon-website"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item" lay-unselect="">
+							<a href="javascript:;" layadmin-event="refresh" title="刷新">
+								<i class="layui-icon layui-icon-refresh-3"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+							<input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach"
+							 lay-action="template/search/keywords=" >
+						</li>
+						<!-- <span class="layui-nav-bar" style="left: 288px; top: 48px; width: 0px; opacity: 0;"></span> -->
+					</ul>
+					<ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
+						<li class="layui-nav-item" lay-unselect="">
+							<a lay-href="app/message/" layadmin-event="message">
+								<i class="layui-icon layui-icon-notice"></i>
+								<!-- 如果有新消息，则显示小圆点 -->
+								<!-- <script type="text/html" template=" " lay-url="./json/message/new.js">
+									{{# if(d.data.newmsg){ }} 
+										<span class="layui-badge-dot"></span>
+									{{# } }}
+								</script> -->
+								<span class="layui-badge-dot"></span>
+							</a>
+						</li>
+						<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+							<a href="javascript:;" layadmin-event="theme">
+								<i class="layui-icon layui-icon-theme"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+							<a href="javascript:;" layadmin-event="note">
+								<i class="layui-icon layui-icon-note"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+							<a href="javascript:;" layadmin-event="fullscreen">
+								<i class="layui-icon layui-icon-screen-full"></i>
+							</a>
+						</li>
+						<li class="layui-nav-item" lay-unselect="" >
+						    <a href="javascript:;">
+								<img class="layui-nav-img" src="//t.cn/RCzsdCq" >
+								<span class="layui-nav-more" ></span>
+							</a>
+						    <dl class="layui-nav-child layui-anim layui-anim-upbit">
+						      <dd><a href="javascript:;">修改信息</a></dd>
+						      <dd><a href="javascript:;">安全管理</a></dd>
+						      <dd><a href="javascript:;">退出</a></dd>
+						    </dl>
+						</li>
+
+						<li class="layui-nav-item layui-hide-xs" lay-unselect="">
+							<a href="javascript:;" layadmin-event="about"><i class="layui-icon layui-icon-more-vertical"></i></a>
+						</li>
+						<li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect="">
+							<a href="javascript:;" layadmin-event="more">
+								<i class="layui-icon layui-icon-more-vertical"></i>
+							</a>
+						</li>
+						<span class="layui-nav-bar" style="left: 292px; top: 48px; width: 0px; opacity: 0;"></span>
+					</ul>
+				</div>
+				<!-- 侧边菜单 -->
+				<div class="layui-side layui-side-menu">
+					<div class="layui-side-scroll">
+						<!-- 顶部logo -->
+						<div class="layui-logo" lay-href="">
+							<span>layuiAdmin Pro</span>
+						</div>
+						<!-- 菜单 -->
+						<ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+							<li data-name=" " data-jump="" class="layui-nav-item  layui-nav-itemed">
+								<a href="javascript:;" lay-tips="信息" lay-direction="2">
+									<i class="layui-icon layui-icon-chart"></i>
+									<cite>基本信息</cite>
+									<span class="layui-nav-more"></span>
+								</a>
+								<dl class="layui-nav-child">
+									<dd data-name="" data-jump="/" class="layui-this">
+										<a href="javascript:;" lay-href="/">预警</a>
+									</dd>
+									<dd data-name="homepage1" data-jump="home/homepage1" class="">
+										<a href="javascript:;" lay-href="home/homepage1">统计</a>
+									</dd>
+								</dl>
+							</li>
+							<li data-name=" " data-jump="" class="layui-nav-item layui-nav-itemed">
+								<a href="javascript:;" lay-tips="生活" lay-direction="2">
+									<i class="layui-icon layui-icon-headset"></i>
+									<cite>生活</cite>
+									<span class="layui-nav-more"></span>
+								</a>
+								<dl class="layui-nav-child">
+									<dd data-name="user" data-jump="user/user/list">
+										<a href="javascript:;" lay-href="user/user/list">生活规律</a>
+									</dd>
+									<dd data-name="administrators-list" data-jump="user/administrators/list">
+										<a href="javascript:;" lay-href="user/administrators/list">消费</a>
+									</dd>
+									<dd data-name="administrators-rule" data-jump="user/administrators/role">
+										<a href="javascript:;" lay-href="user/administrators/role">社交</a>
+									</dd>
+									<dd data-name="administrators-list" data-jump="user/administrators/list">
+										<a href="javascript:;" lay-href="user/administrators/list">心理</a>
+									</dd>
+									<dd data-name="administrators-rule" data-jump="user/administrators/role">
+										<a href="javascript:;" lay-href="user/administrators/role">预警</a>
+									</dd>
+								</dl>
+							</li>
+							<li data-name="user" data-jump="" class="layui-nav-item layui-nav-itemed">
+								<a href="javascript:;" lay-tips="学习" lay-direction="2">
+									<i class="layui-icon layui-icon-read"></i>
+									<cite>学习</cite>
+									<span class="layui-nav-more"></span>
+								</a>
+								<dl class="layui-nav-child">
+									<dd data-name="user" data-jump="user/user/list">
+										<a href="javascript:;" lay-href="user/user/list">成绩</a>
+									</dd>
+									<dd data-name="administrators-list" data-jump="user/administrators/list">
+										<a href="javascript:;" lay-href="user/administrators/list">图书馆</a>
+									</dd>
+									<dd data-name="administrators-rule" data-jump="user/administrators/role">
+										<a href="javascript:;" lay-href="user/administrators/role">预警</a>
+									</dd>
+								</dl>
+							</li>
+							
+						</ul>
+
+					</div>
+				</div>
+				<!-- 主题内容 -->
+				<div class="layui-body" id="LAY_app_body">
+					<div class="layadmin-tabsbody-item layui-show">
+						<div class="layui-card layadmin-header" style="background-color: #FFFFFF;height: 50px;">
+							<div class="layui-breadcrumb" lay-filter="breadcrumb" style="visibility: visible;">
+							    <a lay-href="">主页</a><span lay-separator="">/</span>
+							    <a><cite>消息中心</cite></a>
+							</div>
+						</div>
+						<div class="layui-fluid" style="background-color: #F2F2F2;">
+							<div class="layui-row layui-col-space15">
+								<div class="layui-col-md6">
+									<div class="layui-card">
+										<div class="layui-card-header">标题</div>
+										<div class="layui-card-body">
+											<img src="img/eg.png" >
+										</div>
+									</div>
+									<div class="layui-card">
+										<div class="layui-card-header">标题</div>
+										<div class="layui-card-body">
+											<img src="img/eg.png" >
+										</div>
+									</div>
+								</div>
+								<div class="layui-col-md6">
+									<div class="layui-card">
+										<div class="layui-card-header">标题</div>
+										<div class="layui-card-body">
+											<img src="img/eg.png" >
+										</div>
+									</div>
+									<div class="layui-card">
+										<div class="layui-card-header">标题</div>
+										<div class="layui-card-body">
+											<img src="img/eg.png" >
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script>
+		  var _hmt = _hmt || [];
+		  (function() {
+		    var hm = document.createElement("script");
+		    hm.src = "https://hm.baidu.com/hm.js?d214947968792b839fd669a4decaaffc";
+		    var s = document.getElementsByTagName("script")[0]; 
+		    s.parentNode.insertBefore(hm, s);
+		  })();
+		  </script>
+		<script>
+			layui.use('element', function(){
+				var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+			  
+			  //监听导航点击
+				element.on('nav(layadmin-system-side-menu)', function(elem){
+					//console.log(elem)
+					layer.msg(elem.text());
+				});
+				element.on('nav(layadmin-layout-right)', function(elem){
+					//console.log(elem)
+					layer.msg(elem.text());
+				});
+				
+			});
+		</script>
+
+		<script>
+			window.onload = function () {
+				let hello = document.getElementById("hello");
+				let request = new XMLHttpRequest();
+				request.onreadystatechange = function () {
+					if (request.readyState === 4 && request.status === 200){
+						let respbean = JSON.parse(request.responseText);
+						if(respbean.status === 0){
+							hello.innerText = respbean.obj.username;
+						}else {
+							hello.innerText = respbean.errMsg;
+						}
+					}
+				};
+				request.open("GET", "/userInfo", true);
+				request.send();
+				return false;
+			}
+		</script>
+
+
+		<style id="LAY_layadmin_theme">.layui-side-menu,.layadmin-pagetabs .layui-tab-title li:after,.layadmin-pagetabs .layui-tab-title li.layui-this:after,.layui-layer-admin .layui-layer-title,.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child{background-color:#20222A !important;}.layui-nav-tree .layui-this,.layui-nav-tree .layui-this>a,.layui-nav-tree .layui-nav-child dd.layui-this,.layui-nav-tree .layui-nav-child dd.layui-this a{background-color:#009688 !important;}.layui-layout-admin .layui-logo{background-color:#20222A !important;}</style>
+	</body>
+</html>
