@@ -1,20 +1,19 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
-public class Class {
+public class Class_ {
 
-  private long id;
+  private int id;
   private String classname;
   private java.sql.Date year;
-  private long school;
-  private long column5;
+  private School school;
 
 
-  public long getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(int id) {
     this.id = id;
   }
 
@@ -37,21 +36,12 @@ public class Class {
   }
 
 
-  public long getSchool() {
+  public School getSchool() {
     return school;
   }
 
-  public void setSchool(long school) {
+  public void setSchool(School school) {
     this.school = school;
-  }
-
-
-  public long getColumn5() {
-    return column5;
-  }
-
-  public void setColumn5(long column5) {
-    this.column5 = column5;
   }
 
 }

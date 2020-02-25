@@ -1,14 +1,16 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
-public class Groupbehavior {
+import java.sql.Date;
+
+public class GroupBehavior {
 
   private String gdid;
-  private String gbmonth;
-  private String gbxws;
+  private Date gbmonth;
+  private float gbxws;
   private java.sql.Time gbzftime;
   private java.sql.Time gbsjtime;
-  private String gbsstime;
+  private float gbsstime;
 
 
   public String getGdid() {
@@ -20,20 +22,20 @@ public class Groupbehavior {
   }
 
 
-  public String getGbmonth() {
+  public Date getGbmonth() {
     return gbmonth;
   }
 
-  public void setGbmonth(String gbmonth) {
+  public void setGbmonth(Date gbmonth) {
     this.gbmonth = gbmonth;
   }
 
 
-  public String getGbxws() {
+  public float getGbxws() {
     return gbxws;
   }
 
-  public void setGbxws(String gbxws) {
+  public void setGbxws(float gbxws) {
     this.gbxws = gbxws;
   }
 
@@ -56,11 +58,11 @@ public class Groupbehavior {
   }
 
 
-  public String getGbsstime() {
+  public float getGbsstime() {
     return gbsstime;
   }
 
-  public void setGbsstime(String gbsstime) {
+  public void setGbsstime(float gbsstime) {
     this.gbsstime = gbsstime;
   }
 

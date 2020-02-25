@@ -1,7 +1,7 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
-public class Internetdata {
+public class InternetData {
 
   private long iaid;
   private long stuid;

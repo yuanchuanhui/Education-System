@@ -1,7 +1,7 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
-public class Internetapplication {
+public class InternetApplication {
 
   private long iaid;
   private String iayuming;

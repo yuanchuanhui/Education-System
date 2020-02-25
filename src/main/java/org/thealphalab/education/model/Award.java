@@ -1,4 +1,4 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
 public class Award {

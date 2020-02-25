@@ -1,7 +1,7 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
-public class Groupconsumption {
+public class GroupConsumption {
 
   private String gdid;
   private String gcmonth;

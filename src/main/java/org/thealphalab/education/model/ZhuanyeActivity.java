@@ -1,7 +1,7 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
-public class Zhuanyeactivity {
+public class ZhuanyeActivity {
 
   private long aid;
   private String aname;
