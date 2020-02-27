@@ -1,8 +1,10 @@
-package org.thealphalab.education;
+package org.thealphalab.education.others;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class RespBean {
 
     private String type;
@@ -13,4 +15,5 @@ public class RespBean {
     public RespBean(String type) {
         this.type = type;
     }
+
 }

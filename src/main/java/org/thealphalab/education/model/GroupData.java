@@ -19,7 +19,6 @@ public class GroupData {
     this.gdid = gdid;
   }
 
-
   public Map<String, Float> getGdsex() {
     return gdsex;
   }
@@ -27,7 +26,6 @@ public class GroupData {
   public void setGdsex(Map<String, Float> gdsex) {
     this.gdsex = gdsex;
   }
-
 
   public Map<Integer, Float> getGdage() {
     return gdage;
@@ -37,7 +35,6 @@ public class GroupData {
     this.gdage = gdage;
   }
 
-
   public Map<String, Float> getGdzzmm() {
     return gdzzmm;
   }
@@ -45,7 +42,6 @@ public class GroupData {
   public void setGdzzmm(Map<String, Float> gdzzmm) {
     this.gdzzmm = gdzzmm;
   }
-
 
   public Map<String, Float> getGdmz() {
     return gdmz;
@@ -55,7 +51,6 @@ public class GroupData {
     this.gdmz = gdmz;
   }
 
-
   public Map<String, Float> getGdsyd() {
     return gdsyd;
   }
@@ -63,5 +58,4 @@ public class GroupData {
   public void setGdsyd(Map<String, Float> gdsyd) {
     this.gdsyd = gdsyd;
   }
-
 }

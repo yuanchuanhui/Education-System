@@ -34,7 +34,6 @@ public class MainController {
     /**
       * 映射显示数据用的主页面。
       */
-    @RequiresUser
     @RequestMapping("/main")
     public String home(Model model) {
         return "main.html";

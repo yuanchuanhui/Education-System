@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.thealphalab.education.RespBean;
+import org.thealphalab.education.others.RespBean;
 import org.thealphalab.education.realm.CustomRealm;
 
 import javax.servlet.Filter;

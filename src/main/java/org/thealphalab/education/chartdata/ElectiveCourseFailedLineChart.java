@@ -2,8 +2,8 @@ package org.thealphalab.education.chartdata;
 
 import org.thealphalab.education.chartdata.base.LineChartData;
 
-public class RequiredCourseFailedLineChart extends LineChartData {
-    public RequiredCourseFailedLineChart(int[][] data) {
+public class ElectiveCourseFailedLineChart extends LineChartData {
+    public ElectiveCourseFailedLineChart(int[][] data) {
         super(data);
     }
 }

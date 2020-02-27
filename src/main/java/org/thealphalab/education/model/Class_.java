@@ -1,13 +1,14 @@
 package org.thealphalab.education.model;
 
 
+import java.sql.Date;
+
 public class Class_ {
 
   private int id;
   private String classname;
   private java.sql.Date year;
   private School school;
-
 
   public int getId() {
     return id;
@@ -17,7 +18,6 @@ public class Class_ {
     this.id = id;
   }
 
-
   public String getClassname() {
     return classname;
   }
@@ -26,15 +26,13 @@ public class Class_ {
     this.classname = classname;
   }
 
-
-  public java.sql.Date getYear() {
+  public Date getYear() {
     return year;
   }
 
-  public void setYear(java.sql.Date year) {
+  public void setYear(Date year) {
     this.year = year;
   }
-
 
   public School getSchool() {
     return school;
@@ -43,5 +41,4 @@ public class Class_ {
   public void setSchool(School school) {
     this.school = school;
   }
-
 }

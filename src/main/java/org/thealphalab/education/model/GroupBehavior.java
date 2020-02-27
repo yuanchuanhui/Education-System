@@ -2,6 +2,7 @@ package org.thealphalab.education.model;
 
 
 import java.sql.Date;
+import java.sql.Time;
 
 public class GroupBehavior {
 
@@ -12,7 +13,6 @@ public class GroupBehavior {
   private java.sql.Time gbsjtime;
   private float gbsstime;
 
-
   public String getGdid() {
     return gdid;
   }
@@ -20,7 +20,6 @@ public class GroupBehavior {
   public void setGdid(String gdid) {
     this.gdid = gdid;
   }
-
 
   public Date getGbmonth() {
     return gbmonth;
@@ -30,7 +29,6 @@ public class GroupBehavior {
     this.gbmonth = gbmonth;
   }
 
-
   public float getGbxws() {
     return gbxws;
   }
@@ -39,24 +37,21 @@ public class GroupBehavior {
     this.gbxws = gbxws;
   }
 
-
-  public java.sql.Time getGbzftime() {
+  public Time getGbzftime() {
     return gbzftime;
   }
 
-  public void setGbzftime(java.sql.Time gbzftime) {
+  public void setGbzftime(Time gbzftime) {
     this.gbzftime = gbzftime;
   }
 
-
-  public java.sql.Time getGbsjtime() {
+  public Time getGbsjtime() {
     return gbsjtime;
   }
 
-  public void setGbsjtime(java.sql.Time gbsjtime) {
+  public void setGbsjtime(Time gbsjtime) {
     this.gbsjtime = gbsjtime;
   }
-
 
   public float getGbsstime() {
     return gbsstime;
@@ -65,5 +60,4 @@ public class GroupBehavior {
   public void setGbsstime(float gbsstime) {
     this.gbsstime = gbsstime;
   }
-
 }

@@ -1,4 +1,9 @@
 package org.thealphalab.education.chartdata;
 
-public class GradeLineChart {
+import org.thealphalab.education.chartdata.base.LineChartData;
+
+public class GradeLineChart extends LineChartData {
+    public GradeLineChart(int[][] data) {
+        super(data);
+    }
 }

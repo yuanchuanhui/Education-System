@@ -3,7 +3,6 @@ package org.thealphalab.education.model;
 import lombok.Data;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Data

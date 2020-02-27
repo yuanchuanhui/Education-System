@@ -1,9 +1,5 @@
 package org.thealphalab.education.test;
 
-import org.thealphalab.education.model.Group;
-
-import java.util.List;
-
 public class PermissionTest {
 
     private static String parsePermission(){

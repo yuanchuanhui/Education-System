@@ -1,35 +1,32 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
 public class Xinliceshiti {
 
-  private long xlcstmh;
-  private long csid;
+  private Xinlitest xlcstmh;
+  private int csid;
   private String xlcsdescription;
-  private long xlcsdscore;
-  private long xlcscscore;
-  private long xlcsbscore;
-  private long xlcsascore;
-  private long xlcsdelsign;
+  private int xlcsascore;
+  private int xlcsbscore;
+  private int xlcscscore;
+  private int xlcsdscore;
+  private boolean xlcsdelsign;
 
-
-  public long getXlcstmh() {
+  public Xinlitest getXlcstmh() {
     return xlcstmh;
   }
 
-  public void setXlcstmh(long xlcstmh) {
+  public void setXlcstmh(Xinlitest xlcstmh) {
     this.xlcstmh = xlcstmh;
   }
 
-
-  public long getCsid() {
+  public int getCsid() {
     return csid;
   }
 
-  public void setCsid(long csid) {
+  public void setCsid(int csid) {
     this.csid = csid;
   }
-
 
   public String getXlcsdescription() {
     return xlcsdescription;
@@ -39,49 +36,43 @@ public class Xinliceshiti {
     this.xlcsdescription = xlcsdescription;
   }
 
-
-  public long getXlcsdscore() {
-    return xlcsdscore;
-  }
-
-  public void setXlcsdscore(long xlcsdscore) {
-    this.xlcsdscore = xlcsdscore;
-  }
-
-
-  public long getXlcscscore() {
-    return xlcscscore;
-  }
-
-  public void setXlcscscore(long xlcscscore) {
-    this.xlcscscore = xlcscscore;
-  }
-
-
-  public long getXlcsbscore() {
-    return xlcsbscore;
-  }
-
-  public void setXlcsbscore(long xlcsbscore) {
-    this.xlcsbscore = xlcsbscore;
-  }
-
-
-  public long getXlcsascore() {
+  public int getXlcsascore() {
     return xlcsascore;
   }
 
-  public void setXlcsascore(long xlcsascore) {
+  public void setXlcsascore(int xlcsascore) {
     this.xlcsascore = xlcsascore;
   }
 
+  public int getXlcsbscore() {
+    return xlcsbscore;
+  }
 
-  public long getXlcsdelsign() {
+  public void setXlcsbscore(int xlcsbscore) {
+    this.xlcsbscore = xlcsbscore;
+  }
+
+  public int getXlcscscore() {
+    return xlcscscore;
+  }
+
+  public void setXlcscscore(int xlcscscore) {
+    this.xlcscscore = xlcscscore;
+  }
+
+  public int getXlcsdscore() {
+    return xlcsdscore;
+  }
+
+  public void setXlcsdscore(int xlcsdscore) {
+    this.xlcsdscore = xlcsdscore;
+  }
+
+  public boolean isXlcsdelsign() {
     return xlcsdelsign;
   }
 
-  public void setXlcsdelsign(long xlcsdelsign) {
+  public void setXlcsdelsign(boolean xlcsdelsign) {
     this.xlcsdelsign = xlcsdelsign;
   }
-
 }

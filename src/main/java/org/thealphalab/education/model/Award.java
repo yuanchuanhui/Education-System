@@ -1,23 +1,23 @@
 package org.thealphalab.education.model;
 
 
+import java.sql.Date;
+
 public class Award {
 
-  private long stuid;
+  private Student student;
   private String arongyu;
   private String asort;
   private java.sql.Date atime;
-  private long adelsign;
+  private boolean adelsign;
 
-
-  public long getStuid() {
-    return stuid;
+  public Student getStudent() {
+    return student;
   }
 
-  public void setStuid(long stuid) {
-    this.stuid = stuid;
+  public void setStudent(Student student) {
+    this.student = student;
   }
-
 
   public String getArongyu() {
     return arongyu;
@@ -27,7 +27,6 @@ public class Award {
     this.arongyu = arongyu;
   }
 
-
   public String getAsort() {
     return asort;
   }
@@ -36,22 +35,19 @@ public class Award {
     this.asort = asort;
   }
 
-
-  public java.sql.Date getAtime() {
+  public Date getAtime() {
     return atime;
   }
 
-  public void setAtime(java.sql.Date atime) {
+  public void setAtime(Date atime) {
     this.atime = atime;
   }
 
-
-  public long getAdelsign() {
+  public boolean isAdelsign() {
     return adelsign;
   }
 
-  public void setAdelsign(long adelsign) {
+  public void setAdelsign(boolean adelsign) {
     this.adelsign = adelsign;
   }
-
 }

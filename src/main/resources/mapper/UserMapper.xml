@@ -6,7 +6,7 @@
         <id column="username" javaType="String" property="username"/>
         <result column="password" javaType="String" property="password"/>
         <result column="permission" javaType="String" property="permission"/>
-        <result column="xflxdelsign" javaType="boolean" property="isDeleted"/>
+        <result column="xflxdelsign" javaType="boolean" property="xflxdelsign"/>
     </resultMap>
     <!--根据RoleMapper中的方法，将其映射到SQL语句中，并配置结果对象-->
     <select id="getUserByUsername" resultMap="allResultMap">

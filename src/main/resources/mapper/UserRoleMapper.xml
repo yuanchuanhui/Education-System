@@ -8,7 +8,7 @@
         <result column="roleNameZh" javaType="String" property="roleNameZh"/>
     </resultMap>
     <!--根据RoleMapper中的方法，将其映射到SQL语句中，并配置结果对象-->
-    <select id="getRolesByUsername" resultMap="allResultMap">
+    <select id="getRoleByUsername" resultMap="allResultMap">
         select * from role, user_role
             where role.roleId = user_role.roleId and user_role.username= #{username};
     </select>

@@ -1,28 +1,28 @@
-package com.sample;
+package org.thealphalab.education.model;
 
+
+import java.sql.Date;
 
 public class Student {
 
-  private long stuid;
+  private int stuid;
   private String stuname;
-  private long stusex;
+  private boolean stusex;
   private java.sql.Date birth;
-  private long stuschool;
-  private long stuclass;
+  private School stuschool;
+  private Class_ stuclass;
   private String stuss;
   private String stujg;
   private String stuzzmm;
-  private long studelsign;
+  private boolean studelsign;
 
-
-  public long getStuid() {
+  public int getStuid() {
     return stuid;
   }
 
-  public void setStuid(long stuid) {
+  public void setStuid(int stuid) {
     this.stuid = stuid;
   }
-
 
   public String getStuname() {
     return stuname;
@@ -32,42 +32,37 @@ public class Student {
     this.stuname = stuname;
   }
 
-
-  public long getStusex() {
+  public boolean isStusex() {
     return stusex;
   }
 
-  public void setStusex(long stusex) {
+  public void setStusex(boolean stusex) {
     this.stusex = stusex;
   }
 
-
-  public java.sql.Date getBirth() {
+  public Date getBirth() {
     return birth;
   }
 
-  public void setBirth(java.sql.Date birth) {
+  public void setBirth(Date birth) {
     this.birth = birth;
   }
 
-
-  public long getStuschool() {
+  public School getStuschool() {
     return stuschool;
   }
 
-  public void setStuschool(long stuschool) {
+  public void setStuschool(School stuschool) {
     this.stuschool = stuschool;
   }
 
-
-  public long getStuclass() {
+  public Class_ getStuclass() {
     return stuclass;
   }
 
-  public void setStuclass(long stuclass) {
+  public void setStuclass(Class_ stuclass) {
     this.stuclass = stuclass;
   }
-
 
   public String getStuss() {
     return stuss;
@@ -77,7 +72,6 @@ public class Student {
     this.stuss = stuss;
   }
 
-
   public String getStujg() {
     return stujg;
   }
@@ -85,7 +79,6 @@ public class Student {
   public void setStujg(String stujg) {
     this.stujg = stujg;
   }
-
 
   public String getStuzzmm() {
     return stuzzmm;
@@ -95,13 +88,11 @@ public class Student {
     this.stuzzmm = stuzzmm;
   }
 
-
-  public long getStudelsign() {
+  public boolean isStudelsign() {
     return studelsign;
   }
 
-  public void setStudelsign(long studelsign) {
+  public void setStudelsign(boolean studelsign) {
     this.studelsign = studelsign;
   }
-
 }

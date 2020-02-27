@@ -1,22 +1,20 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
 public class Teacher {
 
-  private long tid;
+  private int tid;
   private String tname;
-  private String tsex;
+  private boolean tsex;
   private String tpost;
 
-
-  public long getTid() {
+  public int getTid() {
     return tid;
   }
 
-  public void setTid(long tid) {
+  public void setTid(int tid) {
     this.tid = tid;
   }
-
 
   public String getTname() {
     return tname;
@@ -26,15 +24,13 @@ public class Teacher {
     this.tname = tname;
   }
 
-
-  public String getTsex() {
+  public boolean isTsex() {
     return tsex;
   }
 
-  public void setTsex(String tsex) {
+  public void setTsex(boolean tsex) {
     this.tsex = tsex;
   }
-
 
   public String getTpost() {
     return tpost;
@@ -43,5 +39,4 @@ public class Teacher {
   public void setTpost(String tpost) {
     this.tpost = tpost;
   }
-
 }

@@ -1,4 +1,11 @@
 package org.thealphalab.education.chartdata;
 
-public class RequiredCourseFailedPieChart {
+import org.thealphalab.education.chartdata.base.PieChartData;
+
+import java.util.Map;
+
+public class RequiredCourseFailedPieChart extends PieChartData {
+    public RequiredCourseFailedPieChart(Map<String, Integer> data) {
+        super(data);
+    }
 }

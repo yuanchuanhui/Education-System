@@ -23,22 +23,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.authz.annotation.RequiresUser;
-import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.thealphalab.education.RespBean;
-import org.thealphalab.education.mapper.UserMapper;
+import org.thealphalab.education.others.RespBean;
 import org.thealphalab.education.model.Group;
 import org.thealphalab.education.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
-import java.util.Map;
 
 @Controller
 public class DatasourceController {
@@ -51,14 +46,12 @@ public class DatasourceController {
       */
     @SuppressWarnings("Duplicates")
     @RequestMapping("/selectdatasource")
-    @RequiresRoles("user")
     public String home(HttpServletRequest request, Model model) {
         return "selectdatasource.html";
     }
 
     @RequestMapping("/datasourcetree")
     @ResponseBody
-    @RequiresUser
     public String getDatasourceTree() throws JsonProcessingException {
         Subject subject = SecurityUtils.getSubject();
         RespBean respBean = new RespBean("datasourcetree");

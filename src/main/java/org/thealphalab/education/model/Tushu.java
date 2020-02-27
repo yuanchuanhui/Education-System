@@ -1,24 +1,22 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
 public class Tushu {
 
-  private long isbn;
+  private String isbn;
   private String tsname;
   private String tssort;
   private String tsauthor;
-  private long tskc;
-  private long tsdelsign;
+  private int tskc;
+  private boolean tsdelsign;
 
-
-  public long getIsbn() {
+  public String getIsbn() {
     return isbn;
   }
 
-  public void setIsbn(long isbn) {
+  public void setIsbn(String isbn) {
     this.isbn = isbn;
   }
-
 
   public String getTsname() {
     return tsname;
@@ -28,7 +26,6 @@ public class Tushu {
     this.tsname = tsname;
   }
 
-
   public String getTssort() {
     return tssort;
   }
@@ -36,7 +33,6 @@ public class Tushu {
   public void setTssort(String tssort) {
     this.tssort = tssort;
   }
-
 
   public String getTsauthor() {
     return tsauthor;
@@ -46,22 +42,19 @@ public class Tushu {
     this.tsauthor = tsauthor;
   }
 
-
-  public long getTskc() {
+  public int getTskc() {
     return tskc;
   }
 
-  public void setTskc(long tskc) {
+  public void setTskc(int tskc) {
     this.tskc = tskc;
   }
 
-
-  public long getTsdelsign() {
+  public boolean isTsdelsign() {
     return tsdelsign;
   }
 
-  public void setTsdelsign(long tsdelsign) {
+  public void setTsdelsign(boolean tsdelsign) {
     this.tsdelsign = tsdelsign;
   }
-
 }

@@ -1,27 +1,24 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
 public class Social {
 
-  private long stuid;
-  private long fristuid;
+  private Student student;
+  private Student fristuid;
 
-
-  public long getStuid() {
-    return stuid;
+  public Student getStudent() {
+    return student;
   }
 
-  public void setStuid(long stuid) {
-    this.stuid = stuid;
+  public void setStudent(Student student) {
+    this.student = student;
   }
 
-
-  public long getFristuid() {
+  public Student getFristuid() {
     return fristuid;
   }
 
-  public void setFristuid(long fristuid) {
+  public void setFristuid(Student fristuid) {
     this.fristuid = fristuid;
   }
-
 }

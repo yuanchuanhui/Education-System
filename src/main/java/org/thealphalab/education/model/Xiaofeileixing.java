@@ -1,21 +1,19 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
 public class Xiaofeileixing {
 
-  private long xflxid;
+  private Xiaofei xflxid;
   private String xflxname;
-  private long xflxdelsign;
+  private boolean xflxdelsign;
 
-
-  public long getXflxid() {
+  public Xiaofei getXflxid() {
     return xflxid;
   }
 
-  public void setXflxid(long xflxid) {
+  public void setXflxid(Xiaofei xflxid) {
     this.xflxid = xflxid;
   }
-
 
   public String getXflxname() {
     return xflxname;
@@ -25,13 +23,11 @@ public class Xiaofeileixing {
     this.xflxname = xflxname;
   }
 
-
-  public long getXflxdelsign() {
+  public boolean isXflxdelsign() {
     return xflxdelsign;
   }
 
-  public void setXflxdelsign(long xflxdelsign) {
+  public void setXflxdelsign(boolean xflxdelsign) {
     this.xflxdelsign = xflxdelsign;
   }
-
 }

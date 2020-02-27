@@ -3,21 +3,19 @@ package org.thealphalab.education.model;
 
 public class ZhuanyeActivity {
 
-  private long aid;
+  private int aid;
   private String aname;
-  private String ajibie;
+  private int ajibie;
   private String asort;
-  private long adelsign;
+  private boolean adelsign;
 
-
-  public long getAid() {
+  public int getAid() {
     return aid;
   }
 
-  public void setAid(long aid) {
+  public void setAid(int aid) {
     this.aid = aid;
   }
-
 
   public String getAname() {
     return aname;
@@ -27,15 +25,13 @@ public class ZhuanyeActivity {
     this.aname = aname;
   }
 
-
-  public String getAjibie() {
+  public int getAjibie() {
     return ajibie;
   }
 
-  public void setAjibie(String ajibie) {
+  public void setAjibie(int ajibie) {
     this.ajibie = ajibie;
   }
-
 
   public String getAsort() {
     return asort;
@@ -45,13 +41,11 @@ public class ZhuanyeActivity {
     this.asort = asort;
   }
 
-
-  public long getAdelsign() {
+  public boolean isAdelsign() {
     return adelsign;
   }
 
-  public void setAdelsign(long adelsign) {
+  public void setAdelsign(boolean adelsign) {
     this.adelsign = adelsign;
   }
-
 }

@@ -1,23 +1,21 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
 public class Course {
 
-  private long cid;
+  private int cid;
   private String cname;
   private String csort;
-  private long tid;
-  private String cdelsign;
+  private Teacher teacher;
+  private boolean cdelsign;
 
-
-  public long getCid() {
+  public int getCid() {
     return cid;
   }
 
-  public void setCid(long cid) {
+  public void setCid(int cid) {
     this.cid = cid;
   }
-
 
   public String getCname() {
     return cname;
@@ -27,7 +25,6 @@ public class Course {
     this.cname = cname;
   }
 
-
   public String getCsort() {
     return csort;
   }
@@ -36,22 +33,19 @@ public class Course {
     this.csort = csort;
   }
 
-
-  public long getTid() {
-    return tid;
+  public Teacher getTeacher() {
+    return teacher;
   }
 
-  public void setTid(long tid) {
-    this.tid = tid;
+  public void setTeacher(Teacher teacher) {
+    this.teacher = teacher;
   }
 
-
-  public String getCdelsign() {
+  public boolean isCdelsign() {
     return cdelsign;
   }
 
-  public void setCdelsign(String cdelsign) {
+  public void setCdelsign(boolean cdelsign) {
     this.cdelsign = cdelsign;
   }
-
 }

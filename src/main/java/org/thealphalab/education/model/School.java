@@ -1,20 +1,18 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
 public class School {
 
-  private long id;
+  private int id;
   private String schoolname;
 
-
-  public long getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(int id) {
     this.id = id;
   }
-
 
   public String getSchoolname() {
     return schoolname;
@@ -23,5 +21,4 @@ public class School {
   public void setSchoolname(String schoolname) {
     this.schoolname = schoolname;
   }
-
 }

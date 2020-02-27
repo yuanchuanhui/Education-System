@@ -3,20 +3,18 @@ package org.thealphalab.education.model;
 
 public class InternetApplication {
 
-  private long iaid;
+  private int iaid;
   private String iayuming;
   private String iasort;
-  private long iadelsign;
+  private boolean iadelsign;
 
-
-  public long getIaid() {
+  public int getIaid() {
     return iaid;
   }
 
-  public void setIaid(long iaid) {
+  public void setIaid(int iaid) {
     this.iaid = iaid;
   }
-
 
   public String getIayuming() {
     return iayuming;
@@ -26,7 +24,6 @@ public class InternetApplication {
     this.iayuming = iayuming;
   }
 
-
   public String getIasort() {
     return iasort;
   }
@@ -35,13 +32,11 @@ public class InternetApplication {
     this.iasort = iasort;
   }
 
-
-  public long getIadelsign() {
+  public boolean isIadelsign() {
     return iadelsign;
   }
 
-  public void setIadelsign(long iadelsign) {
+  public void setIadelsign(boolean iadelsign) {
     this.iadelsign = iadelsign;
   }
-
 }

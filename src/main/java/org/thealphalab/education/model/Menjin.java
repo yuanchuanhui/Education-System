@@ -1,40 +1,38 @@
-package com.sample;
+package org.thealphalab.education.model;
 
+
+import java.sql.Date;
 
 public class Menjin {
 
-  private long mjid;
-  private long stuid;
+  private int mjid;
+  private Student student;
   private java.sql.Date mjtime;
   private String mjadress;
 
-
-  public long getMjid() {
+  public int getMjid() {
     return mjid;
   }
 
-  public void setMjid(long mjid) {
+  public void setMjid(int mjid) {
     this.mjid = mjid;
   }
 
-
-  public long getStuid() {
-    return stuid;
+  public Student getStudent() {
+    return student;
   }
 
-  public void setStuid(long stuid) {
-    this.stuid = stuid;
+  public void setStudent(Student student) {
+    this.student = student;
   }
 
-
-  public java.sql.Date getMjtime() {
+  public Date getMjtime() {
     return mjtime;
   }
 
-  public void setMjtime(java.sql.Date mjtime) {
+  public void setMjtime(Date mjtime) {
     this.mjtime = mjtime;
   }
-
 
   public String getMjadress() {
     return mjadress;
@@ -43,5 +41,4 @@ public class Menjin {
   public void setMjadress(String mjadress) {
     this.mjadress = mjadress;
   }
-
 }

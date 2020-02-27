@@ -1,4 +1,9 @@
 package org.thealphalab.education.chartdata;
 
-public class RequiredCourseFailedLineChart {
+import org.thealphalab.education.chartdata.base.LineChartData;
+
+public class RequiredCourseFailedLineChart extends LineChartData {
+    public RequiredCourseFailedLineChart(int[][] data) {
+        super(data);
+    }
 }

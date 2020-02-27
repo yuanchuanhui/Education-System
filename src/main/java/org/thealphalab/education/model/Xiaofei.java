@@ -1,52 +1,49 @@
-package com.sample;
+package org.thealphalab.education.model;
 
+
+import java.sql.Date;
 
 public class Xiaofei {
 
-  private long stuid;
-  private long xflxid;
-  private long xfid;
+  private Student stuid;
+  private Xiaofeileixing xflxid;
+  private int xfid;
   private java.sql.Date xftime;
   private String xfaddress;
-  private double xfmoney;
-  private long xfdelsign;
+  private float xfmoney;
+  private boolean xfdelsign;
 
-
-  public long getStuid() {
+  public Student getStuid() {
     return stuid;
   }
 
-  public void setStuid(long stuid) {
+  public void setStuid(Student stuid) {
     this.stuid = stuid;
   }
 
-
-  public long getXflxid() {
+  public Xiaofeileixing getXflxid() {
     return xflxid;
   }
 
-  public void setXflxid(long xflxid) {
+  public void setXflxid(Xiaofeileixing xflxid) {
     this.xflxid = xflxid;
   }
 
-
-  public long getXfid() {
+  public int getXfid() {
     return xfid;
   }
 
-  public void setXfid(long xfid) {
+  public void setXfid(int xfid) {
     this.xfid = xfid;
   }
 
-
-  public java.sql.Date getXftime() {
+  public Date getXftime() {
     return xftime;
   }
 
-  public void setXftime(java.sql.Date xftime) {
+  public void setXftime(Date xftime) {
     this.xftime = xftime;
   }
-
 
   public String getXfaddress() {
     return xfaddress;
@@ -56,22 +53,19 @@ public class Xiaofei {
     this.xfaddress = xfaddress;
   }
 
-
-  public double getXfmoney() {
+  public float getXfmoney() {
     return xfmoney;
   }
 
-  public void setXfmoney(double xfmoney) {
+  public void setXfmoney(float xfmoney) {
     this.xfmoney = xfmoney;
   }
 
-
-  public long getXfdelsign() {
+  public boolean isXfdelsign() {
     return xfdelsign;
   }
 
-  public void setXfdelsign(long xfdelsign) {
+  public void setXfdelsign(boolean xfdelsign) {
     this.xfdelsign = xfdelsign;
   }
-
 }

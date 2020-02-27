@@ -1,67 +1,62 @@
-package com.sample;
+package org.thealphalab.education.model;
 
+
+import java.sql.Date;
 
 public class Grade {
 
-  private long cid;
-  private long stuid;
+  private Class_ class_;
+  private Student student;
   private java.sql.Date gterm;
-  private long score;
-  private long isfail;
-  private long gdelsign;
+  private int score;
+  private boolean isfail;
+  private boolean gdelsign;
 
-
-  public long getCid() {
-    return cid;
+  public Class_ getClass_() {
+    return class_;
   }
 
-  public void setCid(long cid) {
-    this.cid = cid;
+  public void setClass_(Class_ class_) {
+    this.class_ = class_;
   }
 
-
-  public long getStuid() {
-    return stuid;
+  public Student getStudent() {
+    return student;
   }
 
-  public void setStuid(long stuid) {
-    this.stuid = stuid;
+  public void setStudent(Student student) {
+    this.student = student;
   }
 
-
-  public java.sql.Date getGterm() {
+  public Date getGterm() {
     return gterm;
   }
 
-  public void setGterm(java.sql.Date gterm) {
+  public void setGterm(Date gterm) {
     this.gterm = gterm;
   }
 
-
-  public long getScore() {
+  public int getScore() {
     return score;
   }
 
-  public void setScore(long score) {
+  public void setScore(int score) {
     this.score = score;
   }
 
-
-  public long getIsfail() {
+  public boolean isIsfail() {
     return isfail;
   }
 
-  public void setIsfail(long isfail) {
+  public void setIsfail(boolean isfail) {
     this.isfail = isfail;
   }
 
-
-  public long getGdelsign() {
+  public boolean isGdelsign() {
     return gdelsign;
   }
 
-  public void setGdelsign(long gdelsign) {
+  public void setGdelsign(boolean gdelsign) {
     this.gdelsign = gdelsign;
   }
-
 }

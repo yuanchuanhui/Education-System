@@ -1,8 +1,11 @@
-package org.thealphalab.education.chartdata;
+package org.thealphalab.education.chartdata.base;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class PieChartData {
 
     private Map<String, Integer> data;
@@ -11,12 +14,18 @@ public class PieChartData {
         this.data = data;
     }
 
-    public PieChartData getInstance(){
+    public static Object[] getInstance(String subClassName){
         Map<String, Integer> data = new HashMap<>();
         data.put("一", 30);
         data.put("二", 25);
         data.put("三", 45);
-        return new PieChartData(data);
+        Object[] objects = new Object[2];
+        objects[0] = subClassName;
+        objects[1] = new PieChartData(data);
+        return objects;
     }
 
+    public Map<String, Integer> getData() {
+        return data;
+    }
 }

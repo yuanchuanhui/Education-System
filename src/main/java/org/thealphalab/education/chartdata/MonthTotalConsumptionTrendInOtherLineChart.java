@@ -5,9 +5,9 @@ import org.thealphalab.education.chartdata.base.LineChartData;
 /**
   * 月消费总额变化趋势-折线图
   */
-public class MonthTotalConsumptionTrendInCanteenLineChart extends LineChartData {
+public class MonthTotalConsumptionTrendInOtherLineChart extends LineChartData {
 
-    public MonthTotalConsumptionTrendInCanteenLineChart(int[][] data) {
+    public MonthTotalConsumptionTrendInOtherLineChart(int[][] data) {
         super(data);
     }
 

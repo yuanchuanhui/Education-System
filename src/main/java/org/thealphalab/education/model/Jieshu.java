@@ -1,97 +1,89 @@
-package com.sample;
+package org.thealphalab.education.model;
 
+
+import java.sql.Date;
 
 public class Jieshu {
 
-  private long stuid;
-  private long isbn;
+  private Student student;
+  private Tushu tushu;
   private java.sql.Date jydate;
   private java.sql.Date jsyhdate;
   private java.sql.Date jsghdate;
-  private long jscqdays;
-  private double jsfine;
-  private long jssort;
-  private long jsdelsign;
+  private int jscqdays;
+  private float jsfine;
+  private int jssort;
+  private boolean jsdelsign;
 
-
-  public long getStuid() {
-    return stuid;
+  public Student getStudent() {
+    return student;
   }
 
-  public void setStuid(long stuid) {
-    this.stuid = stuid;
+  public void setStudent(Student student) {
+    this.student = student;
   }
 
-
-  public long getIsbn() {
-    return isbn;
+  public Tushu getTushu() {
+    return tushu;
   }
 
-  public void setIsbn(long isbn) {
-    this.isbn = isbn;
+  public void setTushu(Tushu tushu) {
+    this.tushu = tushu;
   }
 
-
-  public java.sql.Date getJydate() {
+  public Date getJydate() {
     return jydate;
   }
 
-  public void setJydate(java.sql.Date jydate) {
+  public void setJydate(Date jydate) {
     this.jydate = jydate;
   }
 
-
-  public java.sql.Date getJsyhdate() {
+  public Date getJsyhdate() {
     return jsyhdate;
   }
 
-  public void setJsyhdate(java.sql.Date jsyhdate) {
+  public void setJsyhdate(Date jsyhdate) {
     this.jsyhdate = jsyhdate;
   }
 
-
-  public java.sql.Date getJsghdate() {
+  public Date getJsghdate() {
     return jsghdate;
   }
 
-  public void setJsghdate(java.sql.Date jsghdate) {
+  public void setJsghdate(Date jsghdate) {
     this.jsghdate = jsghdate;
   }
 
-
-  public long getJscqdays() {
+  public int getJscqdays() {
     return jscqdays;
   }
 
-  public void setJscqdays(long jscqdays) {
+  public void setJscqdays(int jscqdays) {
     this.jscqdays = jscqdays;
   }
 
-
-  public double getJsfine() {
+  public float getJsfine() {
     return jsfine;
   }
 
-  public void setJsfine(double jsfine) {
+  public void setJsfine(float jsfine) {
     this.jsfine = jsfine;
   }
 
-
-  public long getJssort() {
+  public int getJssort() {
     return jssort;
   }
 
-  public void setJssort(long jssort) {
+  public void setJssort(int jssort) {
     this.jssort = jssort;
   }
 
-
-  public long getJsdelsign() {
+  public boolean isJsdelsign() {
     return jsdelsign;
   }
 
-  public void setJsdelsign(long jsdelsign) {
+  public void setJsdelsign(boolean jsdelsign) {
     this.jsdelsign = jsdelsign;
   }
-
 }

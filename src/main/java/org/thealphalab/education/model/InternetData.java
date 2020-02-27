@@ -1,57 +1,53 @@
 package org.thealphalab.education.model;
 
 
+import java.sql.Timestamp;
+
 public class InternetData {
 
-  private long iaid;
-  private long stuid;
+  private InternetApplication internetApplication;
+  private Student student;
   private java.sql.Timestamp idstarttime;
   private java.sql.Timestamp idendtime;
-  private long iddelsign;
+  private boolean iddelsign;
 
-
-  public long getIaid() {
-    return iaid;
+  public InternetApplication getInternetApplication() {
+    return internetApplication;
   }
 
-  public void setIaid(long iaid) {
-    this.iaid = iaid;
+  public void setInternetApplication(InternetApplication internetApplication) {
+    this.internetApplication = internetApplication;
   }
 
-
-  public long getStuid() {
-    return stuid;
+  public Student getStudent() {
+    return student;
   }
 
-  public void setStuid(long stuid) {
-    this.stuid = stuid;
+  public void setStudent(Student student) {
+    this.student = student;
   }
 
-
-  public java.sql.Timestamp getIdstarttime() {
+  public Timestamp getIdstarttime() {
     return idstarttime;
   }
 
-  public void setIdstarttime(java.sql.Timestamp idstarttime) {
+  public void setIdstarttime(Timestamp idstarttime) {
     this.idstarttime = idstarttime;
   }
 
-
-  public java.sql.Timestamp getIdendtime() {
+  public Timestamp getIdendtime() {
     return idendtime;
   }
 
-  public void setIdendtime(java.sql.Timestamp idendtime) {
+  public void setIdendtime(Timestamp idendtime) {
     this.idendtime = idendtime;
   }
 
-
-  public long getIddelsign() {
+  public boolean isIddelsign() {
     return iddelsign;
   }
 
-  public void setIddelsign(long iddelsign) {
+  public void setIddelsign(boolean iddelsign) {
     this.iddelsign = iddelsign;
   }
-
 }

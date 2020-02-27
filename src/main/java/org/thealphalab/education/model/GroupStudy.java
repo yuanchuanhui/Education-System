@@ -10,7 +10,6 @@ public class GroupStudy {
   private int gsfailcount;
   private float gsfailbili;
 
-
   public String getGdid() {
     return gdid;
   }
@@ -18,7 +17,6 @@ public class GroupStudy {
   public void setGdid(String gdid) {
     this.gdid = gdid;
   }
-
 
   public Date getGsxueqi() {
     return gsxueqi;
@@ -28,7 +26,6 @@ public class GroupStudy {
     this.gsxueqi = gsxueqi;
   }
 
-
   public int getGsfailcount() {
     return gsfailcount;
   }
@@ -37,7 +34,6 @@ public class GroupStudy {
     this.gsfailcount = gsfailcount;
   }
 
-
   public float getGsfailbili() {
     return gsfailbili;
   }
@@ -45,5 +41,4 @@ public class GroupStudy {
   public void setGsfailbili(float gsfailbili) {
     this.gsfailbili = gsfailbili;
   }
-
 }

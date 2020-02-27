@@ -1,22 +1,30 @@
-package com.sample;
+package org.thealphalab.education.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
 
 public class Yujing {
 
-  private long stuid;
+  private Student stuid;
   private String yjsort;
-  private java.sql.Date yjtime;
-  private String yjjibie;
+  @JsonFormat(pattern="yyyy-MM-dd")
+  private Date yjtime;
+  private int yjjibie;
 
+  public Yujing(Student stuid, String yjsort, Date yjtime, int yjjibie) {
+    this.stuid = stuid;
+    this.yjsort = yjsort;
+    this.yjtime = yjtime;
+    this.yjjibie = yjjibie;
+  }
 
-  public long getStuid() {
+  public Student getStuid() {
     return stuid;
   }
 
-  public void setStuid(long stuid) {
+  public void setStuid(Student stuid) {
     this.stuid = stuid;
   }
-
 
   public String getYjsort() {
     return yjsort;
@@ -26,22 +34,29 @@ public class Yujing {
     this.yjsort = yjsort;
   }
 
-
-  public java.sql.Date getYjtime() {
+  public Date getYjtime() {
     return yjtime;
   }
 
-  public void setYjtime(java.sql.Date yjtime) {
+  public void setYjtime(Date yjtime) {
     this.yjtime = yjtime;
   }
 
-
-  public String getYjjibie() {
+  public int getYjjibie() {
     return yjjibie;
   }
 
-  public void setYjjibie(String yjjibie) {
+  public void setYjjibie(int yjjibie) {
     this.yjjibie = yjjibie;
+  }
+
+  public static Yujing[] getDemoInstance(){
+    String[] yujingNames = {"消费预警", "毕业预警", "健康预警", "社交预警"};
+    Yujing[] yujings = new Yujing[4];
+    for (int i = 0; i < 4; i++) {
+      yujings[i] = new Yujing(new Student(), yujingNames[i], new Date(), i);
+    }
+    return yujings;
   }
 
 }

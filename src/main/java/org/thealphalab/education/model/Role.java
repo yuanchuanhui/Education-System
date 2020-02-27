@@ -1,22 +1,20 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
 public class Role {
 
-  private long roleId;
+  private int roleId;
   private String roleName;
   private String permission;
   private String roleNameZh;
 
-
-  public long getRoleId() {
+  public int getRoleId() {
     return roleId;
   }
 
-  public void setRoleId(long roleId) {
+  public void setRoleId(int roleId) {
     this.roleId = roleId;
   }
-
 
   public String getRoleName() {
     return roleName;
@@ -26,7 +24,6 @@ public class Role {
     this.roleName = roleName;
   }
 
-
   public String getPermission() {
     return permission;
   }
@@ -35,7 +32,6 @@ public class Role {
     this.permission = permission;
   }
 
-
   public String getRoleNameZh() {
     return roleNameZh;
   }
@@ -43,5 +39,4 @@ public class Role {
   public void setRoleNameZh(String roleNameZh) {
     this.roleNameZh = roleNameZh;
   }
-
 }

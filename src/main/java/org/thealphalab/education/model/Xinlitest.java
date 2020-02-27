@@ -1,37 +1,24 @@
-package com.sample;
+package org.thealphalab.education.model;
 
 
 public class Xinlitest {
 
-  private long csid;
-  private long stuid;
-  private String selection;
+  private int csid;
+  private Student stuid;
 
-
-  public long getCsid() {
+  public int getCsid() {
     return csid;
   }
 
-  public void setCsid(long csid) {
+  public void setCsid(int csid) {
     this.csid = csid;
   }
 
-
-  public long getStuid() {
+  public Student getStuid() {
     return stuid;
   }
 
-  public void setStuid(long stuid) {
+  public void setStuid(Student stuid) {
     this.stuid = stuid;
   }
-
-
-  public String getSelection() {
-    return selection;
-  }
-
-  public void setSelection(String selection) {
-    this.selection = selection;
-  }
-
 }

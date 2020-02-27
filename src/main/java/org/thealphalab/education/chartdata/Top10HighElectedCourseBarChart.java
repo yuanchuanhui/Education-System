@@ -4,8 +4,8 @@ import org.thealphalab.education.chartdata.base.BarChartData;
 
 import java.util.Map;
 
-public class Top10LowGradeCourseBarChart extends BarChartData {
-    public Top10LowGradeCourseBarChart(Map<String, Integer> data) {
+public class Top10HighElectedCourseBarChart extends BarChartData {
+    public Top10HighElectedCourseBarChart(Map<String, Integer> data) {
         super(data);
     }
 }

@@ -10,7 +10,6 @@ public class GroupLibrary {
   private float glavejy;
   private float glavesc;
 
-
   public String getGdid() {
     return gdid;
   }
@@ -18,7 +17,6 @@ public class GroupLibrary {
   public void setGdid(String gdid) {
     this.gdid = gdid;
   }
-
 
   public Date getGlmonth() {
     return glmonth;
@@ -28,7 +26,6 @@ public class GroupLibrary {
     this.glmonth = glmonth;
   }
 
-
   public float getGlavejy() {
     return glavejy;
   }
@@ -37,7 +34,6 @@ public class GroupLibrary {
     this.glavejy = glavejy;
   }
 
-
   public float getGlavesc() {
     return glavesc;
   }
@@ -45,5 +41,4 @@ public class GroupLibrary {
   public void setGlavesc(float glavesc) {
     this.glavesc = glavesc;
   }
-
 }
