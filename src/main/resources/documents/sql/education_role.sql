@@ -1,0 +1,2 @@
+INSERT INTO education.role (roleId, roleName, permission, roleNameZh) VALUES (1, 'admin', null, '管理员');
+INSERT INTO education.role (roleId, roleName, permission, roleNameZh) VALUES (2, 'user', null, '用户');

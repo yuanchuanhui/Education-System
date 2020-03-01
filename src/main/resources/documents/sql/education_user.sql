@@ -1,0 +1,2 @@
+INSERT INTO education.user (username, password, permission, xflxdelsign) VALUES ('jill.coder', 'password', '5_2015_*', 0);
+INSERT INTO education.user (username, password, permission, xflxdelsign) VALUES ('joe.coder', 'password', '8_2017_3', 0);
