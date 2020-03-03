@@ -56,3 +56,4 @@ public class EducationApplication {
     }
 
 }
+//运行内置服务器
