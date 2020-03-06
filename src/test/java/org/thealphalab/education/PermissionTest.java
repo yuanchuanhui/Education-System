@@ -1,4 +1,4 @@
-package org.thealphalab.education.test;
+package org.thealphalab.education;
 
 public class PermissionTest {
 

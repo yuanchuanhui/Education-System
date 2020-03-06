@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.XiaofeiMapper" >
+  <insert id="insert" parameterType="org.thealphalab.education.model.Xiaofei" >
+    insert into xiaofei(stuid, xflxname, xftime, xfaddress, xfmoney) values
+    (
+        #{student.stuid},
+        #{xflx.xflxname},
+        #{xftime},
+        #{xfaddress},
+        #{xfmoney}
+    )
+  </insert>
+    <insert id="insertAll" parameterType="org.thealphalab.education.model.Xiaofei" >
+        insert ignore into xiaofei(stuid, xflxname, xftime, xfaddress, xfmoney) values
+        <foreach collection="list" item="item" separator=",">
+        (
+            #{item.student.stuid},
+            #{item.xflx.xflxname},
+            #{item.xftime},
+            #{item.xfaddress},
+            #{item.xfmoney}
+        )
+        </foreach>
+    </insert>
+</mapper>

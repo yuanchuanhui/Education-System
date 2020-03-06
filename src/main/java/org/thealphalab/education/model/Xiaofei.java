@@ -1,32 +1,40 @@
 package org.thealphalab.education.model;
 
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Xiaofei {
 
-  private Student stuid;
-  private Xiaofeileixing xflxid;
   private int xfid;
-  private java.sql.Date xftime;
+  private Student student;
+  private Xiaofeileixing xflx;
+  private Date xftime;
   private String xfaddress;
   private float xfmoney;
   private boolean xfdelsign;
 
-  public Student getStuid() {
-    return stuid;
+  public Xiaofei(Student student, Xiaofeileixing xflx, Date xftime, String xfaddress, float xfmoney) {
+    this.student = student;
+    this.xflx = xflx;
+    this.xftime = xftime;
+    this.xfaddress = xfaddress;
+    this.xfmoney = xfmoney;
   }
 
-  public void setStuid(Student stuid) {
-    this.stuid = stuid;
+  public Student getStudent() {
+    return student;
   }
 
-  public Xiaofeileixing getXflxid() {
-    return xflxid;
+  public void setStudent(Student student) {
+    this.student = student;
   }
 
-  public void setXflxid(Xiaofeileixing xflxid) {
-    this.xflxid = xflxid;
+  public Xiaofeileixing getXflx() {
+    return xflx;
+  }
+
+  public void setXflx(Xiaofeileixing xflx) {
+    this.xflx = xflx;
   }
 
   public int getXfid() {
@@ -67,5 +75,18 @@ public class Xiaofei {
 
   public void setXfdelsign(boolean xfdelsign) {
     this.xfdelsign = xfdelsign;
+  }
+
+  @Override
+  public String toString() {
+    return "Xiaofei{" +
+            "student=" + student +
+            ", xflx=" + xflx +
+            ", xfid=" + xfid +
+            ", xftime=" + xftime +
+            ", xfaddress='" + xfaddress + '\'' +
+            ", xfmoney=" + xfmoney +
+            ", xfdelsign=" + xfdelsign +
+            '}';
   }
 }

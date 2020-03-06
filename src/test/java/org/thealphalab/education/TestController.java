@@ -1,4 +1,4 @@
-package org.thealphalab.education.test;
+package org.thealphalab.education;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;

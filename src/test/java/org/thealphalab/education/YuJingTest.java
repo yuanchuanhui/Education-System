@@ -1,4 +1,4 @@
-package org.thealphalab.education.test;
+package org.thealphalab.education;
 
 import org.thealphalab.education.others.Utils;
 import org.thealphalab.education.model.Yujing;

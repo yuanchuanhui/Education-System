@@ -3,15 +3,19 @@ package org.thealphalab.education.model;
 
 public class Xiaofeileixing {
 
-  private Xiaofei xflxid;
+  private int xflxid;
   private String xflxname;
   private boolean xflxdelsign;
 
-  public Xiaofei getXflxid() {
+  public Xiaofeileixing(String xflxname) {
+    this.xflxname = xflxname;
+  }
+
+  public int getXflxid() {
     return xflxid;
   }
 
-  public void setXflxid(Xiaofei xflxid) {
+  public void setXflxid(int xflxid) {
     this.xflxid = xflxid;
   }
 

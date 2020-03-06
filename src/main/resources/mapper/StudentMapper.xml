@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.StudentMapper" >
+
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    
+    delete from student
+    where stuid = #{stuid,jdbcType=INTEGER}
+  </delete>-->
+  <!--<insert id="insert" parameterType="org.thealphalab.education.model.Student" >
+    insert into student (stuid, stuname, stusex, 
+      birth, stuschool, stuclass, 
+      stuss, stujg, stuzzmm, 
+      studelsign)
+    values (#{stuid,jdbcType=INTEGER}, #{stuname,jdbcType=VARCHAR}, #{stusex,jdbcType=BIT}, 
+      #{birth,jdbcType=DATE}, #{stuschool,jdbcType=INTEGER}, #{stuclass,jdbcType=VARCHAR}, 
+      #{stuss,jdbcType=VARCHAR}, #{stujg,jdbcType=VARCHAR}, #{stuzzmm,jdbcType=VARCHAR}, 
+      #{studelsign,jdbcType=BIT})
+  </insert>-->
+  <insert id="insert" parameterType="org.thealphalab.education.model.Student"
+          useGeneratedKeys="true" keyProperty="stuid" keyColumn="id">
+    insert into student (stuid, stuname, stusex,
+                         birth, stuschool, stuclass,
+                         stuss, stujg, stuzzmm,
+                         studelsign)
+    values
+    (
+        #{stuid},
+        #{stuname,jdbcType=VARCHAR}, #{stusex,jdbcType=BIT},
+        #{birth,jdbcType=DATE}, #{stuschool.id,jdbcType=INTEGER},
+        #{stuclass.classname,jdbcType=VARCHAR},
+        #{stuss,jdbcType=VARCHAR}, #{stujg,jdbcType=VARCHAR},
+        #{stuzzmm,jdbcType=VARCHAR},
+        #{studelsign,jdbcType=BIT}
+    )
+  </insert>
+  <!--<update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Student" >
+    
+    update student
+    set stuname = #{stuname,jdbcType=VARCHAR},
+      stusex = #{stusex,jdbcType=BIT},
+      birth = #{birth,jdbcType=DATE},
+      stuschool = #{stuschool,jdbcType=INTEGER},
+      stuclass = #{stuclass,jdbcType=VARCHAR},
+      stuss = #{stuss,jdbcType=VARCHAR},
+      stujg = #{stujg,jdbcType=VARCHAR},
+      stuzzmm = #{stuzzmm,jdbcType=VARCHAR},
+      studelsign = #{studelsign,jdbcType=BIT}
+    where stuid = #{stuid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    
+    select stuid, stuname, stusex, birth, stuschool, stuclass, stuss, stujg, stuzzmm, 
+    studelsign
+    from student
+    where stuid = #{stuid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    
+    select stuid, stuname, stusex, birth, stuschool, stuclass, stuss, stujg, stuzzmm, 
+    studelsign
+    from student
+  </select>-->
+</mapper>

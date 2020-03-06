@@ -1,21 +1,23 @@
 package org.thealphalab.education.model;
 
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Class_ {
 
-  private int id;
   private String classname;
-  private java.sql.Date year;
+  private Date year;
   private School school;
 
-  public int getId() {
-    return id;
+  public Class_(String classname, School school) {
+    this.classname = classname;
+    this.school = school;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public Class_(String classname, Date year, School school) {
+    this.classname = classname;
+    this.year = year;
+    this.school = school;
   }
 
   public String getClassname() {
@@ -40,5 +42,16 @@ public class Class_ {
 
   public void setSchool(School school) {
     this.school = school;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    Class_ class_ = (Class_)obj;
+    return class_.classname.equals(this.classname);
+  }
+
+  @Override
+  public int hashCode() {
+    return this.classname.hashCode();
   }
 }

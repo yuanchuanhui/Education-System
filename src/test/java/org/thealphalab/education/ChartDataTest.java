@@ -1,4 +1,4 @@
-package org.thealphalab.education.test;
+package org.thealphalab.education;
 
 import org.thealphalab.education.controller.ChartDataController;
 import org.thealphalab.education.others.Utils;

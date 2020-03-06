@@ -1,19 +1,26 @@
 package org.thealphalab.education.model;
 
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Jieshu {
 
   private Student student;
   private Tushu tushu;
-  private java.sql.Date jydate;
-  private java.sql.Date jsyhdate;
-  private java.sql.Date jsghdate;
+  private Date jydate;
+  private Date jsyhdate;
+  private Date jsghdate;
   private int jscqdays;
   private float jsfine;
   private int jssort;
   private boolean jsdelsign;
+
+  public Jieshu(Student student, Tushu tushu, Date jydate, Date jsyhdate) {
+    this.student = student;
+    this.tushu = tushu;
+    this.jydate = jydate;
+    this.jsyhdate = jsyhdate;
+  }
 
   public Student getStudent() {
     return student;

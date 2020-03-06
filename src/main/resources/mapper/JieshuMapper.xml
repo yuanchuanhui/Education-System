@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.JieshuMapper" >
+  <insert id="insert" parameterType="org.thealphalab.education.model.Jieshu" >
+    insert into jieshu(stuid, tsid, jydate, jsyhdate) values
+    (
+        #{student.stuid},
+        #{tushu.tsid},
+        #{jydate},
+        #{jsyhdate}
+    )
+  </insert>
+    <insert id="insertAll" parameterType="org.thealphalab.education.model.Jieshu" >
+        insert ignore into jieshu(stuid, tsid, jydate, jsyhdate) values
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.student.stuid},
+            #{item.tushu.tsid},
+            #{item.jydate},
+            #{item.jsyhdate}
+            )
+        </foreach>
+    </insert>
+</mapper>

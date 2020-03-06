@@ -3,12 +3,33 @@ package org.thealphalab.education.model;
 
 public class Tushu {
 
+  private String tsid;
   private String isbn;
   private String tsname;
   private String tssort;
   private String tsauthor;
   private int tskc;
   private boolean tsdelsign;
+
+  public Tushu(String tsid, String isbn, String tsname, String tssort, String tsauthor) {
+    this.tsid = tsid;
+    this.isbn = isbn;
+    this.tsname = tsname;
+    this.tssort = tssort;
+    this.tsauthor = tsauthor;
+  }
+
+  public Tushu(String tsid) {
+    this.tsid = tsid;
+  }
+
+  public String getTsid() {
+    return tsid;
+  }
+
+  public void setTsid(String tsid) {
+    this.tsid = tsid;
+  }
 
   public String getIsbn() {
     return isbn;

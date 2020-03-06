@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.TushuMapper" >
+  <insert id="insert" parameterType="org.thealphalab.education.model.Tushu" >
+    insert into tushu(tsid, isbn, tsname, tssort, tsauthor) values
+    (
+        #{tsid},
+        #{isbn},
+        #{tsname},
+        #{tssort},
+        #{tsauthor}
+    )
+  </insert>
+    <insert id="insertAll" parameterType="org.thealphalab.education.model.Tushu" >
+        insert ignore into tushu(tsid, isbn, tsname, tssort, tsauthor) values
+        <foreach collection="list" item="item" separator=",">
+        (
+            #{item.tsid},
+            #{item.isbn},
+            #{item.tsname},
+            #{item.tssort},
+            #{item.tsauthor}
+        )
+        </foreach>
+    </insert>
+</mapper>
