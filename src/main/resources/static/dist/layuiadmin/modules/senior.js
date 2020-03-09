@@ -19,57 +19,35 @@
             }),
             t.render("progress")
         }),
+
+            
+         //line.html
         layui.use(["carousel","echarts"],function(){
             var e=layui.$,
                 a=(layui.carousel,layui.echarts),
                 t=[],
-                i=[{title:{text:"未来一周气温变化",
-                    subtext:"纯属虚构"},
+                i=[{
+                   // title:{text:"未来一周气温变化",subtext:"纯属虚构"},
                     tooltip:{trigger:"axis"},
-                    legend:{data:["最高气温","最低气温"]},
+                    legend:{data:["软件学院","计算机学院","外国语学院","材料学院"]},
                     calculable:!0,
                     xAxis:[{
                         type:"category",
                         boundaryGap:!1,
-                        data:["周一","周二","周三","周四","周五","周六","周日"]
+                        data:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
                     }],
                     yAxis:[{
                         type:"value",
-                        axisLabel:{formatter:"{value} °C"}
+                        //axisLabel:{formatter:"{value} °C"}
                     }],
-                    series:[
-                        {   name:"最高气温",
-                            type:"line",
-                            data:[11,11,15,13,12,13,10],
-                            markPoint:{
-                                data:[
-                                    {type:"max",name:"最大值"},
-                                    {type:"min",name:"最小值"}
-                                    ]
-                            },
-                            markLine:{
-                                data:[
-                                    {type:"average",name:"平均值"}
-                                    ]
-                            }
-                        },
-                        {   name:"最低气温",
-                            type:"line",
-                            data:[1,-2,2,5,3,2,0],
-                            markPoint:{
-                                data:[
-                                    {name:"周最低",value:-2,xAxis:1,yAxis:-1.5}
-                                    ]
-                            },
-                            markLine:{
-                                data:[
-                                    {type:"average",name:"平均值"}
-                                    ]
-                            }
-                        }
-                    ]
+                     series:[
+                         {name:"软件学院",type:"line",stack:"总量",data:[ 84, 36, 18, 91, 4, 46, 41, 51, 21, 76, 86, 56 ]},
+                         {name:"计算机学院",type:"line",stack:"总量",data:[ 64, 7, 5, 8, 92, 20, 44, 8, 11, 54, 44, 78 ]},
+                         {name:"外国语学院",type:"line",stack:"总量",data:[ 62, 51, 56, 30, 18, 46, 26, 76, 48, 84, 38, 80 ]},
+                         {name:"材料学院",type:"line",stack:"总量",data:[ 95, 72, 80, 14, 72, 86, 5, 97, 50, 29, 48, 79 ]},
+                     ]
                 }],
-                n=e("#LAY-index-normline").children("div"),
+                n=e("#LAY-index-heapline").children("div"),
                 l=function(e){
                     t[e]=a.init(n[e],layui.echartsTheme),
                     t[e].setOption(i[e]),
@@ -85,21 +63,20 @@
                             xAxis:[{type:"category",boundaryGap:!1,data:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]}],
                             yAxis:[{type:"value"}],
                             series:[
-                                {name:"软件学院",type:"line",stack:"总量",data:[ 84, 36, 18, 91, 4, 46, 41, 51, 21, 76, 86, 56 ]},
-                                {name:"计算机学院",type:"line",stack:"总量",data:[ 64, 7, 5, 8, 92, 20, 44, 8, 11, 54, 44, 78 ]},
-                                {name:"外国语学院",type:"line",stack:"总量",data:[ 62, 51, 56, 30, 18, 46, 26, 76, 48, 84, 38, 80 ]},
-                                {name:"材料学院",type:"line",stack:"总量",data:[ 95, 72, 80, 14, 72, 86, 5, 97, 50, 29, 48, 79 ]},
+                                {name:"软件学院",type:"line",stack:"总量",data:[ 12, 10, 18, 71, 40, 46, 22, 11, 21, 44, 29, 89 ]},
+                                {name:"计算机学院",type:"line",stack:"总量",data:[ 44, 12, 5, 80, 92, 20, 20, 8, 11, 54, 89, 78 ]},
+                                {name:"外国语学院",type:"line",stack:"总量",data:[ 32, 22, 56, 60, 18, 46, 11, 20, 48, 84, 90, 80 ]},
+                                {name:"材料学院",type:"line",stack:"总量",data:[ 35, 8, 80, 54, 72, 16, 50, 12, 50, 78, 99, 79 ]},
                                 
                                 ]
                         }
                     ],
-                    m=e("#LAY-index-heapline").children("div"),
+                    m=e("#LAY-index-normline").children("div"),
                     s=function(e){
                         r[e]=a.init(m[e],layui.echartsTheme),
                         r[e].setOption(o[e]),
                         window.onresize=r[e].resize};
-                    if(m[0]){
-                        s(0);
+                    if(m[0]){s(0);
                         var y=[],
                             d=[
                                 {
@@ -177,40 +154,91 @@
                                 y[e].setOption(d[e]),
                                 window.onresize=y[e].resize
                             };
-                            if(c[0]){p(0);
+
+                            if(m[0]){s(0); 
                             var u=[],
                                 x=[
                                     {
-                                        tooltip:{trigger:"axis"},
-                                        legend:{
-                                            data:["邮件营销","联盟广告","视频广告","直接访问","搜索引擎"]
+                                        title:{
+                                             text:"消费地点分布",
+                                             x:"center",
+                                             textStyle:{fontSize:14}
                                         },
-                                        calculable:!0,
-                                        xAxis:[
-                                            {type:"category",boundaryGap:!1,data:["周一","周二","周三","周四","周五","周六","周日"]}
-                                        ],
-                                        yAxis:[
-                                            {type:"value"}
-                                        ],
+                                        tooltip:{
+                                            trigger:"item",
+                                            formatter:"{a} <br/>{b} : {c} ({d}%)"
+                                        },
+                                        legend:{
+                                            orient:"vertical",
+                                            x:"left",
+                                            data:["开发区校区食堂","西山热水器","大学生超市","西山浴室","圈存缴网费"]
+                                        },
                                         series:[
                                             {
-                                                name:"邮件营销",
-                                                type:"line",
-                                                stack:"总量",
-                                                itemStyle:{normal:{areaStyle:{type:"default"}}},
-                                                data:[120,132,101,134,90,230,210]
-                                            },
-                                            {
-                                                name:"联盟广告",
-                                                type:"line",
-                                                stack:"总量",
-                                                itemStyle:{normal:{areaStyle:{type:"default"}}},
-                                                data:[220,182,191,234,290,330,310]
-                                            },
-                                            {name:"视频广告",type:"line",stack:"总量",itemStyle:{normal:{areaStyle:{type:"default"}}},data:[150,232,201,154,190,330,410]},
-                                            {name:"直接访问",type:"line",stack:"总量",itemStyle:{normal:{areaStyle:{type:"default"}}},data:[320,332,301,334,390,330,320]},
-                                            {name:"搜索引擎",type:"line",stack:"总量",itemStyle:{normal:{areaStyle:{type:"default"}}},data:[820,932,901,934,1290,1330,1320]}
+                                                name:"消费地点",
+                                                type:"pie",
+                                                radius:"55%",
+                                                center:["50%","50%"],
+                                                data:[
+                                                    {value:9052,name:"开发区校区食堂"},
+                                                    {value:1610,name:"西山热水器"},
+                                                    {value:3200,name:"大学生超市"},
+                                                    {value:535,name:"西山浴室"},
+                                                    {value:1700,name:"圈存缴网费"}
+                                                ]
+                                            }
                                         ]
+                                        // tooltip:{trigger:"axis"},
+                                        // legend:{
+                                        //     data:["开发区校区食堂","西山热水器","大学生超市","西山浴室","圈存缴网费"]
+                                        // },
+                                        // calculable:!0,
+                                        // xAxis:[
+                                        //     {type:"category",boundaryGap:!1,data:["周一","周二","周三","周四","周五","周六","周日"]}
+                                        // ],
+                                        // yAxis:[
+                                        //     {type:"value"}
+                                        // ],
+                                       // series : [
+                                       //         {
+                                       //             name: '访问来源',
+                                       //             type: 'pie',
+                                       //             radius: '55%',
+                                       //             data:[
+                                       //                 {value:235, name:'视频广告'},
+                                       //                 {value:274, name:'联盟广告'},
+                                       //                 {value:310, name:'邮件营销'},
+                                       //                 {value:335, name:'直接访问'},
+                                       //                 {value:400, name:'搜索引擎'}
+                                       //             ]
+                                       //         }
+                                       //     ]
+                                       //ries:[
+                                       //  {
+                                       //      name:"邮件营销",
+                                       //      type:"pie",
+                                       //      radius: '55%',
+                                       //      //stack:"总量",
+                                       //      itemStyle:{normal:{areaStyle:{type:"default"}}},
+                                       //       data:[
+                                       //           {value:235, name:'视频广告'},
+                                       //           {value:274, name:'联盟广告'},
+                                       //           {value:310, name:'邮件营销'},
+                                       //           {value:335, name:'直接访问'},
+                                       //           {value:400, name:'搜索引擎'}
+                                       //       ]
+                                       //  }
+                                       //  // {
+                                       //  //     name:"联盟广告",
+                                       //  //     type:"line",
+                                       //  //     stack:"总量",
+                                       //  //     itemStyle:{normal:{areaStyle:{type:"default"}}},
+                                       //  //     data:[220,182,191,234,290,330,310]
+                                       //  // },
+                                       //  // {name:"视频广告",type:"line",stack:"总量",itemStyle:{normal:{areaStyle:{type:"default"}}},data:[150,232,201,154,190,330,410]},
+                                       //  // {name:"直接访问",type:"line",stack:"总量",itemStyle:{normal:{areaStyle:{type:"default"}}},data:[320,332,301,334,390,330,320]},
+                                       //  // {name:"搜索引擎",type:"line",stack:"总量",itemStyle:{normal:{areaStyle:{type:"default"}}},data:[820,932,901,934,1290,1330,1320]}
+                                       //
                                     }
                                 ],
                                 v=e("#LAY-index-heaparea").children("div"),
@@ -219,6 +247,7 @@
                                     u[e].setOption(x[e]),
                                     window.onresize=u[e].resize
                                 };
+
                                 if(v[0]){b(0);
                                 var h=[],
                                     f=[
@@ -277,7 +306,15 @@
                                     ],
                                     k=e("#LAY-index-logline").children("div"),
                                     z=function(e){A[e]=a.init(k[e],layui.echartsTheme),A[e].setOption(w[e]),window.onresize=A[e].resize};
-                                k[0]&&z(0)}}}}}}),layui.use(["carousel","echarts"],function(){
+                                k[0]&&z(0)}}}}
+
+                }
+        }
+
+        ),
+
+               //柱状图bar.html
+            layui.use(["carousel","echarts"],function(){
                                     var e=layui.$,
                                         a=(layui.carousel,layui.echarts),
                                         t=[],
@@ -522,6 +559,8 @@
                                     }
                                     }
                                     }}}}),
+
+           //地图
             layui.use(["carousel","echarts"],function(){
                 var e=layui.$,
                     a=(layui.carousel,layui.echarts),
