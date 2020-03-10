@@ -343,128 +343,124 @@
                         tooltip:{trigger:"axis"},
                         legend:{data:["Java","数据结构","计算机组成原理","数据库"]},
                         calculable:!0,
-                        xAxis:[{
-                            type:"category",
-                            boundaryGap:!1,
-                            data:["软件学院","计算机学院","外国语学院","材料学院","艺术学院"]
-                        }],
-                        yAxis:[{
-                            type:"value",
-                            //axisLabel:{formatter:"{value} °C"}
-                        }],
+                        xAxis:[{type:"category",data:["软件学院","计算机学院","外国语学院","材料学院","艺术学院"]}],
+                        yAxis:[{type:"value"}],
                         series:[
                             {
-                                name:"Java",type:"line",stack:"总量",
-                                data:[123,23,50,75,21]
+                                name:"Java",
+                                type:"line",
+                                // data:[2,4.9,7,23.2,25.6],
+                                data:[]
                             },
-                            {
-                                name:"数据结构",type:"line",stack:"总量",
-                                data:[151,23,90,65,91]
+                            {   name:"数据结构",
+                                type:"line",
+                                // data:[175.6,182.2,48.7,18.8,6],
+                                data:[]
                             },
-                            {
-                                name:"计算机组成原理",type:"line",stack:"总量",
-                                data:[1,43,20,62,41]
+                            {   name:"计算机组成原理",
+                                type:"line",
+                                // data:[17,18,48.7,18,62],
+                                data:[]
                             },
-                            {
-                                name:"数据库",type:"line",stack:"总量",
-
-                                data:[11,23,90,65,211]
-                            },
+                            {   name:"数据库",
+                                type:"line",
+                                // data:[75.6,82.2,8.7,108.8,36],
+                                data:[]
+                            }
                         ]
+
                     }],
-
-                     n=e("LAY-index-normcol").children("div"),
-
-                     l=function(e){
+                    n=e("#LAY-index-normcol").children("div"),
+                    l=function(e){
                         t[e]=a.init(n[e],layui.echartsTheme)
-                         // console.log("1231")
-                         // var arr = new Array();    //类别数组（实际用来盛放X轴坐标值）
-                         // $.ajax({
-                         //     type : "get",
-                         //     async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-                         //     url : "/study",
-                         //     dataType : "json",
-                         //     success : function(data) {
-                         //         //请求成功时执行该函数内容，result即为服务器返回的json对象
-                         //         console.log("333")
-                         //         if (data.type == "study") {
-                         //             console.log("444")
-                         //             var obj =eval(data.obj);//解析后台传来的json数据,是一个二维数组
-                         //             console.log(obj)
-                         //             console.log("555")
-                         //             console.log(obj[0][1].data)
-                         //             var ly =obj[0][1].data;//得到data数组
-                         //
-                         //             for(var w = 0;w< ly.length;w++){
-                         //                 arr[w]=new Array();
-                         //                 for (var j=0;j< ly[w].length;j++){
-                         //                     console.log(ly[w][j]);
-                         //                     arr[w][j]=ly[w][j];
-                         //
-                         //                 }
-                         //
-                         //             }
-                         //             // console.log(arr)
-                         //             // console.log(data.obj[0][1].data);
-                         //             // for (var i = 0; i < data.obj[0][1].data[0].length; i++) {
-                         //             //     names.push(data.obj[0][1].data[0][i]);
-                         //             // }
-                         //             //  print(names);
-                         //             // for (var i = 0; i < obj.length; i++) {
-                         //             //     nums.push(obj[i].num);
-                         //             // }
-                         //             t[e].hideLoading(); //隐藏加载动画
-                         //             console.log("666")
-                         //             console.log(arr[0])
-                         //             // nums.push(arr[0]);
-                         //             t[e].setOption({ //加载数据图表
-                         //                 tooltip:{trigger:"axis"},
-                         //                 legend:{data:["Java","数据结构","计算机组成原理","数据库"]},
-                         //                 calculable:!0,
-                         //                 xAxis:[{
-                         //                     type:"category",
-                         //                     boundaryGap:!1,
-                         //                     data:["软件学院","计算机学院","外国语学院","材料学院","艺术学院"]
-                         //                 }],
-                         //                 yAxis:[{
-                         //                     type:"value",
-                         //                     //axisLabel:{formatter:"{value} °C"}
-                         //                 }],
-                         //                 series:[
-                         //                     {
-                         //                         name:"Java",type:"line",stack:"总量",
-                         //                         data:arr[0]
-                         //                     },
-                         //                     {
-                         //                         name:"数据结构",type:"line",stack:"总量",
-                         //                         data:arr[1]
-                         //                     },
-                         //                     {
-                         //                         name:"计算机组成原理",type:"line",stack:"总量",
-                         //                         data:arr[2]
-                         //                     },
-                         //                     {
-                         //                         name:"数据库",type:"line",stack:"总量",
-                         //                         data:arr[3]
-                         //                     },
-                         //                 ]
-                         //             });
-                         //             console.log("777")
-                         //         }else{
-                         //             alert("后台数据获取失败!");
-                         //         }
-                         //     },
-                         //     error : function(errorMsg) {
-                         //         //请求失败时执行该函数
-                         //         console.log(errorMsg);
-                         //         alert("图表请求数据失败!");
-                         //         // t[e].hideLoading();
-                         //     }
-                         // });
+                        console.log("1")
+                        var arr = new Array();    //类别数组（实际用来盛放X轴坐标值）
+                        $.ajax({
+                            type : "get",
+                            async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                            url : "/study",
+                            dataType : "json",
+                            success : function(data) {
+                                //请求成功时执行该函数内容，result即为服务器返回的json对象
+                                console.log("333")
+                                if (data.type == "study") {
+                                    console.log("444")
+                                    var obj =eval(data.obj);//解析后台传来的json数据,是一个二维数组
+                                    console.log(obj)
+                                    console.log("555")
+                                    console.log(obj[0][1].data)
+                                    var ly =obj[0][1].data;//得到data数组
 
-                         t[e].setOption(i[e]),
-                        window.onresize=t[e].resize
-                     };
+                                    for(var w = 0;w< ly.length;w++){
+                                        arr[w]=new Array();
+                                        for (var j=0;j< ly[w].length;j++){
+                                            console.log(ly[w][j]);
+                                            arr[w][j]=ly[w][j];
+
+                                        }
+
+                                    }
+                                    // console.log(arr)
+                                    // console.log(data.obj[0][1].data);
+                                    // for (var i = 0; i < data.obj[0][1].data[0].length; i++) {
+                                    //     names.push(data.obj[0][1].data[0][i]);
+                                    // }
+                                    //  print(names);
+                                    // for (var i = 0; i < obj.length; i++) {
+                                    //     nums.push(obj[i].num);
+                                    // }
+                                    t[e].hideLoading(); //隐藏加载动画
+                                    console.log("666")
+                                    console.log(arr[0])
+                                    // nums.push(arr[0]);
+                                    t[e].setOption({ //加载数据图表
+                                        tooltip:{trigger:"axis"},
+                                        legend:{data:["Java","数据结构","计算机组成原理","数据库"]},
+                                        calculable:!0,
+                                        xAxis:[{type:"category",data:["软件学院","计算机学院","外国语学院","材料学院","艺术学院"]}],
+                                        yAxis:[{type:"value"}],
+                                        series:[
+                                            {
+                                                name:"Java",
+                                                type:"line",
+                                                // data:[2,4.9,7,23.2,25.6],
+                                                data:arr[0]
+                                            },
+                                            {   name:"数据结构",
+                                                type:"line",
+                                                // data:[175.6,182.2,48.7,18.8,6],
+                                                data:arr[1]
+                                            },
+                                            {   name:"计算机组成原理",
+                                                type:"line",
+                                                // data:[17,18,48.7,18,62],
+                                                data:arr[2]
+                                            },
+                                            {   name:"数据库",
+                                                type:"line",
+                                                // data:[75.6,82.2,8.7,108.8,36],
+                                                data:arr[3]
+                                            }
+                                        ]
+                                    });
+                                    console.log("777")
+                                }else{
+                                    alert("后台数据获取失败!");
+                                }
+                            },
+                            error : function(errorMsg) {
+                                //请求失败时执行该函数
+                                console.log(errorMsg);
+                                alert("图表请求数据失败!");
+                                // t[e].hideLoading();
+                            }
+                        });
+
+
+                        t[e].setOption(i[e]),
+                         window.onresize=t[e].resize
+                    };
+
 
                                     if(n[0]){l(0);
                                     var r=[],
