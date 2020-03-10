@@ -464,30 +464,127 @@
 
                                     if(n[0]){l(0);
                                     var r=[],
-                                        o=[
-                                            {
-                                                tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},
-                                                legend:{data:["直接访问","邮件营销","联盟广告","视频广告","搜索引擎","百度","谷歌","必应","其他"]},
-                                                calculable:!0,
-                                                xAxis:[{type:"category",data:["周一","周二","周三","周四","周五","周六","周日"]}],
-                                                yAxis:[{type:"value"}],
-                                                series:[
-                                                    {name:"直接访问",type:"bar",data:[320,332,301,334,390,330,320]},
-                                                    {name:"邮件营销",type:"bar",stack:"广告",data:[120,132,101,134,90,230,210]},
-                                                    {name:"联盟广告",type:"bar",stack:"广告",data:[220,182,191,234,290,330,310]},
-                                                    {name:"视频广告",type:"bar",stack:"广告",data:[150,232,201,154,190,330,410]},
-                                                    {name:"搜索引擎",type:"bar",
-                                                        data:[862,1018,964,1026,1679,1600,1570],
-                                                        markLine:{itemStyle:{normal:{lineStyle:{type:"dashed"}}},data:[[{type:"min"},{type:"max"}]]}},
-                                                    {name:"百度",type:"bar",barWidth:5,stack:"搜索引擎",data:[620,732,701,734,1090,1130,1120]},
-                                                    {name:"谷歌",type:"bar",stack:"搜索引擎",data:[120,132,101,134,290,230,220]},
-                                                    {name:"必应",type:"bar",stack:"搜索引擎",data:[60,72,71,74,190,130,110]},
-                                                    {name:"其他",type:"bar",stack:"搜索引擎",data:[62,82,91,84,109,110,120]}
-                                               ]
-                                            }
+                                        o=[{
+                                            tooltip:{trigger:"axis"},
+                                            legend:{data:["多媒体","物联网","经管","建筑概论"]},
+                                            calculable:!0,
+                                            xAxis:[{type:"category",data:["软件学院","计算机学院","外国语学院","材料学院","艺术学院"]}],
+                                            yAxis:[{type:"value"}],
+                                            series:[
+                                                {
+                                                    name:"多媒体",
+                                                    type:"line",
+                                                    // data:[2,4.9,7,23.2,25.6],
+                                                    data:[]
+                                                },
+                                                {   name:"物联网",
+                                                    type:"line",
+                                                    // data:[175.6,182.2,48.7,18.8,6],
+                                                    data:[]
+                                                },
+                                                {   name:"经管",
+                                                    type:"line",
+                                                    // data:[17,18,48.7,18,62],
+                                                    data:[]
+                                                },
+                                                {   name:"建筑概论",
+                                                    type:"line",
+                                                    // data:[75.6,82.2,8.7,108.8,36],
+                                                    data:[]
+                                                }
+                                            ]
+
+                                        }
                                         ],
                                         m=e("#LAY-index-heapcol").children("div"),
-                                        s=function(e){r[e]=a.init(m[e],layui.echartsTheme),r[e].setOption(o[e]),window.onresize=r[e].resize};
+                                        s=function(e){
+                                            r[e]=a.init(m[e],layui.echartsTheme)
+                                            var arr = new Array();    //类别数组（实际用来盛放X轴坐标值）
+                                            $.ajax({
+                                                type : "get",
+                                                async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                                                url : "/study",
+                                                dataType : "json",
+                                                success : function(data) {
+                                                    //请求成功时执行该函数内容，result即为服务器返回的json对象
+                                                    console.log("333")
+                                                    if (data.type == "study") {
+                                                        console.log("444")
+                                                        var obj =eval(data.obj);//解析后台传来的json数据,是一个二维数组
+                                                        console.log(obj)
+                                                        console.log("555")
+                                                        console.log(obj[2][1].data)
+                                                        var ly =obj[2][1].data;//得到data数组
+
+                                                        for(var w = 0;w< ly.length;w++){
+                                                            arr[w]=new Array();
+                                                            for (var j=0;j< ly[w].length;j++){
+                                                                console.log(ly[w][j]);
+                                                                arr[w][j]=ly[w][j];
+
+                                                            }
+
+                                                        }
+                                                        // console.log(arr)
+                                                        // console.log(data.obj[0][1].data);
+                                                        // for (var i = 0; i < data.obj[0][1].data[0].length; i++) {
+                                                        //     names.push(data.obj[0][1].data[0][i]);
+                                                        // }
+                                                        //  print(names);
+                                                        // for (var i = 0; i < obj.length; i++) {
+                                                        //     nums.push(obj[i].num);
+                                                        // }
+                                                        r[e].hideLoading(); //隐藏加载动画
+                                                        console.log("666")
+                                                        console.log(arr[0])
+                                                        // nums.push(arr[0]);
+                                                        r[e].setOption({ //加载数据图表
+                                                            tooltip:{trigger:"axis"},
+                                                            legend:{data:["多媒体","物联网","经管","建筑概论"]},
+                                                            calculable:!0,
+                                                            xAxis:[{type:"category",data:["软件学院","计算机学院","外国语学院","材料学院","艺术学院"]}],
+                                                            yAxis:[{type:"value"}],
+                                                            series:[
+                                                                {
+                                                                    name:"多媒体",
+                                                                    type:"line",
+                                                                    // data:[2,4.9,7,23.2,25.6],
+                                                                    data:arr[0]
+                                                                },
+                                                                {   name:"物联网",
+                                                                    type:"line",
+                                                                    // data:[175.6,182.2,48.7,18.8,6],
+                                                                    data:arr[1]
+                                                                },
+                                                                {   name:"经管",
+                                                                    type:"line",
+                                                                    // data:[17,18,48.7,18,62],
+                                                                    data:arr[2]
+                                                                },
+                                                                {   name:"建筑概论",
+                                                                    type:"line",
+                                                                    // data:[75.6,82.2,8.7,108.8,36],
+                                                                    data:arr[3]
+                                                                }
+                                                            ]
+                                                        });
+                                                        console.log("777")
+                                                    }else{
+                                                        alert("后台数据获取失败!");
+                                                    }
+                                                },
+                                                error : function(errorMsg) {
+                                                    //请求失败时执行该函数
+                                                    console.log(errorMsg);
+                                                    alert("图表请求数据失败!");
+                                                    // r[e].hideLoading();
+                                                }
+                                            });
+
+
+                                            r[e].setOption(o[e]),
+                                            window.onresize=r[e].resize
+                                    };
                                     if(m[0]){s(0);
                                     var y=[],
                                         d=[
