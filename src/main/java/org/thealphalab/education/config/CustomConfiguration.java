@@ -75,6 +75,7 @@ public class CustomConfiguration {
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/test", "anon");
         filterChainDefinitionMap.put("/layui.js", "anon");
+        filterChainDefinitionMap.put("/consumption", "anon");
         filterChainDefinitionMap.put("/**", "authc");
 
         shiroFilterFactoryBean.setLoginUrl("/login");
