@@ -1,26 +1,25 @@
 package org.thealphalab.education.model;
 
-
-import java.sql.Date;
+import java.util.Date;
 
 public class Ceshi {
+    private Ceshi cs;
 
-  private int csid;
-  private java.sql.Date cstime;
+    private Date cstime;
 
-  public int getCsid() {
-    return csid;
-  }
+    public Ceshi getCs() {
+        return cs;
+    }
 
-  public void setCsid(int csid) {
-    this.csid = csid;
-  }
+    public void setCs(Ceshi cs) {
+        this.cs = cs;
+    }
 
-  public Date getCstime() {
-    return cstime;
-  }
+    public Date getCstime() {
+        return cstime;
+    }
 
-  public void setCstime(Date cstime) {
-    this.cstime = cstime;
-  }
+    public void setCstime(Date cstime) {
+        this.cstime = cstime;
+    }
 }

@@ -1,92 +1,75 @@
 package org.thealphalab.education.model;
 
-
 import java.util.Date;
 
 public class Xiaofei {
+    private Integer xfid;
 
-  private int xfid;
-  private Student student;
-  private Xiaofeileixing xflx;
-  private Date xftime;
-  private String xfaddress;
-  private float xfmoney;
-  private boolean xfdelsign;
+    private Student student;
 
-  public Xiaofei(Student student, Xiaofeileixing xflx, Date xftime, String xfaddress, float xfmoney) {
-    this.student = student;
-    this.xflx = xflx;
-    this.xftime = xftime;
-    this.xfaddress = xfaddress;
-    this.xfmoney = xfmoney;
-  }
+    private Xiaofeileixing xflx;
 
-  public Student getStudent() {
-    return student;
-  }
+    private Date xftime;
 
-  public void setStudent(Student student) {
-    this.student = student;
-  }
+    private String xfaddress;
 
-  public Xiaofeileixing getXflx() {
-    return xflx;
-  }
+    private Float xfmoney;
 
-  public void setXflx(Xiaofeileixing xflx) {
-    this.xflx = xflx;
-  }
+    private Boolean xfdelsign;
 
-  public int getXfid() {
-    return xfid;
-  }
+    public Integer getXfid() {
+        return xfid;
+    }
 
-  public void setXfid(int xfid) {
-    this.xfid = xfid;
-  }
+    public void setXfid(Integer xfid) {
+        this.xfid = xfid;
+    }
 
-  public Date getXftime() {
-    return xftime;
-  }
+    public Student getStudent() {
+        return student;
+    }
 
-  public void setXftime(Date xftime) {
-    this.xftime = xftime;
-  }
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
-  public String getXfaddress() {
-    return xfaddress;
-  }
+    public Xiaofeileixing getXflx() {
+        return xflx;
+    }
 
-  public void setXfaddress(String xfaddress) {
-    this.xfaddress = xfaddress;
-  }
+    public void setXflx(Xiaofeileixing xflx) {
+        this.xflx = xflx;
+    }
 
-  public float getXfmoney() {
-    return xfmoney;
-  }
+    public Date getXftime() {
+        return xftime;
+    }
 
-  public void setXfmoney(float xfmoney) {
-    this.xfmoney = xfmoney;
-  }
+    public void setXftime(Date xftime) {
+        this.xftime = xftime;
+    }
 
-  public boolean isXfdelsign() {
-    return xfdelsign;
-  }
+    public String getXfaddress() {
+        return xfaddress;
+    }
 
-  public void setXfdelsign(boolean xfdelsign) {
-    this.xfdelsign = xfdelsign;
-  }
+    public void setXfaddress(String xfaddress) {
+        this.xfaddress = xfaddress;
+    }
 
-  @Override
-  public String toString() {
-    return "Xiaofei{" +
-            "student=" + student +
-            ", xflx=" + xflx +
-            ", xfid=" + xfid +
-            ", xftime=" + xftime +
-            ", xfaddress='" + xfaddress + '\'' +
-            ", xfmoney=" + xfmoney +
-            ", xfdelsign=" + xfdelsign +
-            '}';
-  }
+    public Float getXfmoney() {
+        return xfmoney;
+    }
+
+    public void setXfmoney(Float xfmoney) {
+        this.xfmoney = xfmoney;
+    }
+
+    public Boolean getXfdelsign() {
+        return xfdelsign;
+    }
+
+    public void setXfdelsign(Boolean xfdelsign) {
+        this.xfdelsign = xfdelsign;
+    }
 }

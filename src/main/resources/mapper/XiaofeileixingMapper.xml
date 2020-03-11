@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.XiaofeileixingMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Xiaofeileixing" >
+    <id column="xflxid" property="xflxid" jdbcType="INTEGER" />
+    <result column="xflxname" property="xflxname" jdbcType="VARCHAR" />
+    <result column="xflxdelsign" property="xflxdelsign" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from xiaofeileixing
+    where xflxid = #{xflxid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Xiaofeileixing" >
+    insert into xiaofeileixing (xflxid, xflxname, xflxdelsign
+      )
+    values (#{xflxid,jdbcType=INTEGER}, #{xflxname,jdbcType=VARCHAR}, #{xflxdelsign,jdbcType=BIT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Xiaofeileixing" >
+    update xiaofeileixing
+    set xflxname = #{xflxname,jdbcType=VARCHAR},
+      xflxdelsign = #{xflxdelsign,jdbcType=BIT}
+    where xflxid = #{xflxid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select xflxid, xflxname, xflxdelsign
+    from xiaofeileixing
+    where xflxid = #{xflxid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select xflxid, xflxname, xflxdelsign
+    from xiaofeileixing
+  </select>
+</mapper>

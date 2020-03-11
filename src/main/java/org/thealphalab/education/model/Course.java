@@ -1,60 +1,53 @@
 package org.thealphalab.education.model;
 
-
 public class Course {
+    private String cid;
 
-  private String cid;
-  private String cname;
-  private String csort;
-  private Teacher teacher;
-  private boolean cdelsign;
+    private String cname;
 
-  public Course(String cid, String cname) {
-    this.cid = cid;
-    this.cname = cname;
-  }
+    private String csort;
 
-  public Course(String cid) {
-    this.cid = cid;
-  }
+    private Integer tid;
 
-  public String getCid() {
-    return cid;
-  }
+    private Boolean cdelsign;
 
-  public void setCid(String cid) {
-    this.cid = cid;
-  }
+    public String getCid() {
+        return cid;
+    }
 
-  public String getCname() {
-    return cname;
-  }
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
 
-  public void setCname(String cname) {
-    this.cname = cname;
-  }
+    public String getCname() {
+        return cname;
+    }
 
-  public String getCsort() {
-    return csort;
-  }
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
 
-  public void setCsort(String csort) {
-    this.csort = csort;
-  }
+    public String getCsort() {
+        return csort;
+    }
 
-  public Teacher getTeacher() {
-    return teacher;
-  }
+    public void setCsort(String csort) {
+        this.csort = csort;
+    }
 
-  public void setTeacher(Teacher teacher) {
-    this.teacher = teacher;
-  }
+    public Integer getTid() {
+        return tid;
+    }
 
-  public boolean isCdelsign() {
-    return cdelsign;
-  }
+    public void setTid(Integer tid) {
+        this.tid = tid;
+    }
 
-  public void setCdelsign(boolean cdelsign) {
-    this.cdelsign = cdelsign;
-  }
+    public Boolean getCdelsign() {
+        return cdelsign;
+    }
+
+    public void setCdelsign(Boolean cdelsign) {
+        this.cdelsign = cdelsign;
+    }
 }

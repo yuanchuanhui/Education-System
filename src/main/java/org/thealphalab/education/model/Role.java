@@ -1,42 +1,43 @@
 package org.thealphalab.education.model;
 
-
 public class Role {
+    private Integer roleid;
 
-  private int roleId;
-  private String roleName;
-  private String permission;
-  private String roleNameZh;
+    private String rolename;
 
-  public int getRoleId() {
-    return roleId;
-  }
+    private String permission;
 
-  public void setRoleId(int roleId) {
-    this.roleId = roleId;
-  }
+    private String rolenamezh;
 
-  public String getRoleName() {
-    return roleName;
-  }
+    public Integer getRoleid() {
+        return roleid;
+    }
 
-  public void setRoleName(String roleName) {
-    this.roleName = roleName;
-  }
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
+    }
 
-  public String getPermission() {
-    return permission;
-  }
+    public String getRolename() {
+        return rolename;
+    }
 
-  public void setPermission(String permission) {
-    this.permission = permission;
-  }
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
 
-  public String getRoleNameZh() {
-    return roleNameZh;
-  }
+    public String getPermission() {
+        return permission;
+    }
 
-  public void setRoleNameZh(String roleNameZh) {
-    this.roleNameZh = roleNameZh;
-  }
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
+    public String getRolenamezh() {
+        return rolenamezh;
+    }
+
+    public void setRolenamezh(String rolenamezh) {
+        this.rolenamezh = rolenamezh;
+    }
 }

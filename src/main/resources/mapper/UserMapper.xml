@@ -1,15 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.thealphalab.education.mapper.UserMapper">
-    <!--将查询结果映射到javabean-->
-    <resultMap id="allResultMap" type="org.thealphalab.education.model.User">
-        <id column="username" javaType="String" property="username"/>
-        <result column="password" javaType="String" property="password"/>
-        <result column="permission" javaType="String" property="permission"/>
-        <result column="xflxdelsign" javaType="boolean" property="xflxdelsign"/>
-    </resultMap>
-    <!--根据RoleMapper中的方法，将其映射到SQL语句中，并配置结果对象-->
-    <select id="getUserByUsername" resultMap="allResultMap">
-        select * from user where username = #{username};
-    </select>
+  <insert id="insert" parameterType="org.thealphalab.education.model.User">
+    insert into user (username, password, permission, 
+      xflxdelsign)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{xflxdelsign,jdbcType=BIT})
+  </insert>
+  <select id="selectAll" resultType="org.thealphalab.education.model.User">
+    select username, password, permission, xflxdelsign
+    from user
+  </select>
+  <select id="selectUserByUsername" resultType="org.thealphalab.education.model.User">
+    select username, password, permission, xflxdelsign
+    from user
+    where username = #{username}
+  </select>
 </mapper>

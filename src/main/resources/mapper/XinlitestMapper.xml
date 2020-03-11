@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.1Mapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Xinlitest" >
+    <id column="csid" property="csid" jdbcType="INTEGER" />
+    <id column="stuid" property="stuid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from xinlitest
+    where csid = #{cs.csid,jdbcType=INTEGER}
+      and stuid = #{student.stuid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Xinlitest" >
+    insert into xinlitest (csid, stuid)
+    values (#{cs.csid,jdbcType=INTEGER}, #{student.stuid,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select csid, stuid
+    from xinlitest
+  </select>
+</mapper>

@@ -1,0 +1,6 @@
+项目启动起来并登陆以后（即运行了EducationApplication.java），访问
+http://localhost:8080/consumption
+http://localhost:8080/social
+http://localhost:8080/study
+http://localhost:8080/health
+四个地址，会返回相应的json数据。将其中的数据放在主页上以图表的形式显示出来。图表参照documents/教育系统图表设计.xmind中的统计部分。

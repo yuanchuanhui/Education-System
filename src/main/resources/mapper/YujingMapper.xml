@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.YujingMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Yujing" >
+    <id column="stuid" property="stuid" jdbcType="INTEGER" />
+    <id column="yjsort" property="yjsort" jdbcType="VARCHAR" />
+    <result column="yjtime" property="yjtime" jdbcType="DATE" />
+    <result column="yjjibie" property="yjjibie" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from yujing
+    where stuid = #{student.stuid,jdbcType=INTEGER}
+      and yjsort = #{yjsort,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Yujing" >
+    insert into yujing (stuid, yjsort, yjtime, 
+      yjjibie)
+    values (#{student.stuid,jdbcType=INTEGER}, #{yjsort,jdbcType=VARCHAR}, #{yjtime,jdbcType=DATE}, 
+      #{yjjibie,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Yujing" >
+    update yujing
+    set yjtime = #{yjtime,jdbcType=DATE},
+      yjjibie = #{yjjibie,jdbcType=VARCHAR}
+    where stuid = #{student.stuid,jdbcType=INTEGER}
+      and yjsort = #{yjsort,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select stuid, yjsort, yjtime, yjjibie
+    from yujing
+    where stuid = #{student.stuid,jdbcType=INTEGER}
+      and yjsort = #{yjsort,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select stuid, yjsort, yjtime, yjjibie
+    from yujing
+  </select>
+</mapper>

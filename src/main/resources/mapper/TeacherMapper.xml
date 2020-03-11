@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Teacher" >
+    <id column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="tsex" property="tsex" jdbcType="BIT" />
+    <result column="tpost" property="tpost" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from teacher
+    where tid = #{tid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Teacher" >
+    insert into teacher (tid, tname, tsex, 
+      tpost)
+    values (#{tid,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{tsex,jdbcType=BIT}, 
+      #{tpost,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Teacher" >
+    update teacher
+    set tname = #{tname,jdbcType=VARCHAR},
+      tsex = #{tsex,jdbcType=BIT},
+      tpost = #{tpost,jdbcType=VARCHAR}
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select tid, tname, tsex, tpost
+    from teacher
+    where tid = #{tid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select tid, tname, tsex, tpost
+    from teacher
+  </select>
+</mapper>

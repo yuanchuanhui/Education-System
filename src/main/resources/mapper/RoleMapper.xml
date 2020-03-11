@@ -1,19 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.thealphalab.education.mapper.RoleMapper">
-    <!--将查询结果映射到javabean-->
-    <resultMap id="allResultMap" type="org.thealphalab.education.model.Role">
-        <id column="roleId" javaType="int" property="roleId"/>
-        <result column="roleName" javaType="String" property="roleName"/>
-        <result column="permission" javaType="String" property="permission"/>
-        <result column="roleNameZh" javaType="String" property="roleNameZh"/>
-    </resultMap>
-    <!--可重用的语句块，可被其他语句引用-->
-    <!--<sql id="Base_Column_List">
-    id, name, phone, telephone, address, enabled, username, password, userface, remark
-  </sql>-->
-    <!--根据RoleMapper中的方法，将其映射到SQL语句中，并配置结果对象-->
-    <select id="getRoleByRoleId" resultMap="allResultMap">
-        select * from role where roleId = #{roleId};
-    </select>
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Role">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="rolename" jdbcType="VARCHAR" property="rolename" />
+    <result column="rolenameZh" jdbcType="VARCHAR" property="rolenamezh" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role
+    where roleid = #{roleid,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Role">
+    update role
+    set rolename = #{rolename,jdbcType=VARCHAR},
+      rolenameZh = #{rolenamezh,jdbcType=VARCHAR}
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select roleid, rolename, rolenameZh
+    from role
+    where roleid = #{roleid,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Role">
+    insert into role (roleId, roleName, permission, 
+      roleNameZh)
+    values (#{roleid,jdbcType=INTEGER}, #{rolerolename,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{rolerolenamezh,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select roleId, roleName, permission, roleNameZh
+    from role
+  </select>
 </mapper>

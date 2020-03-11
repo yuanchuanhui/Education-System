@@ -1,24 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.thealphalab.education.mapper.JieshuMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Jieshu" >
+    <id column="stuid" property="stuid" jdbcType="INTEGER" />
+    <id column="tsid" property="tsid" jdbcType="VARCHAR" />
+    <id column="jydate" property="jydate" jdbcType="DATE" />
+    <result column="jsyhdate" property="jsyhdate" jdbcType="DATE" />
+    <result column="jsghdate" property="jsghdate" jdbcType="DATE" />
+    <result column="jscqdays" property="jscqdays" jdbcType="INTEGER" />
+    <result column="jsfine" property="jsfine" jdbcType="REAL" />
+    <result column="jssort" property="jssort" jdbcType="INTEGER" />
+    <result column="jsdelsign" property="jsdelsign" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from jieshu
+    where stuid = #{student.stuid,jdbcType=INTEGER}
+      and tsid = #{tushu.tsid,jdbcType=VARCHAR}
+      and jydate = #{jydate,jdbcType=DATE}
+  </delete>
   <insert id="insert" parameterType="org.thealphalab.education.model.Jieshu" >
-    insert into jieshu(stuid, tsid, jydate, jsyhdate) values
-    (
-        #{student.stuid},
-        #{tushu.tsid},
-        #{jydate},
-        #{jsyhdate}
-    )
+    insert into jieshu (stuid, tsid, jydate, 
+      jsyhdate, jsghdate, jscqdays, 
+      jsfine, jssort, jsdelsign)
+    values (#{student.stuid,jdbcType=INTEGER}, #{tushu.tsid,jdbcType=VARCHAR}, #{jydate,jdbcType=DATE}, 
+      #{jsyhdate,jdbcType=DATE}, #{jsghdate,jdbcType=DATE}, #{jscqdays,jdbcType=INTEGER}, 
+      #{jsfine,jdbcType=REAL}, #{jssort,jdbcType=INTEGER}, #{jsdelsign,jdbcType=BIT})
   </insert>
-    <insert id="insertAll" parameterType="org.thealphalab.education.model.Jieshu" >
-        insert ignore into jieshu(stuid, tsid, jydate, jsyhdate) values
-        <foreach collection="list" item="item" separator=",">
-            (
-            #{item.student.stuid},
-            #{item.tushu.tsid},
-            #{item.jydate},
-            #{item.jsyhdate}
-            )
-        </foreach>
-    </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Jieshu" >
+    update jieshu
+    set jsyhdate = #{jsyhdate,jdbcType=DATE},
+      jsghdate = #{jsghdate,jdbcType=DATE},
+      jscqdays = #{jscqdays,jdbcType=INTEGER},
+      jsfine = #{jsfine,jdbcType=REAL},
+      jssort = #{jssort,jdbcType=INTEGER},
+      jsdelsign = #{jsdelsign,jdbcType=BIT}
+    where stuid = #{student.stuid,jdbcType=INTEGER}
+      and tsid = #{tushu.tsid,jdbcType=VARCHAR}
+      and jydate = #{jydate,jdbcType=DATE}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select stuid, tsid, jydate, jsyhdate, jsghdate, jscqdays, jsfine, jssort, jsdelsign
+    from jieshu
+    where stuid = #{student.stuid,jdbcType=INTEGER}
+      and tsid = #{tushu.tsid,jdbcType=VARCHAR}
+      and jydate = #{jydate,jdbcType=DATE}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select stuid, tsid, jydate, jsyhdate, jsghdate, jscqdays, jsfine, jssort, jsdelsign
+    from jieshu
+  </select>
+  <insert id="insertAll" parameterType="org.thealphalab.education.model.Jieshu" >
+    insert into jieshu (stuid, tsid, jydate,
+                        jsyhdate, jsghdate, jscqdays,
+                        jsfine, jssort, jsdelsign)
+    values
+    <foreach collection="list" separator="," item="item">
+      (#{item.student.stuid,jdbcType=INTEGER}, #{item.tushu.tsid,jdbcType=VARCHAR}, #{item.jydate,jdbcType=DATE},
+      #{item.jsyhdate,jdbcType=DATE}, #{item.jsghdate,jdbcType=DATE}, #{item.jscqdays,jdbcType=INTEGER},
+      #{item.jsfine,jdbcType=REAL}, #{item.jssort,jdbcType=INTEGER}, #{item.jsdelsign,jdbcType=BIT})
+    </foreach>
+  </insert>
 </mapper>

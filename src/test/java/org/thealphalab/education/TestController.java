@@ -20,7 +20,7 @@ public class TestController {
     @RequestMapping("/test")
     @RequiresPermissions("5_2015_*")
     public String test(){
-        return roleService.getRoleByRoleId("1").toString();
+        return roleService.getRoleByRoleId(1).toString();
     }
 
 }

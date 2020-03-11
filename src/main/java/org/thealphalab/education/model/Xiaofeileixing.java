@@ -1,37 +1,37 @@
 package org.thealphalab.education.model;
 
-
 public class Xiaofeileixing {
+    private Integer xflxid;
 
-  private int xflxid;
-  private String xflxname;
-  private boolean xflxdelsign;
+    private String xflxname;
 
-  public Xiaofeileixing(String xflxname) {
-    this.xflxname = xflxname;
-  }
+    private Boolean xflxdelsign;
 
-  public int getXflxid() {
-    return xflxid;
-  }
+    public Xiaofeileixing(String xflxname) {
+        this.xflxname = xflxname;
+    }
 
-  public void setXflxid(int xflxid) {
-    this.xflxid = xflxid;
-  }
+    public Integer getXflxid() {
+        return xflxid;
+    }
 
-  public String getXflxname() {
-    return xflxname;
-  }
+    public void setXflxid(Integer xflxid) {
+        this.xflxid = xflxid;
+    }
 
-  public void setXflxname(String xflxname) {
-    this.xflxname = xflxname;
-  }
+    public String getXflxname() {
+        return xflxname;
+    }
 
-  public boolean isXflxdelsign() {
-    return xflxdelsign;
-  }
+    public void setXflxname(String xflxname) {
+        this.xflxname = xflxname;
+    }
 
-  public void setXflxdelsign(boolean xflxdelsign) {
-    this.xflxdelsign = xflxdelsign;
-  }
+    public Boolean getXflxdelsign() {
+        return xflxdelsign;
+    }
+
+    public void setXflxdelsign(Boolean xflxdelsign) {
+        this.xflxdelsign = xflxdelsign;
+    }
 }

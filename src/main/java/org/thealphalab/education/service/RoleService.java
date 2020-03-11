@@ -17,12 +17,12 @@ public class RoleService {
     @Autowired
     private UserRoleMapper userRoleMapper;
 
-    public Role getRoleByRoleId(String roleId){
-        return roleMapper.getRoleByRoleId(roleId);
+    public Role getRoleByRoleId(int roleId){
+        return roleMapper.selectByPrimaryKey(roleId);
     }
 
     public Role getRoleByUsername(String username){
-        return userRoleMapper.getRoleByUsername(username);
+        return userRoleMapper.selectRoleByUsername(username);
     }
 
 }

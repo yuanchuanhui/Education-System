@@ -1,24 +1,23 @@
 package org.thealphalab.education.model;
 
-
 public class Xinlitest {
+    private Ceshi cs;
 
-  private int csid;
-  private Student stuid;
+    private Student student;
 
-  public int getCsid() {
-    return csid;
-  }
+    public Ceshi getCs() {
+        return cs;
+    }
 
-  public void setCsid(int csid) {
-    this.csid = csid;
-  }
+    public void setCs(Ceshi cs) {
+        this.cs = cs;
+    }
 
-  public Student getStuid() {
-    return stuid;
-  }
+    public Student getStudent() {
+        return student;
+    }
 
-  public void setStuid(Student stuid) {
-    this.stuid = stuid;
-  }
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

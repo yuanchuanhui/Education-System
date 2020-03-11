@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.XinliceshitiMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Xinliceshiti" >
+    <id column="xlcstmh" property="xlcstmh" jdbcType="INTEGER" />
+    <result column="csid" property="csid" jdbcType="INTEGER" />
+    <result column="xlcsdescription" property="xlcsdescription" jdbcType="VARCHAR" />
+    <result column="xlcsdscore" property="xlcsdscore" jdbcType="INTEGER" />
+    <result column="xlcscscore" property="xlcscscore" jdbcType="INTEGER" />
+    <result column="xlcsbscore" property="xlcsbscore" jdbcType="INTEGER" />
+    <result column="xlcsascore" property="xlcsascore" jdbcType="INTEGER" />
+    <result column="xlcsdelsign" property="xlcsdelsign" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from xinliceshiti
+    where xlcstmh = #{xlcstmh,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Xinliceshiti" >
+    insert into xinliceshiti (xlcstmh, csid, xlcsdescription, 
+      xlcsdscore, xlcscscore, xlcsbscore, 
+      xlcsascore, xlcsdelsign)
+    values (#{xlcstmh,jdbcType=INTEGER}, #{cs.csid,jdbcType=INTEGER}, #{xlcsdescription,jdbcType=VARCHAR}, 
+      #{xlcsdscore,jdbcType=INTEGER}, #{xlcscscore,jdbcType=INTEGER}, #{xlcsbscore,jdbcType=INTEGER}, 
+      #{xlcsascore,jdbcType=INTEGER}, #{xlcsdelsign,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Xinliceshiti" >
+    update xinliceshiti
+    set csid = #{cs.csid,jdbcType=INTEGER},
+      xlcsdescription = #{xlcsdescription,jdbcType=VARCHAR},
+      xlcsdscore = #{xlcsdscore,jdbcType=INTEGER},
+      xlcscscore = #{xlcscscore,jdbcType=INTEGER},
+      xlcsbscore = #{xlcsbscore,jdbcType=INTEGER},
+      xlcsascore = #{xlcsascore,jdbcType=INTEGER},
+      xlcsdelsign = #{xlcsdelsign,jdbcType=BIT}
+    where xlcstmh = #{xlcstmh,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select xlcstmh, csid, xlcsdescription, xlcsdscore, xlcscscore, xlcsbscore, xlcsascore, 
+    xlcsdelsign
+    from xinliceshiti
+    where xlcstmh = #{xlcstmh,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select xlcstmh, csid, xlcsdescription, xlcsdscore, xlcscscore, xlcsbscore, xlcsascore, 
+    xlcsdelsign
+    from xinliceshiti
+  </select>
+</mapper>

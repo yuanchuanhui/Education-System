@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.HashMap;
 import java.util.Map;
 
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class PieChartData {
 
     private Map<String, Integer> data;
@@ -23,6 +22,10 @@ public class PieChartData {
         objects[0] = subClassName;
         objects[1] = new PieChartData(data);
         return objects;
+    }
+
+    public void setData(Map<String, Integer> data) {
+        this.data = data;
     }
 
     public Map<String, Integer> getData() {

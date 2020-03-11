@@ -43,7 +43,7 @@ public class CustomRealm extends AuthorizingRealm {
 
         Role role = roleService.getRoleByUsername(username);
         Set<String> roles = new HashSet<>();
-        roles.add(role.getRoleName());
+        roles.add(role.getRolename());
         authorizationInfo.setRoles(roles);
 
         return authorizationInfo;

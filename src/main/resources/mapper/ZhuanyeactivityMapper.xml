@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.ZhuanyeactivityMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Zhuanyeactivity" >
+    <id column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="aname" property="aname" jdbcType="VARCHAR" />
+    <result column="ajibie" property="ajibie" jdbcType="INTEGER" />
+    <result column="asort" property="asort" jdbcType="VARCHAR" />
+    <result column="adelsign" property="adelsign" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from zhuanyeactivity
+    where aid = #{aid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Zhuanyeactivity" >
+    insert into zhuanyeactivity (aid, aname, ajibie, 
+      asort, adelsign)
+    values (#{aid,jdbcType=INTEGER}, #{aname,jdbcType=VARCHAR}, #{ajibie,jdbcType=INTEGER}, 
+      #{asort,jdbcType=VARCHAR}, #{adelsign,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Zhuanyeactivity" >
+    update zhuanyeactivity
+    set aname = #{aname,jdbcType=VARCHAR},
+      ajibie = #{ajibie,jdbcType=INTEGER},
+      asort = #{asort,jdbcType=VARCHAR},
+      adelsign = #{adelsign,jdbcType=BIT}
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select aid, aname, ajibie, asort, adelsign
+    from zhuanyeactivity
+    where aid = #{aid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select aid, aname, ajibie, asort, adelsign
+    from zhuanyeactivity
+  </select>
+</mapper>

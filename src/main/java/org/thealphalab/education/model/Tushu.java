@@ -1,81 +1,73 @@
 package org.thealphalab.education.model;
 
-
 public class Tushu {
+    private String tsid;
 
-  private String tsid;
-  private String isbn;
-  private String tsname;
-  private String tssort;
-  private String tsauthor;
-  private int tskc;
-  private boolean tsdelsign;
+    private String isbn;
 
-  public Tushu(String tsid, String isbn, String tsname, String tssort, String tsauthor) {
-    this.tsid = tsid;
-    this.isbn = isbn;
-    this.tsname = tsname;
-    this.tssort = tssort;
-    this.tsauthor = tsauthor;
-  }
+    private String tsname;
 
-  public Tushu(String tsid) {
-    this.tsid = tsid;
-  }
+    private String tssort;
 
-  public String getTsid() {
-    return tsid;
-  }
+    private String tsauthor;
 
-  public void setTsid(String tsid) {
-    this.tsid = tsid;
-  }
+    private Integer tskc;
 
-  public String getIsbn() {
-    return isbn;
-  }
+    private Boolean tsdelsign;
 
-  public void setIsbn(String isbn) {
-    this.isbn = isbn;
-  }
+    public String getTsid() {
+        return tsid;
+    }
 
-  public String getTsname() {
-    return tsname;
-  }
+    public void setTsid(String tsid) {
+        this.tsid = tsid;
+    }
 
-  public void setTsname(String tsname) {
-    this.tsname = tsname;
-  }
+    public String getIsbn() {
+        return isbn;
+    }
 
-  public String getTssort() {
-    return tssort;
-  }
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-  public void setTssort(String tssort) {
-    this.tssort = tssort;
-  }
+    public String getTsname() {
+        return tsname;
+    }
 
-  public String getTsauthor() {
-    return tsauthor;
-  }
+    public void setTsname(String tsname) {
+        this.tsname = tsname;
+    }
 
-  public void setTsauthor(String tsauthor) {
-    this.tsauthor = tsauthor;
-  }
+    public String getTssort() {
+        return tssort;
+    }
 
-  public int getTskc() {
-    return tskc;
-  }
+    public void setTssort(String tssort) {
+        this.tssort = tssort;
+    }
 
-  public void setTskc(int tskc) {
-    this.tskc = tskc;
-  }
+    public String getTsauthor() {
+        return tsauthor;
+    }
 
-  public boolean isTsdelsign() {
-    return tsdelsign;
-  }
+    public void setTsauthor(String tsauthor) {
+        this.tsauthor = tsauthor;
+    }
 
-  public void setTsdelsign(boolean tsdelsign) {
-    this.tsdelsign = tsdelsign;
-  }
+    public Integer getTskc() {
+        return tskc;
+    }
+
+    public void setTskc(Integer tskc) {
+        this.tskc = tskc;
+    }
+
+    public Boolean getTsdelsign() {
+        return tsdelsign;
+    }
+
+    public void setTsdelsign(Boolean tsdelsign) {
+        this.tsdelsign = tsdelsign;
+    }
 }

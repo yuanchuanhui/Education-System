@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.SocialMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Social" >
+    <result column="stuid" property="stuid" jdbcType="INTEGER" />
+    <result column="fristuid" property="fristuid" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Social" >
+    insert into social (stuid, fristuid)
+    values (#{student.stuid,jdbcType=INTEGER}, #{friend.stuid,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select stuid, fristuid
+    from social
+  </select>
+</mapper>

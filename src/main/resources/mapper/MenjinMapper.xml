@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.MenjinMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Menjin" >
+    <id column="mjid" property="mjid" jdbcType="INTEGER" />
+    <result column="stuid" property="stuid" jdbcType="INTEGER" />
+    <result column="mjtime" property="mjtime" jdbcType="TIMESTAMP" />
+    <result column="mjadress" property="mjadress" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menjin
+    where mjid = #{mjid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Menjin" >
+    insert into menjin (mjid, stuid, mjtime, 
+      mjadress)
+    values (#{mjid,jdbcType=INTEGER}, #{student.stuid,jdbcType=INTEGER}, #{mjtime,jdbcType=TIMESTAMP}, 
+      #{mjadress,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Menjin" >
+    update menjin
+    set stuid = #{student.stuid,jdbcType=INTEGER},
+      mjtime = #{mjtime,jdbcType=TIMESTAMP},
+      mjadress = #{mjadress,jdbcType=VARCHAR}
+    where mjid = #{mjid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select mjid, stuid, mjtime, mjadress
+    from menjin
+    where mjid = #{mjid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select mjid, stuid, mjtime, mjadress
+    from menjin
+  </select>
+</mapper>

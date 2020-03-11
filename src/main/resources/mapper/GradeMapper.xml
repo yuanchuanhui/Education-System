@@ -1,9 +1,133 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.thealphalab.education.mapper.GradeMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Grade" >
+    <id column="stuid" property="stuid" jdbcType="INTEGER" />
+    <id column="cid" property="cid" jdbcType="VARCHAR" />
+    <result column="gtime" property="gtime" jdbcType="DATE" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="credit" property="credit" jdbcType="REAL" />
+    <result column="course_type" property="courseType" jdbcType="INTEGER" />
+    <result column="isfail" property="isfail" jdbcType="INTEGER" />
+    <result column="gdelsign" property="gdelsign" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from grade
+    where stuid = #{student.id,jdbcType=INTEGER}
+      and cid = #{course.cid,jdbcType=VARCHAR}
+  </delete>
   <insert id="insert" parameterType="org.thealphalab.education.model.Grade" >
-    insert into grade (cid, stuid, gtime, score, credit, course_type, isfail)
-    values (#{course.cid}, #{student.stuid}, #{gtime}, #{score},
-            #{credit}, #{courseType}, #{isfail})
+    insert into grade (stuid, cid, gtime, 
+      score, credit, course_type, 
+      isfail, gdelsign)
+    values (#{student.id,jdbcType=INTEGER}, #{course.cid,jdbcType=VARCHAR}, #{gtime,jdbcType=DATE}, 
+      #{score,jdbcType=INTEGER}, #{credit,jdbcType=REAL}, #{courseType,jdbcType=INTEGER}, 
+      #{isfail,jdbcType=INTEGER}, #{gdelsign,jdbcType=BIT})
   </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Grade" >
+    update grade
+    set gtime = #{gtime,jdbcType=DATE},
+      score = #{score,jdbcType=INTEGER},
+      credit = #{credit,jdbcType=REAL},
+      course_type = #{courseType,jdbcType=INTEGER},
+      isfail = #{isfail,jdbcType=INTEGER},
+      gdelsign = #{gdelsign,jdbcType=BIT}
+    where stuid = #{student.id,jdbcType=INTEGER}
+      and cid = #{course.cid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select stuid, cid, gtime, score, credit, course_type, isfail, gdelsign
+    from grade
+    where stuid = #{student.id,jdbcType=INTEGER}
+      and cid = #{course.cid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select stuid, cid, gtime, score, credit, course_type, isfail, gdelsign
+    from grade
+  </select>
+  <select id="selectRequireCourseFailedNumInDiffClassBySchoolId" resultType="map">
+    select stuclass, count(*) num
+    from student, grade
+    where stuschool = #{stuschool}
+      and student.stuid = grade.stuid
+      and student.stuid &lt;
+          <choose>
+            <when test="year == 2014">
+              201500000
+            </when>
+            <when test="year == 2015">
+              201600000
+            </when>
+            <when test="year == 2016">
+              201700000
+            </when>
+            <when test="year == 2017">
+              201800000
+            </when>
+            <when test="year == 2018">
+              201900000
+            </when>
+            <when test="year == 2019">
+              202000000
+            </when>
+          </choose>
+      and score &lt; 60
+    group by student.stuclass;
+  </select>
+  <select id="selectRequireCourseFailedNumInDiffYearBySchoolId" resultType="map">
+    select interval(student.stuid, 201499999, 201599999, 201699999, 201799999, 281899999, 201999999)
+        as year, count(*) num
+    from student, grade
+    where stuschool = #{stuschool}
+      and student.stuid = grade.stuid
+      and score &lt; 60
+    group by year;
+  </select>
+  <select id="selectStudentCount" resultType="map">
+    select count(*)
+    from student
+    where 1 = 1
+      <if test="stuschool != -1">
+        and stuschool = #{stuschool}
+      </if>
+      <if test="year != -1">
+        and stuid between
+        <choose>
+          <when test="year == 2014">
+            201400000 and 201500000
+          </when>
+          <when test="year == 2015">
+            201500000 and 201600000
+          </when>
+          <when test="year == 2016">
+            201600000 and 201700000
+          </when>
+          <when test="year == 2017">
+            201700000 and 201800000
+          </when>
+          <when test="year == 2018">
+            201800000 and 201900000
+          </when>
+          <when test="year == 2019">
+            201900000 and 202000000
+          </when>
+        </choose>
+      </if>
+      <if test="stuclass != -1">
+        and stuclass = #{stuclass}
+      </if>
+    group by
+    <trim>
+      <if test="stuschool != -1 and year == -1 and stuclass == -1">
+        stuschool,
+      </if>
+      <if test="year != -1 and stuclass == -1">
+        year,
+      </if>
+      <if test="stuclass != -1">
+        stuclass
+      </if>
+    </trim>
+  </select>
+
 </mapper>

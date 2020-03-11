@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.HashMap;
 import java.util.Map;
 
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class BarChartData {
 
     private Map<String, Integer> data;
@@ -29,5 +28,9 @@ public class BarChartData {
 
     public Map<String, Integer> getData() {
         return data;
+    }
+
+    public void setData(Map<String, Integer> data) {
+        this.data = data;
     }
 }

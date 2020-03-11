@@ -1,26 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.thealphalab.education.mapper.XiaofeiMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Xiaofei" >
+    <id column="xfid" property="xfid" jdbcType="INTEGER" />
+    <result column="stuid" property="stuid" jdbcType="INTEGER" />
+    <result column="xflxname" property="xflxname" jdbcType="VARCHAR" />
+    <result column="xftime" property="xftime" jdbcType="DATE" />
+    <result column="xfaddress" property="xfaddress" jdbcType="VARCHAR" />
+    <result column="xfmoney" property="xfmoney" jdbcType="REAL" />
+    <result column="xfdelsign" property="xfdelsign" jdbcType="BIT" />
+  </resultMap>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from xiaofei
+    where xfid = #{xfid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByStuid" parameterType="java.lang.Integer" >
+    delete from xiaofei
+    where education.xiaofei.stuid = #{stuid,jdbcType=INTEGER}
+  </delete>
+
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Xiaofei" >
+    update xiaofei
+    set stuid = #{student.stuid,jdbcType=INTEGER},
+      xflxname = #{xflx.xflxname,jdbcType=VARCHAR},
+      xftime = #{xftime,jdbcType=DATE},
+      xfaddress = #{xfaddress,jdbcType=VARCHAR},
+      xfmoney = #{xfmoney,jdbcType=REAL},
+      xfdelsign = #{xfdelsign,jdbcType=BIT}
+    where xfid = #{xfid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select xfid, stuid, xflxname, xftime, xfaddress, xfmoney, xfdelsign
+    from xiaofei
+    where xfid = #{xfid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select xfid, stuid, xflxname, xftime, xfaddress, xfmoney, xfdelsign
+    from xiaofei
+  </select>
+  <select id="selectSumMoneyPerMonthByStuidAndMonths" resultType="java.lang.Integer">
+    select sum(xiaofei.xfmoney) sum_money_per_month
+    from student, xiaofei
+    where student.stuid = xiaofei.stuid
+      and student.stuid = #{stuid}
+      and xiaofei.xfaddress
+    <if test="canteen != true">
+      not
+    </if>
+        like '%食堂'
+      and xiaofei.xftime between #{start} and #{end}
+    group by xiaofei.xftime, xiaofei.xfaddress;
+  </select>
+  <select id="selectRatioMoneyByStuidAndXfaddressInAllPlaces" resultType="map">
+    select xiaofei.xfaddress, sum(xiaofei.xfmoney) sum_money
+    from xiaofei, student
+    where student.stuid = xiaofei.stuid
+      and student.stuid = #{stuid}
+      and xiaofei.xftime between #{start} and #{end}
+    group by xiaofei.xfaddress;
+  </select>
+
   <insert id="insert" parameterType="org.thealphalab.education.model.Xiaofei" >
-    insert into xiaofei(stuid, xflxname, xftime, xfaddress, xfmoney) values
-    (
-        #{student.stuid},
-        #{xflx.xflxname},
-        #{xftime},
-        #{xfaddress},
-        #{xfmoney}
-    )
+    insert into xiaofei (xfid, stuid, xflxname,
+                         xftime, xfaddress, xfmoney,
+                         xfdelsign)
+    values (#{xfid,jdbcType=INTEGER}, #{student.stuid,jdbcType=INTEGER}, #{xflx.xflxname,jdbcType=VARCHAR},
+            #{xftime,jdbcType=DATE}, #{xfaddress,jdbcType=VARCHAR}, #{xfmoney,jdbcType=REAL},
+            #{xfdelsign,jdbcType=BIT})
   </insert>
-    <insert id="insertAll" parameterType="org.thealphalab.education.model.Xiaofei" >
-        insert ignore into xiaofei(stuid, xflxname, xftime, xfaddress, xfmoney) values
-        <foreach collection="list" item="item" separator=",">
-        (
-            #{item.student.stuid},
-            #{item.xflx.xflxname},
-            #{item.xftime},
-            #{item.xfaddress},
-            #{item.xfmoney}
-        )
-        </foreach>
-    </insert>
+  <insert id="insertAll" parameterType="org.thealphalab.education.model.Xiaofei" >
+    insert ignore into xiaofei (stuid, xflxname, xftime, xfaddress, xfmoney)
+    values 
+    <foreach collection="list" separator="," item="item">
+      (
+        #{item.student.stuid,jdbcType=INTEGER}, #{item.xflx.xflxname,jdbcType=VARCHAR},
+        #{item.xftime,jdbcType=DATE}, #{item.xfaddress,jdbcType=VARCHAR}, #{item.xfmoney,jdbcType=REAL}
+      )
+    </foreach>
+  </insert>
 </mapper>

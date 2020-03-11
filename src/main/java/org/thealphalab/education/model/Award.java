@@ -1,53 +1,55 @@
 package org.thealphalab.education.model;
 
-
-import java.sql.Date;
+import java.util.Date;
 
 public class Award {
+    private Student student;
 
-  private Student student;
-  private String arongyu;
-  private String asort;
-  private java.sql.Date atime;
-  private boolean adelsign;
+    private String arongyu;
 
-  public Student getStudent() {
-    return student;
-  }
+    private String asort;
 
-  public void setStudent(Student student) {
-    this.student = student;
-  }
+    private Date atime;
 
-  public String getArongyu() {
-    return arongyu;
-  }
+    private Boolean adelsign;
 
-  public void setArongyu(String arongyu) {
-    this.arongyu = arongyu;
-  }
+    public Student getStudent() {
+        return student;
+    }
 
-  public String getAsort() {
-    return asort;
-  }
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
-  public void setAsort(String asort) {
-    this.asort = asort;
-  }
+    public String getArongyu() {
+        return arongyu;
+    }
 
-  public Date getAtime() {
-    return atime;
-  }
+    public void setArongyu(String arongyu) {
+        this.arongyu = arongyu;
+    }
 
-  public void setAtime(Date atime) {
-    this.atime = atime;
-  }
+    public String getAsort() {
+        return asort;
+    }
 
-  public boolean isAdelsign() {
-    return adelsign;
-  }
+    public void setAsort(String asort) {
+        this.asort = asort;
+    }
 
-  public void setAdelsign(boolean adelsign) {
-    this.adelsign = adelsign;
-  }
+    public Date getAtime() {
+        return atime;
+    }
+
+    public void setAtime(Date atime) {
+        this.atime = atime;
+    }
+
+    public Boolean getAdelsign() {
+        return adelsign;
+    }
+
+    public void setAdelsign(Boolean adelsign) {
+        this.adelsign = adelsign;
+    }
 }

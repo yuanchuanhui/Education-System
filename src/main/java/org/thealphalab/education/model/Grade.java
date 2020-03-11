@@ -1,107 +1,85 @@
 package org.thealphalab.education.model;
 
-
 import java.util.Date;
 
 public class Grade {
+    private Student student;
 
-  private Course course;
-  private Student student;
-  private java.util.Date gtime;
-  private int score;
-  private float credit;
-  private int courseType;
-  private int isfail;
-  private boolean gdelsign;
+    private Course course;
 
-  public Grade(Course course, Student student, Date gtime, int score, float credit, int courseType) {
-    this.course = course;
-    this.student = student;
-    this.gtime = gtime;
-    this.score = score;
-    this.credit = credit;
-    this.courseType = courseType;
-  }
+    private Date gtime;
 
-  public Course getCourse() {
-    return course;
-  }
+    private Integer score;
 
-  public void setCourse(Course course) {
-    this.course = course;
-  }
+    private Float credit;
 
-  public void setGtime(Date gtime) {
-    this.gtime = gtime;
-  }
+    private Integer courseType;
 
-  public Student getStudent() {
-    return student;
-  }
+    private Integer isfail;
 
-  public void setStudent(Student student) {
-    this.student = student;
-  }
+    private Boolean gdelsign;
 
-  public Date getGtime() {
-    return gtime;
-  }
+    public Student getStudent() {
+        return student;
+    }
 
-  public void setGTime(Date gtime) {
-    this.gtime = gtime;
-  }
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
-  public int getScore() {
-    return score;
-  }
+    public Course getCourse() {
+        return course;
+    }
 
-  public void setScore(int score) {
-    this.score = score;
-  }
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
-  public int getIsfail() {
-    return isfail;
-  }
+    public Date getGtime() {
+        return gtime;
+    }
 
-  public void setIsfail(int isfail) {
-    this.isfail = isfail;
-  }
+    public void setGtime(Date gtime) {
+        this.gtime = gtime;
+    }
 
-  public boolean isGdelsign() {
-    return gdelsign;
-  }
+    public Integer getScore() {
+        return score;
+    }
 
-  public void setGdelsign(boolean gdelsign) {
-    this.gdelsign = gdelsign;
-  }
+    public void setScore(Integer score) {
+        this.score = score;
+    }
 
-  public float getCredit() {
-    return credit;
-  }
+    public Float getCredit() {
+        return credit;
+    }
 
-  public void setCredit(float credit) {
-    this.credit = credit;
-  }
+    public void setCredit(Float credit) {
+        this.credit = credit;
+    }
 
-  public int getCourseType() {
-    return courseType;
-  }
+    public Integer getCourseType() {
+        return courseType;
+    }
 
-  public void setCourseType(int courseType) {
-    this.courseType = courseType;
-  }
+    public void setCourseType(Integer courseType) {
+        this.courseType = courseType;
+    }
 
-  @Override
-  public String toString() {
-    return "Grade{" +
-            "course=" + course +
-            ", student=" + student +
-            ", gtime=" + gtime +
-            ", score=" + score +
-            ", credit=" + credit +
-            ", courseType=" + courseType +
-            ", isfail=" + isfail +
-            ", gdelsign=" + gdelsign +
-            '}';
-  }
+    public Integer getIsfail() {
+        return isfail;
+    }
+
+    public void setIsfail(Integer isfail) {
+        this.isfail = isfail;
+    }
+
+    public Boolean getGdelsign() {
+        return gdelsign;
+    }
+
+    public void setGdelsign(Boolean gdelsign) {
+        this.gdelsign = gdelsign;
+    }
 }

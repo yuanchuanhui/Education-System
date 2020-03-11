@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.thealphalab.education.mapper.UserRoleMapper">
-    <!--将查询结果映射到javabean-->
-    <resultMap id="allResultMap" type="org.thealphalab.education.model.Role">
-        <id column="roleId" javaType="int" property="roleId"/>
-        <result column="roleName" javaType="String" property="roleName"/>
-        <result column="roleNameZh" javaType="String" property="roleNameZh"/>
-    </resultMap>
-    <!--根据RoleMapper中的方法，将其映射到SQL语句中，并配置结果对象-->
-    <select id="getRoleByUsername" resultMap="allResultMap">
-        select * from role, user_role
-            where role.roleId = user_role.roleId and user_role.username= #{username};
-    </select>
+<mapper namespace="org.thealphalab.education.mapper.UserRoleMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.UserRole" >
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="roleId" property="roleid" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="org.thealphalab.education.model.UserRole" >
+    insert into user_role (username, roleId)
+    values (#{user.username,jdbcType=VARCHAR}, #{role.roleid,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select username, roleId
+    from user_role
+  </select>
+  <select id="selectRoleByUsername" resultType="org.thealphalab.education.model.Role">
+    select role.*
+    from role, user_role
+    where user_role.username = #{username}
+    and role.roleId = user_role.roleId
+  </select>
 </mapper>

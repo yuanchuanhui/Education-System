@@ -1,26 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.thealphalab.education.mapper.TushuMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Tushu" >
+    <id column="tsid" property="tsid" jdbcType="VARCHAR" />
+    <result column="isbn" property="isbn" jdbcType="VARCHAR" />
+    <result column="tsname" property="tsname" jdbcType="VARCHAR" />
+    <result column="tssort" property="tssort" jdbcType="VARCHAR" />
+    <result column="tsauthor" property="tsauthor" jdbcType="VARCHAR" />
+    <result column="tskc" property="tskc" jdbcType="INTEGER" />
+    <result column="tsdelsign" property="tsdelsign" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tushu
+    where tsid = #{tsid,jdbcType=VARCHAR}
+  </delete>
   <insert id="insert" parameterType="org.thealphalab.education.model.Tushu" >
-    insert into tushu(tsid, isbn, tsname, tssort, tsauthor) values
-    (
-        #{tsid},
-        #{isbn},
-        #{tsname},
-        #{tssort},
-        #{tsauthor}
-    )
+    insert into tushu (tsid, isbn, tsname, 
+      tssort, tsauthor, tskc, 
+      tsdelsign)
+    values (#{tsid,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{tsname,jdbcType=VARCHAR}, 
+      #{tssort,jdbcType=VARCHAR}, #{tsauthor,jdbcType=VARCHAR}, #{tskc,jdbcType=INTEGER}, 
+      #{tsdelsign,jdbcType=BIT})
   </insert>
-    <insert id="insertAll" parameterType="org.thealphalab.education.model.Tushu" >
-        insert ignore into tushu(tsid, isbn, tsname, tssort, tsauthor) values
-        <foreach collection="list" item="item" separator=",">
-        (
-            #{item.tsid},
-            #{item.isbn},
-            #{item.tsname},
-            #{item.tssort},
-            #{item.tsauthor}
-        )
-        </foreach>
-    </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Tushu" >
+    update tushu
+    set isbn = #{isbn,jdbcType=VARCHAR},
+      tsname = #{tsname,jdbcType=VARCHAR},
+      tssort = #{tssort,jdbcType=VARCHAR},
+      tsauthor = #{tsauthor,jdbcType=VARCHAR},
+      tskc = #{tskc,jdbcType=INTEGER},
+      tsdelsign = #{tsdelsign,jdbcType=BIT}
+    where tsid = #{tsid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select tsid, isbn, tsname, tssort, tsauthor, tskc, tsdelsign
+    from tushu
+    where tsid = #{tsid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select tsid, isbn, tsname, tssort, tsauthor, tskc, tsdelsign
+    from tushu
+  </select>
+  <insert id="insertAll" parameterType="org.thealphalab.education.model.Tushu" >
+    insert ignore into tushu (tsid, isbn, tsname,
+                       tssort, tsauthor, tskc,
+                       tsdelsign)
+    values 
+    <foreach collection="list" item="item" separator=",">
+      (#{item.tsid,jdbcType=VARCHAR}, #{item.isbn,jdbcType=VARCHAR}, #{item.tsname,jdbcType=VARCHAR},
+      #{item.tssort,jdbcType=VARCHAR}, #{item.tsauthor,jdbcType=VARCHAR}, #{item.tskc,jdbcType=INTEGER},
+      #{item.tsdelsign,jdbcType=BIT})
+    </foreach>
+  </insert>
 </mapper>

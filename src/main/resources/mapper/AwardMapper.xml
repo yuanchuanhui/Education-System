@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.AwardMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Award" >
+    <result column="stuid" property="stuid" jdbcType="INTEGER" />
+    <result column="arongyu" property="arongyu" jdbcType="VARCHAR" />
+    <result column="asort" property="asort" jdbcType="VARCHAR" />
+    <result column="atime" property="atime" jdbcType="DATE" />
+    <result column="adelsign" property="adelsign" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Award" >
+    insert into award (stuid, arongyu, asort, 
+      atime, adelsign)
+    values (#{student.stuid,jdbcType=INTEGER}, #{arongyu,jdbcType=VARCHAR}, #{asort,jdbcType=VARCHAR},
+      #{atime,jdbcType=DATE}, #{adelsign,jdbcType=BIT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select stuid, arongyu, asort, atime, adelsign
+    from award
+  </select>
+</mapper>

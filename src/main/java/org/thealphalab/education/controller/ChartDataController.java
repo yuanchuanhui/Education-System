@@ -16,7 +16,7 @@ public class ChartDataController {
      *  统计信息。
      */
     @RequestMapping("/consumption")
-    public String consumption() {
+    public RespBean consumption() {
         Object[] mtcticlc =
                 MonthTotalConsumptionTrendInCanteenLineChart.getInstance("MonthTotalConsumptionTrendInCanteenLineChart");
         Object[] mcridplc =
@@ -26,21 +26,19 @@ public class ChartDataController {
         Object[] belc =
                 BehaviorEntropyLineChart.getInstance("BehaviorEntropyLineChart");
         Object[][] data = {mtcticlc, mcridplc, mtcticlc, belc};
-        RespBean respBean = new RespBean("consumption", 0, null, data);
-        return Utils.object2Json(respBean);
+        return new RespBean("consumption", 0, null, data);
     }
 
     @RequestMapping("/social")
-    public String social() {
+    public RespBean social() {
         Object[] snd =
                 SocialNetworkData.getInstance("SocialNetworkData");
         Object[][] data = {snd};
-        RespBean respBean = new RespBean("social", 0, null, data);
-        return Utils.object2Json(respBean);
+        return new RespBean("social", 0, null, data);
     }
 
     @RequestMapping("/study")
-    public String graduation() {
+    public RespBean graduation() {
         Object[] rcflc =
                 RequiredCourseFailedLineChart.getInstance("RequiredCourseFailedLineChart");
         Object[] rcfpc =
@@ -62,20 +60,18 @@ public class ChartDataController {
         Object[] t10lgcbc =
                 Top10LowGradeCourseBarChart.getInstance("Top10LowGradeCourseBarChart");
         Object[][] data = {rcflc, rcfpc, ecflc, ecfpc, glc, hwc, t10hecbc, t10hbbbc, gelc, t10lgcbc};
-        RespBean respBean = new RespBean("study", 0, null, data);
-        return Utils.object2Json(respBean);
+        return new RespBean("study", 0, null, data);
     }
 
 
     @RequestMapping("/health")
-    public String health() {
+    public RespBean health() {
         Object[] t10lgcbc =
                 BehaviorEntropyLineChart.getInstance("BehaviorEntropyLineChart");
         Object[] t10hvwbc =
                 Top10HighVisitedWebsiteBarChart.getInstance("Top10HighVisitedWebsiteBarChart");
         Object[][] data = {t10lgcbc, t10hvwbc};
-        RespBean respBean = new RespBean("health", 0, null, data);
-        return Utils.object2Json(respBean);
+        return new RespBean("health", 0, null, data);
     }
 
 

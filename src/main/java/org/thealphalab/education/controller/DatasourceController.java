@@ -21,16 +21,14 @@ package org.thealphalab.education.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.thealphalab.education.others.RespBean;
 import org.thealphalab.education.model.Group;
+import org.thealphalab.education.others.RespBean;
 import org.thealphalab.education.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;

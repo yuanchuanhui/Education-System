@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.InternetdataMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Internetdata" >
+    <id column="iaid" property="iaid" jdbcType="INTEGER" />
+    <id column="stuid" property="stuid" jdbcType="INTEGER" />
+    <id column="idstarttime" property="idstarttime" jdbcType="TIMESTAMP" />
+    <result column="idendtime" property="idendtime" jdbcType="TIMESTAMP" />
+    <result column="iddelsign" property="iddelsign" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from internetdata
+    where iaid = #{ia.iaid,jdbcType=INTEGER}
+      and stuid = #{stuid,jdbcType=INTEGER}
+      and idstarttime = #{idstarttime,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Internetdata" >
+    insert into internetdata (iaid, stuid, idstarttime, 
+      idendtime, iddelsign)
+    values (#{ia.iaid,jdbcType=INTEGER}, #{stuid,jdbcType=INTEGER}, #{idstarttime,jdbcType=TIMESTAMP}, 
+      #{idendtime,jdbcType=TIMESTAMP}, #{iddelsign,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Internetdata" >
+    update internetdata
+    set idendtime = #{idendtime,jdbcType=TIMESTAMP},
+      iddelsign = #{iddelsign,jdbcType=BIT}
+    where iaid = #{ia.iaid,jdbcType=INTEGER}
+      and stuid = #{stuid,jdbcType=INTEGER}
+      and idstarttime = #{idstarttime,jdbcType=TIMESTAMP}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select iaid, stuid, idstarttime, idendtime, iddelsign
+    from internetdata
+    where iaid = #{ia.iaid,jdbcType=INTEGER}
+      and stuid = #{stuid,jdbcType=INTEGER}
+      and idstarttime = #{idstarttime,jdbcType=TIMESTAMP}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select iaid, stuid, idstarttime, idendtime, iddelsign
+    from internetdata
+  </select>
+</mapper>

@@ -1,24 +1,23 @@
 package org.thealphalab.education.model;
 
-
 public class Social {
+    private Student student;
 
-  private Student student;
-  private Student fristuid;
+    private Student friend;
 
-  public Student getStudent() {
-    return student;
-  }
+    public Student getStudent() {
+        return student;
+    }
 
-  public void setStudent(Student student) {
-    this.student = student;
-  }
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
-  public Student getFristuid() {
-    return fristuid;
-  }
+    public Student getFriend() {
+        return friend;
+    }
 
-  public void setFristuid(Student fristuid) {
-    this.fristuid = fristuid;
-  }
+    public void setFriend(Student friend) {
+        this.friend = friend;
+    }
 }

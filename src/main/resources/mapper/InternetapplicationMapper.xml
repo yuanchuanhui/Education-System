@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.thealphalab.education.mapper.InternetapplicationMapper" >
+  <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Internetapplication" >
+    <id column="iaid" property="iaid" jdbcType="INTEGER" />
+    <result column="iayuming" property="iayuming" jdbcType="VARCHAR" />
+    <result column="iasort" property="iasort" jdbcType="VARCHAR" />
+    <result column="iadelsign" property="iadelsign" jdbcType="BIT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from internetapplication
+    where iaid = #{iaid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.thealphalab.education.model.Internetapplication" >
+    insert into internetapplication (iaid, iayuming, iasort, 
+      iadelsign)
+    values (#{iaid,jdbcType=INTEGER}, #{iayuming,jdbcType=VARCHAR}, #{iasort,jdbcType=VARCHAR}, 
+      #{iadelsign,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Internetapplication" >
+    update internetapplication
+    set iayuming = #{iayuming,jdbcType=VARCHAR},
+      iasort = #{iasort,jdbcType=VARCHAR},
+      iadelsign = #{iadelsign,jdbcType=BIT}
+    where iaid = #{iaid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select iaid, iayuming, iasort, iadelsign
+    from internetapplication
+    where iaid = #{iaid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select iaid, iayuming, iasort, iadelsign
+    from internetapplication
+  </select>
+</mapper>

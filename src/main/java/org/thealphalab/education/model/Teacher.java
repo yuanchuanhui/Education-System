@@ -1,42 +1,43 @@
 package org.thealphalab.education.model;
 
-
 public class Teacher {
+    private Integer tid;
 
-  private int tid;
-  private String tname;
-  private boolean tsex;
-  private String tpost;
+    private String tname;
 
-  public int getTid() {
-    return tid;
-  }
+    private Boolean tsex;
 
-  public void setTid(int tid) {
-    this.tid = tid;
-  }
+    private String tpost;
 
-  public String getTname() {
-    return tname;
-  }
+    public Integer getTid() {
+        return tid;
+    }
 
-  public void setTname(String tname) {
-    this.tname = tname;
-  }
+    public void setTid(Integer tid) {
+        this.tid = tid;
+    }
 
-  public boolean isTsex() {
-    return tsex;
-  }
+    public String getTname() {
+        return tname;
+    }
 
-  public void setTsex(boolean tsex) {
-    this.tsex = tsex;
-  }
+    public void setTname(String tname) {
+        this.tname = tname;
+    }
 
-  public String getTpost() {
-    return tpost;
-  }
+    public Boolean getTsex() {
+        return tsex;
+    }
 
-  public void setTpost(String tpost) {
-    this.tpost = tpost;
-  }
+    public void setTsex(Boolean tsex) {
+        this.tsex = tsex;
+    }
+
+    public String getTpost() {
+        return tpost;
+    }
+
+    public void setTpost(String tpost) {
+        this.tpost = tpost;
+    }
 }

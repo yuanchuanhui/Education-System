@@ -1,16 +1,21 @@
 package org.thealphalab.education.mapper;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 import org.thealphalab.education.model.Tushu;
-import org.thealphalab.education.model.Xiaofei;
-
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.List;
 
 @Repository
 public interface TushuMapper {
+    int deleteByPrimaryKey(String tsid);
 
-    int insert(Tushu tushu);
-    int insertAll(List<Tushu> tushus) throws SQLIntegrityConstraintViolationException;
+    int insert(Tushu record);
 
+    Tushu selectByPrimaryKey(String tsid);
+
+    List<Tushu> selectAll();
+
+    int updateByPrimaryKey(Tushu record);
+
+    int insertAll(List<Tushu> subList);
 }
