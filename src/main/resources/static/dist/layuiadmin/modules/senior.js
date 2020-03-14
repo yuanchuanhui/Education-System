@@ -31,12 +31,16 @@
                 i=[{ //option
                    // title:{text:"未来一周气温变化",subtext:"纯属虚构"},
                     tooltip:{trigger:"axis"},
-                    legend:{data:["软件学院","计算机学院","外国语学院","材料学院"]},
+                    legend:{
+                        // data:["软件学院","计算机学院","外国语学院","材料学院"]
+                        data:[]
+                    },
                     calculable:!0,
                     xAxis:[{
                         type:"category",
                         boundaryGap:!1,
-                        data:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+                        // data:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+                        data:[]
                     }],
                     yAxis:[{
                         type:"value",
@@ -44,19 +48,27 @@
                     }],
                      series:[
                          {
-                             name:"软件学院",type:"line",stack:"总量",
+                             // name:"软件学院",
+                             name:"",
+                             type:"line",stack:"总量",
                              data:[]
                          },
                          {
-                             name:"计算机学院",type:"line",stack:"总量",
+                             // name:"计算机学院",
+                             name:"",
+                             type:"line",stack:"总量",
                              data:[]
                          },
                          {
-                             name:"外国语学院",type:"line",stack:"总量",
+                             // name:"外国语学院",
+                             name:" ",
+                             type:"line",stack:"总量",
                             data:[]
                          },
                          {
-                             name:"材料学院",type:"line",stack:"总量",
+                             // name:"材料学院",
+                             name:" ",
+                             type:"line",stack:"总量",
                              data:[]
                          },
                      ]
@@ -64,7 +76,9 @@
                 n=e("#LAY-index-heapline").children("div"),
                 l=function(e){
                     t[e]=a.init(n[e],layui.echartsTheme)
-                    var arr = new Array();    //类别数组（实际用来盛放X轴坐标值）
+                    var arr = new Array();    //存放曲线数值
+                    var names=[];//存放曲线名字
+                    var x=[];//存放x轴值
                     $.ajax({
                         type : "get",
                         async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -76,9 +90,13 @@
                             if (data.type == "consumption") {
                                 console.log("444")
                                 var obj =eval(data.obj);//解析后台传来的json数据,是一个二维数组
-                                console.log(obj)
-                                console.log("555")
-                                console.log(obj[0][1].data)
+                                // console.log(obj)
+                                // console.log("555")
+                                // console.log(obj[0][1].data)
+                                // obj[0][1].data 得到data属性值
+                                // obj[0][1].z  得到z属性值
+                                // obj[0][1].x 得到x属性值
+
                                 var ly =obj[0][1].data;//得到data数组
 
                                for(var w = 0;w< ly.length;w++){
@@ -86,31 +104,31 @@
                                    for (var j=0;j< ly[w].length;j++){
                                        console.log(ly[w][j]);
                                        arr[w][j]=ly[w][j];
-
                                    }
-
                                }
-                              // console.log(arr)
-                                // console.log(data.obj[0][1].data);
-                                // for (var i = 0; i < data.obj[0][1].data[0].length; i++) {
-                                //     names.push(data.obj[0][1].data[0][i]);
-                                // }
-                              //  print(names);
-                                // for (var i = 0; i < obj.length; i++) {
-                                //     nums.push(obj[i].num);
-                                // }
+                                for (var w = 0; w <obj[0][1].z.length; w++) {
+                                        names.push(obj[0][1].z[w]);
+                                }
+                                for (var w = 0; w <obj[0][1].x.length; w++) {
+                                    x.push(obj[0][1].x[w]);
+                                }
+                                console.log("names:"+names+",x"+x);
                                 t[e].hideLoading(); //隐藏加载动画
                                 console.log("666")
                                 console.log(arr[0])
                                // nums.push(arr[0]);
                                 t[e].setOption({ //加载数据图表
                                     tooltip:{trigger:"axis"},
-                                    legend:{data:["软件学院","计算机学院","外国语学院","材料学院"]},
+                                    legend:{
+                                        // data:["软件学院","计算机学院","外国语学院","材料学院"]
+                                        data:names
+                                    },
                                     calculable:!0,
                                     xAxis:[{
                                         type:"category",
                                         boundaryGap:!1,
-                                        data:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+                                        // data:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+                                        data:x
                                     }],
                                     yAxis:[{
                                         type:"value",
@@ -118,19 +136,27 @@
                                     }],
                                     series:[
                                         {
-                                            name:"软件学院",type:"line",stack:"总量",
+                                            // name:"软件学院",
+                                            name:names[0],
+                                            type:"line",stack:"总量",
                                             data:arr[0]
                                         },
                                         {
-                                            name:"计算机学院",type:"line",stack:"总量",
+                                            // name:"计算机学院",
+                                            name:names[1],
+                                            type:"line",stack:"总量",
                                             data:arr[1]
                                         },
                                         {
-                                            name:"外国语学院",type:"line",stack:"总量",
+                                            // name:"外国语学院",
+                                            name:names[2],
+                                            type:"line",stack:"总量",
                                             data:arr[2]
                                         },
                                         {
-                                            name:"材料学院",type:"line",stack:"总量",
+                                            // name:"材料学院",
+                                            name:names[3],
+                                            type:"line",stack:"总量",
                                             data:arr[3]
                                         },
                                     ]
@@ -157,15 +183,19 @@
                     o=[
                         {
                             tooltip:{trigger:"axis"},
-                            legend:{data:["软件学院","计算机学院","外国语学院","材料学院"]},
+                            legend:{
+                                data:[]
+                            },
                             calculable:!0,
-                            xAxis:[{type:"category",boundaryGap:!1,data:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]}],
+                            xAxis:[{type:"category",boundaryGap:!1,
+                                data:[]
+                            }],
                             yAxis:[{type:"value"}],
                             series:[
-                                {name:"软件学院",type:"line",stack:"总量",data:[]},
-                                {name:"计算机学院",type:"line",stack:"总量",data:[]},
-                                {name:"外国语学院",type:"line",stack:"总量",data:[]},
-                                {name:"材料学院",type:"line",stack:"总量",data:[]},
+                                {name:"",type:"line",stack:"总量",data:[]},
+                                {name:"",type:"line",stack:"总量",data:[]},
+                                {name:"",type:"line",stack:"总量",data:[]},
+                                {name:"",type:"line",stack:"总量",data:[]},
                                 
                                 ]
                         }
@@ -174,7 +204,10 @@
                     s=function(e){
                         r[e]=a.init(m[e],layui.echartsTheme)
 
-                        var arr = new Array();    //类别数组（实际用来盛放y轴坐标值）
+                        var arr = new Array();    //存放曲线数值
+                        var names=[];//存放曲线名字
+                        var x=[];//存放x轴值
+
                         $.ajax({
                             type : "get",
                             async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -191,18 +224,24 @@
                                             arr[w][j]=ly[w][j];
                                         }
                                     }
+                                    for (var w = 0; w <obj[2][1].z.length; w++) {
+                                        names.push(obj[2][1].z[w]);
+                                }
+                                    for (var w = 0; w <obj[2][1].x.length; w++) {
+                                        x.push(obj[2][1].x[w]);
+                                    }
                                     r[e].hideLoading(); //隐藏加载动画~~
                                     r[e].setOption({ //加载数据图表
                                         tooltip:{trigger:"axis"},
-                                        legend:{data:["软件学院","计算机学院","外国语学院","材料学院"]},
+                                        legend:{data:names},
                                         calculable:!0,
-                                        xAxis:[{type:"category",boundaryGap:!1,data:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]}],
+                                        xAxis:[{type:"category",boundaryGap:!1,data:x}],
                                         yAxis:[{type:"value"}],
                                         series:[
-                                            {name:"软件学院",type:"line",stack:"总量",data:arr[0]},
-                                            {name:"计算机学院",type:"line",stack:"总量",data:arr[1]},
-                                            {name:"外国语学院",type:"line",stack:"总量",data:arr[2]},
-                                            {name:"材料学院",type:"line",stack:"总量",data:arr[3]},
+                                            {name:names[0],type:"line",stack:"总量",data:arr[0]},
+                                            {name:names[1],type:"line",stack:"总量",data:arr[1]},
+                                            {name:names[2],type:"line",stack:"总量",data:arr[2]},
+                                            {name:names[3],type:"line",stack:"总量",data:arr[3]},
 
                                         ]
                                     });
@@ -332,7 +371,7 @@
                 }
         }),
 
-        console.log("111222") ;
+        console.log("学习页面访问") ;
                //柱状图bar.html
         layui.use(["carousel","echarts","jquery"],function(){
                 var e=layui.$,
@@ -341,28 +380,28 @@
                     t=[],
                     i=[{
                         tooltip:{trigger:"axis"},
-                        legend:{data:["Java","数据结构","计算机组成原理","数据库"]},
+                        legend:{data:[]},
                         calculable:!0,
-                        xAxis:[{type:"category",data:["软件学院","计算机学院","外国语学院","材料学院","艺术学院"]}],
+                        xAxis:[{type:"category",data:[]}],
                         yAxis:[{type:"value"}],
                         series:[
                             {
-                                name:"Java",
+                                name:"",
                                 type:"line",
                                 // data:[2,4.9,7,23.2,25.6],
                                 data:[]
                             },
-                            {   name:"数据结构",
+                            {   name:"",
                                 type:"line",
                                 // data:[175.6,182.2,48.7,18.8,6],
                                 data:[]
                             },
-                            {   name:"计算机组成原理",
+                            {   name:"",
                                 type:"line",
                                 // data:[17,18,48.7,18,62],
                                 data:[]
                             },
-                            {   name:"数据库",
+                            {   name:"",
                                 type:"line",
                                 // data:[75.6,82.2,8.7,108.8,36],
                                 data:[]
@@ -374,7 +413,9 @@
                     l=function(e){
                         t[e]=a.init(n[e],layui.echartsTheme)
                         console.log("1")
-                        var arr = new Array();    //类别数组（实际用来盛放X轴坐标值）
+                        var arr = new Array();    //存放曲线数值
+                        var zA=[];//存放曲线名字
+                        var xA=[];//存放x轴值
                         $.ajax({
                             type : "get",
                             async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -396,47 +437,43 @@
                                         for (var j=0;j< ly[w].length;j++){
                                             console.log(ly[w][j]);
                                             arr[w][j]=ly[w][j];
-
                                         }
-
                                     }
-                                    // console.log(arr)
-                                    // console.log(data.obj[0][1].data);
-                                    // for (var i = 0; i < data.obj[0][1].data[0].length; i++) {
-                                    //     names.push(data.obj[0][1].data[0][i]);
-                                    // }
-                                    //  print(names);
-                                    // for (var i = 0; i < obj.length; i++) {
-                                    //     nums.push(obj[i].num);
-                                    // }
+                                    for (var w = 0; w <obj[0][1].z.length; w++) {
+                                        zA.push(obj[0][1].z[w]);
+                                    }
+                                    for (var w = 0; w <obj[0][1].x.length; w++) {
+                                        xA.push(obj[0][1].x[w]);
+                                    }
+
                                     t[e].hideLoading(); //隐藏加载动画
                                     console.log("666")
                                     console.log(arr[0])
                                     // nums.push(arr[0]);
                                     t[e].setOption({ //加载数据图表
                                         tooltip:{trigger:"axis"},
-                                        legend:{data:["Java","数据结构","计算机组成原理","数据库"]},
+                                        legend:{data:zA},
                                         calculable:!0,
-                                        xAxis:[{type:"category",data:["软件学院","计算机学院","外国语学院","材料学院","艺术学院"]}],
+                                        xAxis:[{type:"category",data:xA}],
                                         yAxis:[{type:"value"}],
                                         series:[
                                             {
-                                                name:"Java",
+                                                name:zA[0],
                                                 type:"line",
                                                 // data:[2,4.9,7,23.2,25.6],
                                                 data:arr[0]
                                             },
-                                            {   name:"数据结构",
+                                            {   name:zA[1],
                                                 type:"line",
                                                 // data:[175.6,182.2,48.7,18.8,6],
                                                 data:arr[1]
                                             },
-                                            {   name:"计算机组成原理",
+                                            {   name:zA[2],
                                                 type:"line",
                                                 // data:[17,18,48.7,18,62],
                                                 data:arr[2]
                                             },
-                                            {   name:"数据库",
+                                            {   name:zA[3],
                                                 type:"line",
                                                 // data:[75.6,82.2,8.7,108.8,36],
                                                 data:arr[3]
@@ -468,7 +505,7 @@
                                             tooltip:{trigger:"axis"},
                                             legend:{data:["多媒体","物联网","经管","建筑概论"]},
                                             calculable:!0,
-                                            xAxis:[{type:"category",data:["软件学院","计算机学院","外国语学院","材料学院","艺术学院"]}],
+                                            xAxis:[{type:"category",data:[]}],
                                             yAxis:[{type:"value"}],
                                             series:[
                                                 {
@@ -500,6 +537,8 @@
                                         s=function(e){
                                             r[e]=a.init(m[e],layui.echartsTheme)
                                             var arr = new Array();    //类别数组（实际用来盛放X轴坐标值）
+                                            var zA=[];
+                                            var xA=[];
                                             $.ajax({
                                                 type : "get",
                                                 async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -521,9 +560,13 @@
                                                             for (var j=0;j< ly[w].length;j++){
                                                                 console.log(ly[w][j]);
                                                                 arr[w][j]=ly[w][j];
-
                                                             }
-
+                                                        }
+                                                        for (var w = 0; w <obj[0][1].z.length; w++) {
+                                                            zA.push(obj[0][1].z[w]);
+                                                        }
+                                                        for (var w = 0; w <obj[0][1].x.length; w++) {
+                                                            xA.push(obj[0][1].x[w]);
                                                         }
                                                         // console.log(arr)
                                                         // console.log(data.obj[0][1].data);
@@ -542,7 +585,7 @@
                                                             tooltip:{trigger:"axis"},
                                                             legend:{data:["多媒体","物联网","经管","建筑概论"]},
                                                             calculable:!0,
-                                                            xAxis:[{type:"category",data:["软件学院","计算机学院","外国语学院","材料学院","艺术学院"]}],
+                                                            xAxis:[{type:"category",data:xA}],
                                                             yAxis:[{type:"value"}],
                                                             series:[
                                                                 {
@@ -679,25 +722,62 @@
                                                 }
                                               ],
                                             v=e("#LAY-index-colorline").children("div"),
-                                            b=function(e){u[e]=a.init(v[e],layui.echartsTheme),u[e].setOption(x[e]),window.onresize=u[e].resize};
+                                            b=function(e){
+                                                u[e]=a.init(v[e],layui.echartsTheme),
+
+                                                u[e].setOption(x[e]),
+                                                window.onresize=u[e].resize};
                                         if(v[0]){
                                         b(0);
                                         var h=[],
                                             f=[
                                                 {
-                                                    title:{text:"世界人口总量",subtext:"数据来自网络"},
-                                                    tooltip:{trigger:"axis"},
-                                                    legend:{data:["2011年","2012年"]},
-                                                    calculable:!0,
-                                                    xAxis:[
-                                                        {type:"value",boundaryGap:[0,.01]}
-                                                        ],
-                                                    yAxis:[{type:"category",data:["巴西","印尼","美国","印度","中国","世界人口(万)"]}],
+                                                    title:{
+                                                        text:"必修科目挂科比例",
+                                                        x:"center",
+                                                        textStyle:{fontSize:14}
+                                                    },
+                                                    tooltip:{
+                                                        trigger:"item",
+                                                        formatter:"{a} <br/>{b} : {c} ({d}%)"
+                                                    },
+                                                    legend:{
+                                                        orient:"vertical",
+                                                        x:"left",
+                                                        data:["Java","数据结构","计算机组成原理","数据库","选修科目"]
+                                                    },
                                                     series:[
-                                                        {name:"2011年",type:"bar",data:[18203,23489,29034,104970,131744,630230]},
-                                                        {name:"2012年",type:"bar",data:[19325,23438,31e3,121594,134141,681807]}
-                                                        ]
+                                                        {
+                                                            name:"挂科科目",
+                                                            type:"pie",
+                                                            radius:"55%",
+                                                            center:["50%","50%"],
+                                                            data:[
+                                                                {value:9052,name:"Java"},
+                                                                {value:1610,name:"数据结构"},
+                                                                {value:3200,name:"计算机组成原理"},
+                                                                {value:535,name:"数据库"},
+                                                                {value:1700,name:"选修科目"}
+                                                            ]
+                                                        }
+                                                    ]
+
                                                 }
+
+                                                // {
+                                                //     title:{text:"世界人口总量",subtext:"数据来自网络"},
+                                                //     tooltip:{trigger:"axis"},
+                                                //     legend:{data:["2011年","2012年"]},
+                                                //     calculable:!0,
+                                                //     xAxis:[
+                                                //         {type:"value",boundaryGap:[0,.01]}
+                                                //         ],
+                                                //     yAxis:[{type:"category",data:["巴西","印尼","美国","印度","中国","世界人口(万)"]}],
+                                                //     series:[
+                                                //         {name:"2011年",type:"bar",data:[18203,23489,29034,104970,131744,630230]},
+                                                //         {name:"2012年",type:"bar",data:[19325,23438,31e3,121594,134141,681807]}
+                                                //         ]
+                                                // }
                                                 ],
                                             g=e("#LAY-index-normbar").children("div"),
                                             S=function(e){h[e]=a.init(g[e],layui.echartsTheme),h[e].setOption(f[e]),window.onresize=h[e].resize};
