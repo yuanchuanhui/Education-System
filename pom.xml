@@ -113,6 +113,12 @@
             <artifactId>commons-csv</artifactId>
             <version>1.5</version>
         </dependency>
+        <!--统计词频，用于生成词云-->
+        <dependency>
+            <groupId>org.apdplat</groupId>
+            <artifactId>word</artifactId>
+            <version>1.3</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.thealphalab.education.mapper.JieshuMapper" >
+<mapper namespace="org.thealphalab.education.mapper.JieshuMapper">
   <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Jieshu" >
     <id column="stuid" property="stuid" jdbcType="INTEGER" />
     <id column="tsid" property="tsid" jdbcType="VARCHAR" />
@@ -26,6 +26,17 @@
       #{jsyhdate,jdbcType=DATE}, #{jsghdate,jdbcType=DATE}, #{jscqdays,jdbcType=INTEGER}, 
       #{jsfine,jdbcType=REAL}, #{jssort,jdbcType=INTEGER}, #{jsdelsign,jdbcType=BIT})
   </insert>
+  <insert id="insertAll" parameterType="org.thealphalab.education.model.Jieshu" >
+    insert into jieshu (stuid, tsid, jydate,
+                        jsyhdate, jsghdate, jscqdays,
+                        jsfine, jssort, jsdelsign)
+    values
+    <foreach collection="list" separator="," item="item">
+      (#{item.student.stuid,jdbcType=INTEGER}, #{item.tushu.tsid,jdbcType=VARCHAR}, #{item.jydate,jdbcType=DATE},
+      #{item.jsyhdate,jdbcType=DATE}, #{item.jsghdate,jdbcType=DATE}, #{item.jscqdays,jdbcType=INTEGER},
+      #{item.jsfine,jdbcType=REAL}, #{item.jssort,jdbcType=INTEGER}, #{item.jsdelsign,jdbcType=BIT})
+    </foreach>
+  </insert>
   <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Jieshu" >
     update jieshu
     set jsyhdate = #{jsyhdate,jdbcType=DATE},
@@ -49,15 +60,27 @@
     select stuid, tsid, jydate, jsyhdate, jsghdate, jscqdays, jsfine, jssort, jsdelsign
     from jieshu
   </select>
-  <insert id="insertAll" parameterType="org.thealphalab.education.model.Jieshu" >
-    insert into jieshu (stuid, tsid, jydate,
-                        jsyhdate, jsghdate, jscqdays,
-                        jsfine, jssort, jsdelsign)
-    values
-    <foreach collection="list" separator="," item="item">
-      (#{item.student.stuid,jdbcType=INTEGER}, #{item.tushu.tsid,jdbcType=VARCHAR}, #{item.jydate,jdbcType=DATE},
-      #{item.jsyhdate,jdbcType=DATE}, #{item.jsghdate,jdbcType=DATE}, #{item.jscqdays,jdbcType=INTEGER},
-      #{item.jsfine,jdbcType=REAL}, #{item.jssort,jdbcType=INTEGER}, #{item.jsdelsign,jdbcType=BIT})
-    </foreach>
-  </insert>
+  <select id="selectAllTushuNameNotEmptyByGroupId" resultType="java.lang.String">
+    select
+      tushu.tsname
+    from tushu, student, jieshu, class
+    where tushu.tsid = jieshu.tsid
+      and student.stuid = jieshu.stuid
+      and student.stuclass = class.classname
+      and jieshu.jydate between &apos;${start}&apos; and &apos;${end}&apos;
+      and tushu.tsname != ''
+    <include refid="org.thealphalab.education.mapper.GradeMapper.where"/>
+  </select>
+  <select id="selectTsnameAndNumByGroupId" resultType="map">
+    select tushu.tsname, count(tushu.tsname) num
+    from jieshu, student, class, tushu
+    where jieshu.stuid = student.stuid
+      and student.stuclass = class.classname
+      and tushu.tsid = jieshu.tsid
+      and tushu.tsname != ''
+      and jydate between &apos;${start}&apos;	and &apos;${end}&apos;
+    <include refid="org.thealphalab.education.mapper.GradeMapper.where"/>
+    group by tushu.tsname
+    order by num desc limit 10
+  </select>
 </mapper>

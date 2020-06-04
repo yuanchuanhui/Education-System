@@ -11,123 +11,239 @@
     <result column="isfail" property="isfail" jdbcType="INTEGER" />
     <result column="gdelsign" property="gdelsign" jdbcType="BIT" />
   </resultMap>
+  <resultMap id="failedCourseNumByGroupIdMap" type="org.thealphalab.education.entity.GroupResult">
+    <result property="stuschool" column="stuschool"/>
+    <result property="nian" column="nian"/>
+    <result property="stuclass" column="stuclass"/>
+    <result property="num" column="num"/>
+  </resultMap>
+
+    <!--尽量在sql标签内解决and、,问题-->
+
+  <!--尽量在sql标签内解决and、,问题-->
+  <!--放在前边-->
+  <sql id="columns">
+    <if test="school != -1">
+      intyear,
+    </if>
+    <if test="year != -1">
+      stuclass,
+    </if>
+    stuschool,
+  </sql>
+  <!--放在最后，不能直接接where-->
+  <sql id="where">
+    <if test="school != -1">
+      AND stuschool = ${school}
+    </if>
+    <if test="year != -1">
+      AND intyear = ${year}
+    </if>
+    <if test="class_ != null">
+      AND stuclass = &apos;${class_}&apos;
+    </if>
+  </sql>
+  <!--放在最后，前边必须加逗号-->
+  <sql id="groupby">
+    <if test="school != -1">
+      intyear,
+    </if>
+    <if test="year != -1">
+      stuclass,
+    </if>
+    stuschool
+  </sql>
+  <sql id="orderby">
+    <trim suffixOverrides=",">
+      stuschool,
+      <if test="school != -1">
+        intyear,
+      </if>
+      <if test="year != -1">
+        stuclass,
+      </if>
+    </trim>
+  </sql>
+  <sql id="equal_course_type">
+        AND grade.course_type
+        <if test="course_type != 1">!=</if>
+        <if test="course_type == 1">=</if>
+        1
+    </sql>
+  <sql id="base">
+    (
+      select <include refid="columns"/>
+             student.stuid, gterm, score
+     from grade, student, class
+     where grade.stuid = student.stuid
+       and student.stuclass = class.classname
+       and grade.gdelsign = 0
+       <include refid="where"/>
+    ) as base
+  </sql>
+
   <delete id="deleteByPrimaryKey" parameterType="map" >
     delete from grade
-    where stuid = #{student.id,jdbcType=INTEGER}
-      and cid = #{course.cid,jdbcType=VARCHAR}
+    where stuid = &apos;${student.id,jdbcType=INTEGER}&apos;
+      and cid = &apos;${course.cid,jdbcType=VARCHAR}&apos;
   </delete>
+
   <insert id="insert" parameterType="org.thealphalab.education.model.Grade" >
     insert into grade (stuid, cid, gtime, 
       score, credit, course_type, 
       isfail, gdelsign)
-    values (#{student.id,jdbcType=INTEGER}, #{course.cid,jdbcType=VARCHAR}, #{gtime,jdbcType=DATE}, 
-      #{score,jdbcType=INTEGER}, #{credit,jdbcType=REAL}, #{courseType,jdbcType=INTEGER}, 
-      #{isfail,jdbcType=INTEGER}, #{gdelsign,jdbcType=BIT})
+    values (&apos;${student.id,jdbcType=INTEGER}&apos;, &apos;${course.cid,jdbcType=VARCHAR}&apos;, &apos;${gtime,jdbcType=DATE}&apos;, 
+      &apos;${score,jdbcType=INTEGER}&apos;, &apos;${credit,jdbcType=REAL}&apos;, &apos;${courseType,jdbcType=INTEGER}&apos;, 
+      &apos;${isfail,jdbcType=INTEGER}&apos;, &apos;${gdelsign,jdbcType=BIT}&apos;)
   </insert>
+
   <update id="updateByPrimaryKey" parameterType="org.thealphalab.education.model.Grade" >
-    update grade
-    set gtime = #{gtime,jdbcType=DATE},
-      score = #{score,jdbcType=INTEGER},
-      credit = #{credit,jdbcType=REAL},
-      course_type = #{courseType,jdbcType=INTEGER},
-      isfail = #{isfail,jdbcType=INTEGER},
-      gdelsign = #{gdelsign,jdbcType=BIT}
-    where stuid = #{student.id,jdbcType=INTEGER}
-      and cid = #{course.cid,jdbcType=VARCHAR}
+    update grade set gterm = ${gterm}
+    where grade.stuid = ${stuid} and grade.cid = &apos;${cid}&apos;
   </update>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
     select stuid, cid, gtime, score, credit, course_type, isfail, gdelsign
     from grade
-    where stuid = #{student.id,jdbcType=INTEGER}
-      and cid = #{course.cid,jdbcType=VARCHAR}
+    where stuid = &apos;${student.id,jdbcType=INTEGER}&apos;
+      and cid = &apos;${course.cid,jdbcType=VARCHAR}&apos;
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select stuid, cid, gtime, score, credit, course_type, isfail, gdelsign
     from grade
   </select>
-  <select id="selectRequireCourseFailedNumInDiffClassBySchoolId" resultType="map">
-    select stuclass, count(*) num
-    from student, grade
-    where stuschool = #{stuschool}
-      and student.stuid = grade.stuid
-      and student.stuid &lt;
-          <choose>
-            <when test="year == 2014">
-              201500000
-            </when>
-            <when test="year == 2015">
-              201600000
-            </when>
-            <when test="year == 2016">
-              201700000
-            </when>
-            <when test="year == 2017">
-              201800000
-            </when>
-            <when test="year == 2018">
-              201900000
-            </when>
-            <when test="year == 2019">
-              202000000
-            </when>
-          </choose>
-      and score &lt; 60
-    group by student.stuclass;
-  </select>
-  <select id="selectRequireCourseFailedNumInDiffYearBySchoolId" resultType="map">
-    select interval(student.stuid, 201499999, 201599999, 201699999, 201799999, 281899999, 201999999)
-        as year, count(*) num
-    from student, grade
-    where stuschool = #{stuschool}
-      and student.stuid = grade.stuid
-      and score &lt; 60
-    group by year;
-  </select>
-  <select id="selectStudentCount" resultType="map">
-    select count(*)
-    from student
-    where 1 = 1
-      <if test="stuschool != -1">
-        and stuschool = #{stuschool}
-      </if>
-      <if test="year != -1">
-        and stuid between
-        <choose>
-          <when test="year == 2014">
-            201400000 and 201500000
-          </when>
-          <when test="year == 2015">
-            201500000 and 201600000
-          </when>
-          <when test="year == 2016">
-            201600000 and 201700000
-          </when>
-          <when test="year == 2017">
-            201700000 and 201800000
-          </when>
-          <when test="year == 2018">
-            201800000 and 201900000
-          </when>
-          <when test="year == 2019">
-            201900000 and 202000000
-          </when>
-        </choose>
-      </if>
-      <if test="stuclass != -1">
-        and stuclass = #{stuclass}
-      </if>
+  <!--查询总人数-->
+  <select id="selectStudentCountByGroupId" resultType="org.thealphalab.education.entity.GroupResult">
+    select
+    <include refid="columns"/>
+      count(distinct(student.stuid)) num
+      from student, class
+    where
+        student.stuclass = class.classname
+        <include refid="where"/>
     group by
-    <trim>
-      <if test="stuschool != -1 and year == -1 and stuclass == -1">
-        stuschool,
+    <include refid="groupby"/>
+  </select>
+  <select id="selectFailedCourseRatioByGroupId" resultType="org.thealphalab.education.entity.GroupResult">
+      SELECT
+      <include refid="columns"/>
+        COUNT(DISTINCT student.stuid) / (
+              /*群体内学生总数*/
+              SELECT COUNT(DISTINCT student2.stuid)
+              FROM student student2, class class2
+              WHERE student2.stuclass = class2.classname
+              and student2.stuschool = student.stuschool
+              <if test="school != -1">
+                  and class2.intyear = class.intyear
+              </if>
+              <if test="year != -1">
+                  and class.classname = class2.classname
+              </if>
+              GROUP BY
+              student2.stuschool,
+              <trim suffixOverrides=",">
+                  <if test="school != -1">
+                      class2.intyear,
+                  </if>
+                  <if test="year != -1">
+                      student2.stuclass,
+                  </if>
+              </trim>
+      ) AS num
+      FROM student, grade, class
+      WHERE student.stuclass = class.classname
+      AND student.stuid = grade.stuid
+      AND grade.score &lt; 60
+      <include refid="equal_course_type"/>
+      AND gtime BETWEEN &apos;${start}&apos; AND &apos;${end}&apos;
+      <include refid="where"/>
+      GROUP BY
+        <include refid="groupby"/>
+  </select>
+  <select id="selectFailedCourseRationByGroupIdAndCourseName" resultType="org.thealphalab.education.entity.GroupCourseResult">
+      select
+        <include refid="columns"/>
+      course.cid,
+      course.cname,
+      count(*) / (
+          SELECT COUNT(DISTINCT student2.stuid)
+          FROM student student2, class class2
+          WHERE student2.stuclass = class2.classname
+          and student2.stuschool = student.stuschool
+          <if test="school != -1">
+              and class2.intyear = class.intyear
+          </if>
+          <if test="year != -1">
+              and class.classname = class2.classname
+          </if>
+          GROUP BY
+          student2.stuschool,
+          <trim suffixOverrides=",">
+              <if test="school != -1">
+                  class2.intyear,
+              </if>
+              <if test="year != -1">
+                  student2.stuclass,
+              </if>
+          </trim>
+      ) as num
+      from grade, class, course, student
+      where grade.stuid = student.stuid
+      and class.classname = student.stuclass
+      and course.cid = grade.cid
+      and grade.score &lt; 60
+      <include refid="equal_course_type"/>
+      AND gtime BETWEEN &apos;${start}&apos; AND &apos;${end}&apos;
+      <include refid="where"/>
+      group by
+      course.cid, course.cname,
+      <include refid="groupby"/>
+  </select>
+  <select id="selectAvgGpaByGroupId" resultType="org.thealphalab.education.entity.GroupResult">
+    select
+      <include refid="columns"/>
+      sum(((score - 60) / 10 + 1) * credit) / sum(credit) as num
+    from grade, student, class
+    where grade.gtime BETWEEN &apos;${start}&apos; AND &apos;${end}&apos;
+      and grade.stuid = student.stuid
+      and student.stuclass = class.classname
+      <include refid="where"/>
+    group by <include refid="groupby"/>
+  </select>
+  <select id="selectGradeEntropyByGroupId" resultType="map">
+    select
+       fre.stuschool,
+       <if test="school != -1">
+         fre.intyear,
+       </if>
+      <if test="year != -1">
+        fre.stuclass,
       </if>
-      <if test="year != -1 and stuclass == -1">
-        year,
-      </if>
-      <if test="stuclass != -1">
-        stuclass
-      </if>
-    </trim>
+        fre.gterm,
+           -sum(log(2, fre.frequency / count.num) * (fre.frequency / count.num)) as entropy
+    from (
+           select
+                  <include refid="columns"/>
+                  gterm, score, count(*) as frequency
+           from
+                <include refid="base"/>
+           group by gterm, score,
+                    <include refid="groupby"/>
+         ) as fre,
+         (
+           select
+                  <include refid="columns"/>
+                  gterm, count(*) as num
+           from
+                <include refid="base"/>
+           group by gterm,
+                    <include refid="groupby"/>
+         ) as count
+    where fre.stuschool = count.stuschool
+      and fre.intyear = count.intyear
+      and fre.stuclass = count.stuclass
+      and fre.gterm = count.gterm
+    group by fre.stuschool, fre.intyear, fre.stuclass, fre.gterm;
   </select>
 
 </mapper>

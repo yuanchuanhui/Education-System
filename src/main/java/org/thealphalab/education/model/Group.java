@@ -1,6 +1,7 @@
 package org.thealphalab.education.model;
 
 import lombok.Data;
+import org.thealphalab.education.entity.GroupResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +34,10 @@ public class Group {
     }
 
     /**
-      * 根据权限，修改群组实例。
+      * 根据权限，创建群组实例。
       */
     public static Group build(String permission) {
         String[] words = permission.split("_");
-
         Group group = Group.getInstance();
         List<Group> groupList = group.getSubGroups();
         for (Group group1 : groupList) {
@@ -61,7 +61,6 @@ public class Group {
                 }
             }
         }
-
         return group;
     }
 
@@ -97,6 +96,33 @@ public class Group {
             }
         }
         return group;
+    }
+
+    public static String buildGroupId(int school, int year, String class_){
+        StringBuilder sb = new StringBuilder();
+        if(school != -1){
+            sb.append(school);
+            if(year != -1){
+                sb.append("_").append(year);
+                if(class_ != null){
+                    return sb.append("_").append(class_).toString();
+                }else {
+                    return sb.append("_*").toString();
+                }
+            }else {
+                return sb.append("_*_*").toString();
+            }
+        }else {
+            return "*_*_*";
+        }
+    }
+
+    public static GroupResult parseGroupId(String groupId){
+        String[] args = groupId.split("_");
+        return new GroupResult(
+                Integer.parseInt(args[0].equals("*")? "-1" : args[0]),
+                Integer.parseInt(args[1].equals("*")? "-1" : args[1]),
+                args[2].equals("*")? null : args[2]);
     }
 
 }

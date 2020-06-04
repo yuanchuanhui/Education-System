@@ -7,6 +7,8 @@ public class Grade {
 
     private Course course;
 
+    private int gterm;
+
     private Date gtime;
 
     private Integer score;
@@ -18,6 +20,14 @@ public class Grade {
     private Integer isfail;
 
     private Boolean gdelsign;
+
+    public int getGterm() {
+        return gterm;
+    }
+
+    public void setGterm(int gterm) {
+        this.gterm = gterm;
+    }
 
     public Student getStudent() {
         return student;

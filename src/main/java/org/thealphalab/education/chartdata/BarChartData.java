@@ -1,15 +1,14 @@
-package org.thealphalab.education.chartdata.base;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+package org.thealphalab.education.chartdata;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class BarChartData {
+public class BarChartData extends ChartData {
 
     private Map<String, Integer> data;
 
-    public BarChartData(Map<String, Integer> data) {
+    public BarChartData(String dataName, Map<String, Integer> data) {
+        super(dataName);
         this.data = data;
     }
 
@@ -22,7 +21,7 @@ public class BarChartData {
         }
         Object[] objects = new Object[2];
         objects[0] = subClassName;
-        objects[1] = new BarChartData(data);
+        objects[1] = new BarChartData(null, data);
         return objects;
     }
 

@@ -1,18 +1,17 @@
 package org.thealphalab.education.chartdata;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.thealphalab.education.chartdata.base.BarChartData;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
-public class HobbyWordCloud {
+public class HobbyWordCloud extends ChartData {
 
     private String className = this.getClass().getName();
     private Map<String, Integer> data;
 
-    public HobbyWordCloud(Map<String, Integer> data) {
+    public HobbyWordCloud(String dataName, Map<String, Integer> data) {
+        super(dataName);
         this.data = data;
     }
 
@@ -25,7 +24,7 @@ public class HobbyWordCloud {
         }
         Object[] objects = new Object[2];
         objects[0] = className;
-        objects[1] = new HobbyWordCloud(data);
+        objects[1] = new HobbyWordCloud(null, data);
         return objects;
     }
 

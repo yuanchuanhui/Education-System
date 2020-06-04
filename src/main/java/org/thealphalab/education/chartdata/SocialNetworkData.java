@@ -3,11 +3,12 @@ package org.thealphalab.education.chartdata;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
-public class SocialNetworkData {
+public class SocialNetworkData extends ChartData {
 
     private int[][] data;
 
-    public SocialNetworkData(int[][] data) {
+    public SocialNetworkData(String dataName, int[][] data) {
+        super(dataName);
         this.data = data;
     }
 
@@ -19,7 +20,7 @@ public class SocialNetworkData {
         }
         Object[] objects = new Object[2];
         objects[0] = className;
-        objects[1] = new SocialNetworkData(networkData);
+        objects[1] = new SocialNetworkData(null, networkData);
         return objects;
     }
 

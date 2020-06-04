@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--顺序：增删改查-->
 <mapper namespace="org.thealphalab.education.mapper.XiaofeiMapper" >
   <resultMap id="BaseResultMap" type="org.thealphalab.education.model.Xiaofei" >
     <id column="xfid" property="xfid" jdbcType="INTEGER" />
@@ -10,6 +11,57 @@
     <result column="xfmoney" property="xfmoney" jdbcType="REAL" />
     <result column="xfdelsign" property="xfdelsign" jdbcType="BIT" />
   </resultMap>
+
+  <sql id="columnswithprefix">
+    <if test="school != -1">
+      class.intyear,
+    </if>
+    <if test="year != -1">
+      student.stuclass,
+    </if>
+    student.stuschool,
+  </sql>
+  <!--放在最后，不能直接接where-->
+  <sql id="wherewithprefix">
+    <if test="school != -1">
+      AND student.stuschool = ${school}
+    </if>
+    <if test="year != -1">
+      AND class.intyear = ${year}
+    </if>
+    <if test="class_ != null">
+      AND student.stuclass = &apos;${class_}&apos;
+    </if>
+  </sql>
+  <!--放在最后，前边必须加逗号-->
+  <sql id="groupbywithprefix">
+    <if test="school != -1">
+      class.intyear,
+    </if>
+    <if test="year != -1">
+      student.stuclass,
+    </if>
+    student.stuschool
+  </sql>
+
+  <insert id="insert" parameterType="org.thealphalab.education.model.Xiaofei" >
+    insert into xiaofei (stuid, xflxname,
+                         xftime, xfaddress, xfmoney,
+                         xfdelsign)
+    values (#{student.stuid,jdbcType=INTEGER}, #{xflx.xflxname,jdbcType=VARCHAR},
+            #{xftime}, #{xfaddress,jdbcType=VARCHAR}, #{xfmoney,jdbcType=REAL},
+            #{xfdelsign,jdbcType=BIT})
+  </insert>
+  <insert id="insertAll" parameterType="org.thealphalab.education.model.Xiaofei" >
+    insert ignore into xiaofei (stuid, xflxname, xftime, xfaddress, xfmoney)
+    values
+    <foreach collection="list" separator="," item="item">
+      (
+        #{item.student.stuid,jdbcType=INTEGER}, #{item.xflx.xflxname,jdbcType=VARCHAR},
+        #{item.xftime}, #{item.xfaddress,jdbcType=VARCHAR}, #{item.xfmoney,jdbcType=REAL}
+      )
+    </foreach>
+  </insert>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from xiaofei
@@ -40,6 +92,7 @@
     select xfid, stuid, xflxname, xftime, xfaddress, xfmoney, xfdelsign
     from xiaofei
   </select>
+  <!--查询某个时间段内每个月某个学生在某个餐厅一共通过校园卡花了多少钱-->
   <select id="selectSumMoneyPerMonthByStuidAndMonths" resultType="java.lang.Integer">
     select sum(xiaofei.xfmoney) sum_money_per_month
     from student, xiaofei
@@ -53,6 +106,7 @@
       and xiaofei.xftime between #{start} and #{end}
     group by xiaofei.xftime, xiaofei.xfaddress;
   </select>
+  <!--查询某个时间段内某个学生花在每个消费地点的消费比例-->
   <select id="selectRatioMoneyByStuidAndXfaddressInAllPlaces" resultType="map">
     select xiaofei.xfaddress, sum(xiaofei.xfmoney) sum_money
     from xiaofei, student
@@ -61,23 +115,84 @@
       and xiaofei.xftime between #{start} and #{end}
     group by xiaofei.xfaddress;
   </select>
+  <!--查询某个groupid所对应的群体在食堂(或非食堂)每月消费总额的变化趋势-->
+  <select id="selectConsumptionSumByGroupAndTime"
+          resultType="org.thealphalab.education.entity.GroupMonthResult">
+    select
+            <include refid="org.thealphalab.education.mapper.GradeMapper.columns"/>
+            YEAR(xiaofei.xftime) as year,
+            MONTH(xiaofei.xftime) as month,
+            sum(xfmoney) as money
+    from
+            xiaofei, student, class
+    where
+            xiaofei.stuid = student.stuid
+            and class.classname = student.stuclass
+            <if test="type == 0">
+              and xiaofei.xfaddress like '%食堂%'
+            </if>
+            <if test="type == 1">
+              and instr(xiaofei.xfaddress, '食堂') = 0
+            </if>
+            and xiaofei.xftime
+                between &apos;${start}&apos; and &apos;${end}&apos;
+            <include refid="org.thealphalab.education.mapper.GradeMapper.where"/>
+    group by
+            YEAR(xiaofei.xftime), MONTH(xiaofei.xftime),
+            <include refid="org.thealphalab.education.mapper.GradeMapper.groupby"/>
+    order by
+             student.stuschool,
+             class.intyear,
+             student.stuclass,
+             YEAR(xiaofei.xftime),
+             MONTH(xiaofei.xftime)
+  </select>
+  <!--查询某个groupid所对应的群体在某个时间段内在每个食堂的饮食消费所占的比例-->
+  <select id="selectConsumptionRatioInDifferentPlacesByGroupAndTime"
+          resultType="org.thealphalab.education.entity.GroupMonthResult">
+    SELECT
+           <include refid="columnswithprefix"/>
+           xiaofei.xfaddress,
+           SUM(xiaofei.xfmoney) / sumxfmoney.summoney AS rate
+    FROM xiaofei, student, class,
+         (SELECT
+                 <include refid="columnswithprefix"/>
+                 SUM(xfmoney) as summoney
+          FROM xiaofei, student, class
+          WHERE xiaofei.stuid = student.stuid
+            AND class.classname = student.stuclass
+            and xiaofei.xfaddress like '%食堂%'
+            AND xiaofei.xftime between &apos;${start}&apos; and &apos;${end}&apos;
+            <include refid="wherewithprefix"/>
+          GROUP BY
+            <include refid="groupbywithprefix"/>
+         ) as sumxfmoney
+    WHERE student.stuid = xiaofei.stuid
+      AND class.classname = student.stuclass
+      AND student.stuschool = sumxfmoney.stuschool
+        and xiaofei.xfaddress like '%食堂%'
+      AND xiaofei.xftime between &apos;${start}&apos; and &apos;${end}&apos;
+      AND class.intyear = sumxfmoney.intyear
+      AND student.stuclass = sumxfmoney.stuclass
+      <include refid="wherewithprefix"/>
+    GROUP BY xiaofei.xfaddress,
+      <include refid="groupbywithprefix"/>
+    ORDER BY student.stuschool, class.intyear, student.stuclass;
+  </select>
+  <!--查询某个群组下所有学生的学号、消费时间、消费地点，
+    希望使用java程序将输出转化为map<<address,groupid>,<stuid,xftime>>-->
+  <select id="selectSocialRelationDataFromXiaofeiByGroupAndTime"
+          resultType="map">
+    select <include refid="org.thealphalab.education.mapper.GradeMapper.columns"/>
+           xiaofei.stuid, xftime, xfaddress
+    from xiaofei, student, class
+    where xiaofei.stuid = student.stuid
+      and student.stuclass = class.classname
+      and xiaofei.xfaddress = &apos;${addr}&apos;
+    and xiaofei.xftime
+        between &apos;${start}&apos; and &apos;${end}&apos;
+      <include refid="org.thealphalab.education.mapper.GradeMapper.where"/>
+    order by xiaofei.xftime;
+  </select>
 
-  <insert id="insert" parameterType="org.thealphalab.education.model.Xiaofei" >
-    insert into xiaofei (xfid, stuid, xflxname,
-                         xftime, xfaddress, xfmoney,
-                         xfdelsign)
-    values (#{xfid,jdbcType=INTEGER}, #{student.stuid,jdbcType=INTEGER}, #{xflx.xflxname,jdbcType=VARCHAR},
-            #{xftime,jdbcType=DATE}, #{xfaddress,jdbcType=VARCHAR}, #{xfmoney,jdbcType=REAL},
-            #{xfdelsign,jdbcType=BIT})
-  </insert>
-  <insert id="insertAll" parameterType="org.thealphalab.education.model.Xiaofei" >
-    insert ignore into xiaofei (stuid, xflxname, xftime, xfaddress, xfmoney)
-    values 
-    <foreach collection="list" separator="," item="item">
-      (
-        #{item.student.stuid,jdbcType=INTEGER}, #{item.xflx.xflxname,jdbcType=VARCHAR},
-        #{item.xftime,jdbcType=DATE}, #{item.xfaddress,jdbcType=VARCHAR}, #{item.xfmoney,jdbcType=REAL}
-      )
-    </foreach>
-  </insert>
 </mapper>

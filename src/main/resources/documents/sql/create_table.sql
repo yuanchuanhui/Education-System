@@ -1,6 +1,6 @@
-create schema education;
+create schema if not exists education collate utf8mb4_0900_ai_ci;
 
-create table ceshi
+create table if not exists ceshi
 (
     csid int not null
         primary key,
@@ -8,7 +8,7 @@ create table ceshi
 )
     charset=utf8;
 
-create table course
+create table if not exists course
 (
     cid varchar(100) not null,
     cname varchar(500) not null,
@@ -19,7 +19,7 @@ create table course
 )
     charset=utf8;
 
-create table internetapplication
+create table if not exists internetapplication
 (
     iaid int not null
         primary key,
@@ -29,7 +29,7 @@ create table internetapplication
 )
     charset=utf8;
 
-create table role
+create table if not exists role
 (
     roleId int auto_increment
         primary key,
@@ -39,7 +39,7 @@ create table role
 )
     charset=utf8;
 
-create table school
+create table if not exists school
 (
     id int auto_increment
         primary key,
@@ -47,10 +47,10 @@ create table school
 )
     charset=utf8;
 
-create table class
+create table if not exists class
 (
     classname varchar(20) not null,
-    year date null,
+    intyear int null,
     school int null,
     constraint class_classname_uindex
         unique (classname),
@@ -59,10 +59,13 @@ create table class
 )
     charset=utf8;
 
+create index class_intyear_index
+    on class (intyear);
+
 alter table class
     add primary key (classname);
 
-create table student
+create table if not exists student
 (
     stuid int auto_increment
         primary key,
@@ -82,7 +85,7 @@ create table student
 )
     charset=utf8;
 
-create table award
+create table if not exists award
 (
     stuid int null,
     arongyu varchar(500) null,
@@ -97,10 +100,11 @@ create table award
 create index stuid
     on award (stuid);
 
-create table grade
+create table if not exists grade
 (
     cid varchar(100) not null,
     stuid int not null,
+    gterm int null,
     gtime date null,
     score int null,
     credit float null,
@@ -115,10 +119,13 @@ create table grade
 )
     charset=utf8;
 
+create index grade_gterm_index
+    on grade (gterm);
+
 create index stuid
     on grade (stuid);
 
-create table internetdata
+create table if not exists internetdata
 (
     iaid int not null,
     stuid int not null,
@@ -136,7 +143,7 @@ create table internetdata
 create index stuid
     on internetdata (stuid);
 
-create table menjin
+create table if not exists menjin
 (
     mjid int not null
         primary key,
@@ -151,7 +158,7 @@ create table menjin
 create index stuid
     on menjin (stuid);
 
-create table social
+create table if not exists social
 (
     stuid int null,
     fristuid int null,
@@ -174,7 +181,7 @@ create index stuclass
 create index stuschool
     on student (stuschool);
 
-create table teacher
+create table if not exists teacher
 (
     tid int not null
         primary key,
@@ -184,7 +191,7 @@ create table teacher
 )
     charset=utf8;
 
-create table tushu
+create table if not exists tushu
 (
     tsid varchar(50) not null
         primary key,
@@ -197,7 +204,7 @@ create table tushu
 )
     charset=utf8;
 
-create table jieshu
+create table if not exists jieshu
 (
     stuid int not null,
     tsid varchar(50) not null,
@@ -216,7 +223,7 @@ create table jieshu
 )
     charset=utf8;
 
-create table user
+create table if not exists user
 (
     username varchar(20) not null
         primary key,
@@ -226,7 +233,7 @@ create table user
 )
     charset=utf8;
 
-create table user_role
+create table if not exists user_role
 (
     username varchar(20) null,
     roleId int null,
@@ -237,13 +244,13 @@ create table user_role
 )
     charset=utf8;
 
-create table xiaofei
+create table if not exists xiaofei
 (
     xfid int auto_increment
         primary key,
     stuid int null,
     xflxname varchar(50) null,
-    xftime date null,
+    xftime datetime null,
     xfaddress varchar(50) null,
     xfmoney float null,
     xfdelsign tinyint(1) default 0 null,
@@ -252,13 +259,10 @@ create table xiaofei
 )
     charset=utf8;
 
-create index stuid
-    on xiaofei (stuid);
+create index xiaofei_xftime_index
+    on xiaofei (xftime);
 
-create index xflxid
-    on xiaofei (xflxname);
-
-create table xiaofeileixing
+create table if not exists xiaofeileixing
 (
     xflxid int auto_increment
         primary key,
@@ -269,7 +273,7 @@ create table xiaofeileixing
 )
     charset=utf8;
 
-create table xinliceshiti
+create table if not exists xinliceshiti
 (
     xlcstmh int not null
         primary key,
@@ -288,7 +292,7 @@ create table xinliceshiti
 create index csid
     on xinliceshiti (csid);
 
-create table xinlitest
+create table if not exists xinlitest
 (
     csid int not null,
     stuid int not null,
@@ -303,7 +307,7 @@ create table xinlitest
 create index stuid
     on xinlitest (stuid);
 
-create table yujing
+create table if not exists yujing
 (
     stuid int not null,
     yjsort varchar(50) not null,
@@ -315,7 +319,7 @@ create table yujing
 )
     charset=utf8;
 
-create table zhuanyeactivity
+create table if not exists zhuanyeactivity
 (
     aid int not null
         primary key,
