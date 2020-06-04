@@ -53,7 +53,7 @@ public class NetworkTest {
                 if(((Date)timeLine.get(j).get("xftime")).getTime() - ((Date)timeLine.get(k).get("xftime")).getTime() > interval){
                     break;
                 }
-                if (timeLine.get(j).get("stuid") != timeLine.get(k).get("stuid")){
+                if (!timeLine.get(j).get("stuid").equals(timeLine.get(k).get("stuid"))){
                     int jid = (int) timeLine.get(j).get("stuid"), kid = (int) timeLine.get(k).get("stuid");
                     dates.putIfAbsent(jid, new HashMap<>());
                     dates.putIfAbsent(kid, new HashMap<>());
@@ -65,7 +65,7 @@ public class NetworkTest {
                 if(((Date)timeLine.get(k).get("xftime")).getTime() - ((Date)timeLine.get(j).get("xftime")).getTime() > interval){
                     break;
                 }
-                if (timeLine.get(j).get("stuid") != timeLine.get(k).get("stuid")){
+                if (!timeLine.get(j).get("stuid").equals(timeLine.get(k).get("stuid"))){
                     int jid = (int) timeLine.get(j).get("stuid"), kid = (int) timeLine.get(k).get("stuid");
                     dates.putIfAbsent(jid, new HashMap<>());
                     dates.putIfAbsent(kid, new HashMap<>());
@@ -92,7 +92,8 @@ public class NetworkTest {
                 "开发区校区食堂",
                 "2018-1-1",
                 "2018-12-31");
-        System.out.println(getNetworkByXiaofei(timeLine, 300000, 10));
+        List<int[]> network = getNetworkByXiaofei(timeLine, 300000, 10);
+        System.out.println(network);
     }
 
 }
